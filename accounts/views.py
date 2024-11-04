@@ -30,3 +30,4 @@ class CustomLoginView(View):
                 login(request, user)
                 return redirect('home')  # Use the name of your home URL pattern
         return render(request, self.template_name, {'form': form})
+    
