@@ -5,7 +5,11 @@ from django.views.generic import CreateView
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import AuthenticationForm
 from django.views import View
-
+from django.contrib.auth import logout
+from spotify.models import SpotifyProfile
+from django.contrib.auth import logout
+from django.shortcuts import redirect
+from spotify.models import SpotifyProfile
 
 class SignUpView(CreateView):
     form_class = UserCreationForm
@@ -30,4 +34,16 @@ class CustomLoginView(View):
                 login(request, user)
                 return redirect('home')  # Use the name of your home URL pattern
         return render(request, self.template_name, {'form': form})
+
+def logout_view(request):
+    # Clear Spotify profile if it exists
+    if hasattr(request.user, 'spotifyprofile'):
+        request.user.spotifyprofile.delete()
     
+    # Clear any Spotify-related session data
+    keys_to_remove = [key for key in request.session.keys() if 'spotify' in key.lower()]
+    for key in keys_to_remove:
+        del request.session[key]
+    
+    logout(request)
+    return redirect('home')

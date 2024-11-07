@@ -15,11 +15,11 @@
         </div>
         <div class="navbar-right">
             {% if is_connected %}
-                <span>Spotify Connected</span>
-            {% else %}
-                <a href="{% url 'spotify_connect' %}">Connect with Spotify</a>
-            {% endif %}
-            <a href="#">Storys</a>
+    <span>Spotify Connected</span>
+{% else %}
+    <a href="{% url 'spotify:spotify_connect' %}">Connect with Spotify</a>
+{% endif %}
+            <a href="#">Stories</a>
             <a href="#">Profile</a>
             <form method="post" action="{% url 'logout' %}">
                 {% csrf_token %}
@@ -28,12 +28,23 @@
         </div>
     </nav>
 
+    <!-- Messages -->
+    {% if messages %}
+    <div class="messages">
+        {% for message in messages %}
+        <div class="message {% if message.tags %}{{ message.tags }}{% endif %}">
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
     <!-- Main Content -->
     <div class="content">
         <h1>Create your next story</h1>
         <p>Generate a Spotify wrapped to see what adventure your music takes you to.</p>
         {% if is_connected %}
-            <a href="#" class="generate-wrap-btn">Generate Wrap</a>
+            <a href="{% url 'spotify:spotify_data' %}" class="generate-wrap-btn">Generate Wrap</a>
         {% else %}
             <p>Connect your Spotify account to generate a wrap.</p>
         {% endif %}
