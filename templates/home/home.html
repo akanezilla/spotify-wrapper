@@ -8,35 +8,35 @@
     <link rel="stylesheet" href="{% static 'css/home.css' %}">
 </head>
 <body>
-    <!-- Navigation Bar -->
-    <nav class="navbar">
-        <div class="navbar-left">
-            <span>Welcome, {{ username }}</span>
-        </div>
-        <div class="navbar-right">
-            {% if is_connected %}
-                <span>Spotify Connected</span>
-            {% else %}
-                <a href="{% url 'spotify_connect' %}">Connect with Spotify</a>
-            {% endif %}
-            <a href="#">Storys</a>
-            <a href="#">Profile</a>
-            <form method="post" action="{% url 'logout' %}">
-                {% csrf_token %}
-                <button type="submit">Logout</button>
-            </form>
-        </div>
-    </nav>
-
-    <!-- Main Content -->
-    <div class="content">
-        <h1>Create your next story</h1>
-        <p>Generate a Spotify wrapped to see what adventure your music takes you to.</p>
-        {% if is_connected %}
-            <a href="#" class="generate-wrap-btn">Generate Wrap</a>
-        {% else %}
-            <p>Connect your Spotify account to generate a wrap.</p>
-        {% endif %}
+<!-- Navigation Bar -->
+<nav class="navbar">
+    <div class="navbar-left">
+        <span>Welcome, {{ username }}</span>
     </div>
+    <div class="navbar-right">
+        {% if is_connected %}
+            <span>Spotify Connected</span>
+        {% else %}
+           <a href="{% url 'spotify:spotify_connect' %}">Connect with Spotify</a>
+        {% endif %}
+        <a href="#">Storys</a>
+        <a href="#">Profile</a>
+        <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit">Logout</button>
+        </form>
+    </div>
+</nav>
+
+<!-- Main Content -->
+<div class="content">
+    <h1>Create your next story</h1>
+    <p>Generate a Spotify wrapped to see what adventure your music takes you to.</p>
+    {% if is_connected %}
+        <a href="#" class="generate-wrap-btn">Generate Wrap</a>
+    {% else %}
+        <p>Connect your Spotify account to generate a wrap.</p>
+    {% endif %}
+</div>
 </body>
 </html>
