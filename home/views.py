@@ -6,7 +6,7 @@ from spotify.models import SpotifyProfile
 def home_view(request):
     try:
         spotify_profile = SpotifyProfile.objects.get(user=request.user)
-        is_connected = True
+        is_connected = spotify_profile.spotify_token is not None
     except SpotifyProfile.DoesNotExist:
         is_connected = False
 

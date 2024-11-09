@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Listening Trends</h1>
+<ul>
+    {% for month_year, songs in monthly_data.items %}
+        <li>{{ month_year }}: {{ songs|join:", " }}</li>
+    {% empty %}
+        <li>No listening trends found.</li>
+    {% endfor %}
+</ul>
+<a href="{% url 'home' %}">Back to Home</a>
+{% endblock %}

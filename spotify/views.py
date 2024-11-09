@@ -6,6 +6,15 @@ from django.conf import settings
 from .models import SpotifyProfile
 from django.utils import timezone
 import secrets
+import spotipy
+from spotipy.exceptions import SpotifyException
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.utils import timezone
+from .models import SpotifyProfile
+import random
+
 
 @login_required
 def spotify_connect(request):
@@ -104,8 +113,50 @@ def spotify_data_view(request):
         sp = spotipy.Spotify(auth=spotify_profile.spotify_token)
         
         try:
-            top_tracks = sp.current_user_top_tracks(limit=10, time_range='short_term')
-            return render(request, 'spotify_data.html', {'top_tracks': top_tracks})
+            # Get top tracks
+            top_tracks = sp.current_user_top_tracks(limit=5, time_range='short_term')
+            
+            # Get top artists
+            top_artists = sp.current_user_top_artists(limit=5, time_range='short_term')
+            
+            # Get recently played tracks to determine listener type
+            recent_tracks = sp.current_user_recently_played(limit=50)
+            
+            # Analyze genres
+            genres = {}
+            for artist in top_artists['items']:
+                for genre in artist['genres']:
+                    genres[genre] = genres.get(genre, 0) + 1
+            top_genre = max(genres, key=genres.get) if genres else "Unknown"
+            
+            # Determine listener type
+            unique_artists = len(set([track['track']['artists'][0]['id'] for track in recent_tracks['items']]))
+            if unique_artists > 30:
+                listener_type = "Explorer"
+            elif unique_artists > 15:
+                listener_type = "Diverse"
+            else:
+                listener_type = "Focused"
+
+            # Get total listening time
+            total_duration_ms = sum(track['track']['duration_ms'] for track in recent_tracks['items'])
+            total_duration_minutes = total_duration_ms / (1000 * 60)  # Convert to minutes
+
+            # Get random songs
+            random_tracks = random.sample(top_tracks['items'], min(3, len(top_tracks['items'])))
+            
+            # Prepare context
+            context = {
+                'top_song': top_tracks['items'][0] if top_tracks['items'] else None,
+                'top_5_tracks': top_tracks['items'][:5],
+                'top_artists': [artist['name'] for artist in top_artists['items']],
+                'top_genre': top_genre,
+                'listener_type': listener_type,
+                'total_duration': total_duration_minutes,
+                'random_tracks': random_tracks,
+            }
+            
+            return render(request, 'spotify/spotify_data.html', context)
         except SpotifyException as e:
             messages.error(request, f"Spotify API error: {str(e)}")
             return redirect('home')
@@ -113,3 +164,223 @@ def spotify_data_view(request):
     except SpotifyProfile.DoesNotExist:
         messages.warning(request, "Please connect your Spotify account first.")
         return redirect('spotify_connect')
+@login_required
+def top_tracks_view(request):
+    try:
+        spotify_profile = request.user.spotifyprofile
+        
+        if spotify_profile.token_expires <= timezone.now():
+            spotify_profile.refresh_spotify_token()
+        
+        sp = spotipy.Spotify(auth=spotify_profile.spotify_token)
+        
+        top_tracks = sp.current_user_top_tracks(limit=5, time_range='short_term')
+        
+        context = {
+            'top_tracks': top_tracks['items']
+        }
+        return render(request, 'spotify/top_tracks.html', context)
+    except SpotifyProfile.DoesNotExist:
+        messages.warning(request, "Please connect your Spotify account first.")
+        return redirect('spotify:spotify_connect')
+    except SpotifyException as e:
+        messages.error(request, f"Spotify API error: {str(e)}")
+        return redirect('home')
+
+@login_required
+def top_artists_view(request):
+    try:
+        spotify_profile = request.user.spotifyprofile
+        
+        if spotify_profile.token_expires <= timezone.now():
+            spotify_profile.refresh_spotify_token()
+        
+        sp = spotipy.Spotify(auth=spotify_profile.spotify_token)
+        
+        top_artists = sp.current_user_top_artists(limit=5, time_range='short_term')
+        
+        context = {
+            'top_artists': top_artists['items']
+        }
+        return render(request, 'spotify/top_artists.html', context)
+    except SpotifyProfile.DoesNotExist:
+        messages.warning(request, "Please connect your Spotify account first.")
+        return redirect('spotify:spotify_connect')
+    except SpotifyException as e:
+        messages.error(request, f"Spotify API error: {str(e)}")
+        return redirect('home')
+
+@login_required
+def top_genre_view(request):
+    try:
+        spotify_profile = request.user.spotifyprofile
+        
+        if spotify_profile.token_expires <= timezone.now():
+            spotify_profile.refresh_spotify_token()
+        
+        sp = spotipy.Spotify(auth=spotify_profile.spotify_token)
+        
+        top_artists = sp.current_user_top_artists(limit=50, time_range='medium_term')
+        
+        genres = {}
+        for artist in top_artists['items']:
+            for genre in artist['genres']:
+                genres[genre] = genres.get(genre, 0) + 1
+        
+        top_genres = sorted(genres.items(), key=lambda x: x[1], reverse=True)[:5]
+        
+        context = {
+            'top_genres': top_genres
+        }
+        return render(request, 'spotify/top_genre.html', context)
+    except SpotifyProfile.DoesNotExist:
+        messages.warning(request, "Please connect your Spotify account first.")
+        return redirect('spotify:spotify_connect')
+    except SpotifyException as e:
+        messages.error(request, f"Spotify API error: {str(e)}")
+        return redirect('home')
+
+@login_required
+def listener_type_view(request):
+    try:
+        spotify_profile = request.user.spotifyprofile
+        
+        if spotify_profile.token_expires <= timezone.now():
+            spotify_profile.refresh_spotify_token()
+        
+        sp = spotipy.Spotify(auth=spotify_profile.spotify_token)
+        
+        recent_tracks = sp.current_user_recently_played(limit=50)
+        
+        unique_artists = len(set([track['track']['artists'][0]['id'] for track in recent_tracks['items']]))
+        if unique_artists > 30:
+            listener_type = "Explorer"
+        elif unique_artists > 15:
+            listener_type = "Diverse"
+        else:
+            listener_type = "Focused"
+        
+        context = {
+            'listener_type': listener_type,
+            'unique_artists': unique_artists
+        }
+        return render(request, 'spotify/listener_type.html', context)
+    except SpotifyProfile.DoesNotExist:
+        messages.warning(request, "Please connect your Spotify account first.")
+        return redirect('spotify:spotify_connect')
+    except SpotifyException as e:
+        messages.error(request, f"Spotify API error: {str(e)}")
+        return redirect('home')
+@login_required
+def random_songs_view(request):
+    try:
+        spotify_profile = request.user.spotifyprofile
+        
+        if spotify_profile.token_expires <= timezone.now():
+            spotify_profile.refresh_spotify_token()
+        
+        sp = spotipy.Spotify(auth=spotify_profile.spotify_token)
+        
+        # Get top tracks
+        top_tracks = sp.current_user_top_tracks(limit=50, time_range='short_term')
+        
+        # Select 3 random tracks
+        random_tracks = random.sample(top_tracks['items'], min(3, len(top_tracks['items'])))
+        
+        context = {
+            'random_tracks': random_tracks
+        }
+        return render(request, 'spotify/random_songs.html', context)
+    except SpotifyProfile.DoesNotExist:
+        messages.warning(request, "Please connect your Spotify account first.")
+        return redirect('spotify:spotify_connect')
+    except SpotifyException as e:
+        messages.error(request, f"Spotify API error: {str(e)}")
+        return redirect('home')
+@login_required
+def total_listening_time_view(request):
+    try:
+        spotify_profile = request.user.spotifyprofile
+        
+        if spotify_profile.token_expires <= timezone.now():
+            spotify_profile.refresh_spotify_token()
+        
+        sp = spotipy.Spotify(auth=spotify_profile.spotify_token)
+        
+        # Get recently played tracks
+        recent_tracks = sp.current_user_recently_played(limit=50)
+        
+        total_duration = sum(track['track']['duration_ms'] for track in recent_tracks['items'])
+        total_duration_minutes = total_duration / (1000 * 60)  # Convert to minutes
+        
+        context = {
+            'total_duration': total_duration_minutes
+        }
+        return render(request, 'spotify/total_listening_time.html', context)
+    except SpotifyProfile.DoesNotExist:
+        messages.warning(request, "Please connect your Spotify account first.")
+        return redirect('spotify:spotify_connect')
+    except SpotifyException as e:
+        messages.error(request, f"Spotify API error: {str(e)}")
+        return redirect('home')
+@login_required
+def top_song_view(request):
+    try:
+        spotify_profile = request.user.spotifyprofile
+        
+        if spotify_profile.token_expires <= timezone.now():
+            spotify_profile.refresh_spotify_token()
+        
+        sp = spotipy.Spotify(auth=spotify_profile.spotify_token)
+        
+        # Get top tracks
+        top_tracks = sp.current_user_top_tracks(limit=1, time_range='short_term')
+        
+        context = {
+            'top_song': top_tracks['items'][0] if top_tracks['items'] else None
+        }
+        return render(request, 'spotify/top_song.html', context)
+    except SpotifyProfile.DoesNotExist:
+        messages.warning(request, "Please connect your Spotify account first.")
+        return redirect('spotify:spotify_connect')
+    except SpotifyException as e:
+        messages.error(request, f"Spotify API error: {str(e)}")
+        return redirect('home')
+@login_required
+def listening_trends_view(request):
+    try:
+        spotify_profile = request.user.spotifyprofile
+        
+        if spotify_profile.token_expires <= timezone.now():
+            spotify_profile.refresh_spotify_token()
+        
+        sp = spotipy.Spotify(auth=spotify_profile.spotify_token)
+        
+        # Get recently played tracks
+        recent_tracks = sp.current_user_recently_played(limit=100)  # Fetch more data if needed
+        
+        monthly_data = {}
+        
+        for track in recent_tracks['items']:
+            played_at = track['played_at']
+            month_year = played_at[:7]  # Extract YYYY-MM
+            
+            track_name = track['track']['name']
+            artist_name = track['track']['artists'][0]['name']
+            
+            if month_year not in monthly_data:
+                monthly_data[month_year] = []
+            
+            monthly_data[month_year].append(f"{track_name} by {artist_name}")
+        
+        context = {
+            'monthly_data': monthly_data
+        }
+        
+        return render(request, 'spotify/listening_trends.html', context)
+    except SpotifyProfile.DoesNotExist:
+        messages.warning(request, "Please connect your Spotify account first.")
+        return redirect('spotify:spotify_connect')
+    except SpotifyException as e:
+        messages.error(request, f"Spotify API error: {str(e)}")
+        return redirect('home')
