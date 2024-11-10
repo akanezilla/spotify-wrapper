@@ -589,7 +589,7 @@ blockquote {
 
 .body {
   background-color: var(--background-black);
-  background-image: url('../images/Screenshot-2024-10-31-at-2.20.33-PM.png');
+  background-image: url('../images/background.png');
   background-position: 50%;
   background-size: cover;
   background-attachment: fixed;
@@ -2089,7 +2089,7 @@ blockquote {
 }
 
 .image {
-  background-image: url('../images/Screenshot-2024-10-31-at-2.20.33-PM.png');
+  background-image: url('../images/background.png');
   background-position: 0 0;
   background-size: auto;
   position: fixed;
@@ -2224,7 +2224,7 @@ blockquote {
 }
 
 .body-2 {
-  background-image: url('../images/Screenshot-2024-10-31-at-2.20.33-PM.png');
+  background-image: url('../images/background.png');
   background-position: 50%;
   background-size: auto;
 }
@@ -2239,13 +2239,13 @@ blockquote {
 }
 
 .menu-button {
-  background-image: url('../images/Screenshot-2024-10-31-at-1.35.39-AM.png');
+  background-image: url('../images/tarotifylogo.png');
   background-position: 50%;
   background-size: auto;
 }
 
 .brand {
-  background-image: url('../images/Screenshot-2024-10-31-at-1.35.39-AM.png');
+  background-image: url('../images/tarotifylogo.png');
   background-position: 50%;
   background-repeat: repeat;
   background-size: contain;
