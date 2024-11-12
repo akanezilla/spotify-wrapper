@@ -1,12 +1,27 @@
-{% extends 'base.html' %}
-
-{% block title %}Login{% endblock %}
-
-{% block content %}
-  <h2>Log In</h2>
-  <form method="post">
-    {% csrf_token %}
-    {{ form }}
-    <button type="submit">Log In</button>
-  </form>
-{% endblock %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <div class="login-container">
+        <img src="{% static 'images/logo.png' %}" alt="Logo" class="logo">
+        <form method="post">
+            {% csrf_token %}
+            <div class="input-group">
+                <label for="id_username">Username</label>
+                <input type="text" name="username" required id="id_username">
+            </div>
+            <div class="input-group">
+                <label for="id_password">Password</label>
+                <input type="password" name="password" required id="id_password">
+            </div>
+            <button type="submit" class="btn">Log in</button>
+        </form>
+        <a href="{% url 'signup' %}" class="signup-link">Don't have an account? Sign up</a>
+    </div>
+</body>
+</html>

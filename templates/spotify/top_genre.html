@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Top Genres{% endblock %}
+
+{% block content %}
+<div class="spotify-data">
+    <h1>Your Top Genres</h1>
+    {% if top_genres %}
+        <ol class="genre-list">
+        {% for genre, count in top_genres %}
+            <li class="genre-item">
+                <span class="genre-name">{{ genre }}</span>
+                <span class="genre-count">({{ count }} tracks)</span>
+            </li>
+        {% endfor %}
+        </ol>
+    {% else %}
+        <p>No top genres found. Try diversifying your music taste!</p>
+    {% endif %}
+    <a href="{% url 'home' %}" class="back-button">Back to Home</a>
+</div>
+{% endblock %}

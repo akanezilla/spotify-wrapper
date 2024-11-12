@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Your Top Song</h1>
+{% if top_song %}
+    <p>{{ top_song.name }} by {{ artist_name }}</p> <!-- Directly using prepared artist_name -->
+{% else %}
+    <p>No top song found.</p>
+{% endif %}
+<a href="{% url 'home' %}">Back to Home</a>
+{% endblock %}
