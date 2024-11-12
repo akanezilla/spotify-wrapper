@@ -23,7 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('accounts.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('', TemplateView.as_view(template_name='home.html'), name='home'),
+    path('', TemplateView.as_view(template_name='home/home.html'), name='home'),
     path('delete-account/', views.delete_account, name='delete_account'),
     path('accounts/', include('accounts.urls')),
     path('', include('home.urls')),
