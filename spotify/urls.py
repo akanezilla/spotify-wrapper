@@ -17,4 +17,5 @@ urlpatterns = [
     path('total-listening-time/', views.total_listening_time_view, name='total_listening_time'),
     path('top-song/', views.top_song_view, name='top_song'),
     path('listening-trends/', views.listening_trends_view, name='listening_trends'),  # Ensure this line is present
+    path('color-playlist/', views.color_inspired_playlist_view, name='color_playlist'),
 ]

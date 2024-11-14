@@ -384,3 +384,62 @@ def listening_trends_view(request):
     except SpotifyException as e:
         messages.error(request, f"Spotify API error: {str(e)}")
         return redirect('home')
+@login_required
+def color_inspired_playlist_view(request):
+    try:
+        spotify_profile = request.user.spotifyprofile
+        
+        if spotify_profile.token_expires <= timezone.now():
+            spotify_profile.refresh_spotify_token()
+        
+        sp = spotipy.Spotify(auth=spotify_profile.spotify_token)
+        
+        if request.method == 'POST':
+            color = request.POST.get('color', '').lower()
+            
+            # Define color-related keywords
+            color_keywords = {
+                'blue': ['cool', 'calm', 'melancholy', 'ocean', 'sky'],
+                'red': ['passion', 'energy', 'anger', 'love', 'fire'],
+                'green': ['nature', 'growth', 'fresh', 'harmony', 'balance'],
+                'yellow': ['happy', 'sunny', 'cheerful', 'bright', 'optimistic'],
+                'purple': ['royal', 'mysterious', 'creative', 'spiritual', 'luxurious'],
+                'orange': ['warm', 'energetic', 'autumn', 'sunset', 'vibrant'],
+                'pink': ['romantic', 'gentle', 'sweet', 'feminine', 'soft'],
+                'gold': ['luxury', 'success', 'achievement', 'wealth', 'prestige'],
+                'silver': ['modern', 'sleek', 'futuristic', 'cool', 'sophisticated'],
+                'brown': ['earthy', 'natural', 'rustic', 'warm', 'cozy']
+            }
+            
+            keywords = color_keywords.get(color, [color])
+            
+            # Search for tracks based on color keywords
+            tracks = []
+            for keyword in keywords:
+                results = sp.search(q=keyword, type='track', limit=5)
+                tracks.extend(results['tracks']['items'])
+            
+            # Create a new playlist
+            user_id = sp.me()['id']
+            playlist_name = f"{color.capitalize()} Inspired Playlist"
+            playlist = sp.user_playlist_create(user_id, playlist_name, public=False)
+            
+            # Add tracks to the playlist
+            track_uris = [track['uri'] for track in tracks[:20]]  # Limit to 20 tracks
+            sp.user_playlist_add_tracks(user_id, playlist['id'], track_uris)
+            
+            context = {
+                'playlist_url': playlist['external_urls']['spotify'],
+                'color': color,
+                'tracks': tracks[:20]
+            }
+            return render(request, 'spotify/color_playlist_result.html', context)
+        
+        return render(request, 'spotify/color_playlist_form.html')
+    
+    except SpotifyProfile.DoesNotExist:
+        messages.warning(request, "Please connect your Spotify account first.")
+        return redirect('spotify:spotify_connect')
+    except SpotifyException as e:
+        messages.error(request, f"Spotify API error: {str(e)}")
+        return redirect('home')

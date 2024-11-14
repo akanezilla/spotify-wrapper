@@ -24,6 +24,7 @@
             <form method="post" action="{% url 'logout' %}">
                 {% csrf_token %}
                 <button type="submit">Logout</button>
+                <a href="{% url 'delete_account' %}">Delete Account</a>
             </form>
         </div>
     </nav>
@@ -47,6 +48,7 @@
         {% if is_connected %}
             <a href="{% url 'spotify:spotify_data' %}" class="generate-wrap-btn">Generate Wrap</a>
 
+
             <!-- Display Spotify Data Links -->
            <h2>Your Spotify Data</h2>
 <ul>
@@ -58,6 +60,8 @@
     <li><a href="{% url 'spotify:total_listening_time' %}">View Total Listening Time</a></li>
     <li><a href="{% url 'spotify:top_song' %}">View Top Song</a></li>
     <li><a href="{% url 'spotify:listening_trends' %}">View Listening Trends</a></li>
+    <li><a href="{% url 'spotify:color_playlist' %}">Create Color-Inspired Playlist</a></li>
+</ul>
 </ul>
         {% else %}
             <p>Connect your Spotify account to generate a wrap.</p>
