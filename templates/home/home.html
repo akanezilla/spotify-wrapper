@@ -6,6 +6,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Spotify Wrapper Home</title>
     <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <style>
+        #slideshow-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .slide {
+            position: absolute;
+            width: 80%;
+            max-width: 600px;
+            background-color: #191414;
+            color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .slide.active {
+            opacity: 1;
+        }
+        #progress-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            height: 5px;
+            background-color: #1DB954;
+            transition: width 0.5s linear;
+        }
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: #fff;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .slide ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .slide li {
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation Bar -->
@@ -24,8 +76,8 @@
             <form method="post" action="{% url 'logout' %}">
                 {% csrf_token %}
                 <button type="submit">Logout</button>
-                <a href="{% url 'delete_account' %}">Delete Account</a>
             </form>
+            <a href="{% url 'delete_account' %}">Delete Account</a>
         </div>
     </nav>
 
@@ -46,24 +98,133 @@
         <p>Generate a Spotify wrapped to see what adventure your music takes you to.</p>
 
         {% if is_connected %}
-            <a href="{% url 'spotify:spotify_data' %}" class="generate-wrap-btn">Generate Wrap</a>
+            <a href="#" class="generate-wrap-btn" id="start-slideshow">Generate Wrap</a>
 
+            <!-- Slideshow Container -->
+            <div id="slideshow-container">
+                <div class="close-btn" id="close-slideshow">&times;</div>
+                
+                <div class="slide">
+                    <h2>Your Top 5 Tracks</h2>
+                    <ol>
+                        {% for track in top_tracks %}
+                            <li>{{ track.name }} by {{ track.artists.0.name }}</li>
+                        {% endfor %}
+                    </ol>
+                </div>
+                
+                <div class="slide">
+                    <h2>Your Top Artists</h2>
+                    <ul>
+                        {% for artist in top_artists %}
+                            <li>{{ artist.name }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                
+                <div class="slide">
+                    <h2>Your Top Genre</h2>
+                    <p>{{ top_genre }}</p>
+                </div>
+                
+                <div class="slide">
+                    <h2>Your Listener Type</h2>
+                    <p>{{ listener_type }}</p>
+                    <p>You've explored {{ unique_artists }} different artists recently!</p>
+                </div>
+                
+                <div class="slide">
+                    <h2>3 Random Songs</h2>
+                    <ul>
+                        {% for song in random_songs %}
+                            <li>{{ song.name }} by {{ song.artists.0.name }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                
+                <div class="slide">
+                    <h2>Your Total Listening Time</h2>
+                    <p>You've listened to {{ total_listening_time }} minutes of music!</p>
+                </div>
+                
+                <div class="slide">
+                    <h2>Your Top Song</h2>
+                    <p>{{ top_song.name }} by {{ top_song.artists.0.name }}</p>
+                    <img src="{{ top_song.album.images.0.url }}" alt="{{ top_song.name }} album cover" style="max-width: 200px;">
+                </div>
+                
+                <div class="slide">
+                    <h2>Your Memorable Moment</h2>
+                    <p>{{ memorable_moment_description }}</p>
+                    <p>{{ memorable_track.name }} by {{ memorable_track.artists.0.name }}</p>
+                </div>
+                
+                <div id="progress-bar"></div>
+            </div>
 
-            <!-- Display Spotify Data Links -->
-           <h2>Your Spotify Data</h2>
-<ul>
-    <li><a href="{% url 'spotify:top_tracks' %}">View Top 5 Tracks</a></li>
-    <li><a href="{% url 'spotify:top_artists' %}">View Top Artists</a></li>
-    <li><a href="{% url 'spotify:top_genre' %}">View Top Genre</a></li>
-    <li><a href="{% url 'spotify:listener_type' %}">View Listener Type</a></li>
-    <li><a href="{% url 'spotify:random_songs' %}">View 3 Random Songs</a></li>
-    <li><a href="{% url 'spotify:total_listening_time' %}">View Total Listening Time</a></li>
-    <li><a href="{% url 'spotify:top_song' %}">View Top Song</a></li>
-    <li><a href="{% url 'spotify:memorable_moment' %}">View Memorable Moment</a></li>
-</ul>
+            <!-- Your existing list of links -->
+            <h2>Your Spotify Data</h2>
+            <ul>
+                <li><a href="{% url 'spotify:top_tracks' %}">View Top 5 Tracks</a></li>
+                <li><a href="{% url 'spotify:top_artists' %}">View Top Artists</a></li>
+                <li><a href="{% url 'spotify:top_genre' %}">View Top Genre</a></li>
+                <li><a href="{% url 'spotify:listener_type' %}">View Listener Type</a></li>
+                <li><a href="{% url 'spotify:random_songs' %}">View 3 Random Songs</a></li>
+                <li><a href="{% url 'spotify:total_listening_time' %}">View Total Listening Time</a></li>
+                <li><a href="{% url 'spotify:top_song' %}">View Top Song</a></li>
+                <li><a href="{% url 'spotify:memorable_moment' %}">View Memorable Moment</a></li>
+            </ul>
         {% else %}
             <p>Connect your Spotify account to generate a wrap.</p>
         {% endif %}
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const startButton = document.getElementById('start-slideshow');
+            const closeButton = document.getElementById('close-slideshow');
+            const slideshowContainer = document.getElementById('slideshow-container');
+            const slides = document.querySelectorAll('.slide');
+            const progressBar = document.getElementById('progress-bar');
+            let currentSlide = 0;
+            let slideInterval;
+            const slideIntervalTime = 5000; // 5 seconds per slide
+
+            function showSlide(index) {
+                slides.forEach(slide => slide.classList.remove('active'));
+                slides[index].classList.add('active');
+                progressBar.style.width = `${((index + 1) / slides.length) * 100}%`;
+            }
+
+            function nextSlide() {
+                currentSlide = (currentSlide + 1) % slides.length;
+                showSlide(currentSlide);
+                if (currentSlide === 0) {
+                    // Slideshow completed
+                    stopSlideshow();
+                }
+            }
+
+            function startSlideshow() {
+                slideshowContainer.style.display = 'flex';
+                currentSlide = 0;
+                showSlide(currentSlide);
+                slideInterval = setInterval(nextSlide, slideIntervalTime);
+            }
+
+            function stopSlideshow() {
+                clearInterval(slideInterval);
+                slideshowContainer.style.display = 'none';
+                progressBar.style.width = '0';
+            }
+
+            startButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                startSlideshow();
+            });
+
+            closeButton.addEventListener('click', stopSlideshow);
+        });
+    </script>
 </body>
 </html>

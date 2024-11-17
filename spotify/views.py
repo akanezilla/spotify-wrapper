@@ -390,3 +390,70 @@ def generate_moment_description(track, artist):
         f"That perfect moment when '{track['name']}' came on and everything felt right."
     ]
     return random.choice(moments)
+@login_required
+def spotify_wrapped_view(request):
+    try:
+        spotify_profile = request.user.spotifyprofile
+        if spotify_profile.token_expires <= timezone.now():
+            spotify_profile.refresh_spotify_token()
+        
+        sp = spotipy.Spotify(auth=spotify_profile.spotify_token)
+        
+        # Fetch all required data
+        top_tracks = sp.current_user_top_tracks(limit=5, time_range='short_term')['items']
+        top_artists = sp.current_user_top_artists(limit=5, time_range='short_term')['items']
+        
+        # Top genres
+        all_artists = sp.current_user_top_artists(limit=50, time_range='medium_term')['items']
+        genres = {}
+        for artist in all_artists:
+            for genre in artist['genres']:
+                genres[genre] = genres.get(genre, 0) + 1
+        top_genres = sorted(genres.items(), key=lambda x: x[1], reverse=True)[:5]
+        
+        # Listener type
+        recent_tracks = sp.current_user_recently_played(limit=50)['items']
+        unique_artists = len(set([track['track']['artists'][0]['id'] for track in recent_tracks]))
+        if unique_artists > 30:
+            listener_type = "Explorer"
+        elif unique_artists > 15:
+            listener_type = "Diverse"
+        else:
+            listener_type = "Focused"
+        
+        # Random songs
+        random_tracks = random.sample(top_tracks, min(3, len(top_tracks)))
+        
+        # Total listening time
+        total_duration = sum(track['track']['duration_ms'] for track in recent_tracks)
+        total_duration_minutes = total_duration / (1000 * 60)
+        
+        # Top song
+        top_song = top_tracks[0] if top_tracks else None
+        
+        # Memorable moment
+        all_tracks = top_tracks + recent_tracks
+        memorable_track = random.choice(all_tracks)
+        artist_info = sp.artist(memorable_track['track']['artists'][0]['id'])
+        moment_description = generate_moment_description(memorable_track['track'], artist_info)
+        
+        context = {
+            'top_tracks': top_tracks,
+            'top_artists': top_artists,
+            'top_genres': top_genres,
+            'listener_type': listener_type,
+            'unique_artists': unique_artists,
+            'random_tracks': random_tracks,
+            'total_duration_minutes': total_duration_minutes,
+            'top_song': top_song,
+            'memorable_track': memorable_track['track'],
+            'moment_description': moment_description,
+        }
+        
+        return render(request, 'spotify/wrapped.html', context)
+    except SpotifyProfile.DoesNotExist:
+        messages.warning(request, "Please connect your Spotify account first.")
+        return redirect('spotify:spotify_connect')
+    except SpotifyException as e:
+        messages.error(request, f"Spotify API error: {str(e)}")
+        return redirect('home')
