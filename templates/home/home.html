@@ -25,6 +25,7 @@
                 {% csrf_token %}
                 <button type="submit">Logout</button>
                 <a href="{% url 'delete_account' %}">Delete Account</a>
+                <a href="{% url 'delete_account' %}">Delete Account</a>
             </form>
         </div>
     </nav>
@@ -47,6 +48,7 @@
 
         {% if is_connected %}
             <a href="{% url 'spotify:spotify_data' %}" class="generate-wrap-btn">Generate Wrap</a>
+
 
 
             <!-- Display Spotify Data Links -->
