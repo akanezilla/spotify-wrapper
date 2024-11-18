@@ -15,8 +15,4 @@ urlpatterns = [
     path('total-listening-time/', views.total_listening_time_view, name='total_listening_time'),
     path('top-song/', views.top_song_view, name='top_song'),
     path('memorable-moment/', views.memorable_moment_view, name='memorable_moment'),
-<<<<<<< HEAD
 ]
-=======
-    ]
->>>>>>> 3aeb77cd329ad251dc1bb76f1d2f5b5c5f8db3f9

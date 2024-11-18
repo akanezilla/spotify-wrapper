@@ -78,7 +78,6 @@
                 <button type="submit">Logout</button>
                 <a href="{% url 'delete_account' %}">Delete Account</a>
             </form>
-            <a href="{% url 'delete_account' %}">Delete Account</a>
         </div>
     </nav>
 
@@ -99,9 +98,8 @@
         <p>Generate a Spotify wrapped to see what adventure your music takes you to.</p>
 
         {% if is_connected %}
-            <a href="#" class="generate-wrap-btn" id="start-slideshow">Generate Wrap</a>
+            <a href="{% url 'spotify:spotify_data' %}" class="generate-wrap-btn">Generate Wrap</a>
 
-<<<<<<< HEAD
 
             <!-- Display Spotify Data Links -->
            <h2>Your Spotify Data</h2>
@@ -116,82 +114,6 @@
     <li><a href="{% url 'spotify:memorable_moment' %}">View Memorable Moment</a></li>
 </ul>
 </ul>
-=======
-            <!-- Slideshow Container -->
-            <div id="slideshow-container">
-                <div class="close-btn" id="close-slideshow">&times;</div>
-                
-                <div class="slide">
-                    <h2>Your Top 5 Tracks</h2>
-                    <ol>
-                        {% for track in top_tracks %}
-                            <li>{{ track.name }} by {{ track.artists.0.name }}</li>
-                        {% endfor %}
-                    </ol>
-                </div>
-                
-                <div class="slide">
-                    <h2>Your Top Artists</h2>
-                    <ul>
-                        {% for artist in top_artists %}
-                            <li>{{ artist.name }}</li>
-                        {% endfor %}
-                    </ul>
-                </div>
-                
-                <div class="slide">
-                    <h2>Your Top Genre</h2>
-                    <p>{{ top_genre }}</p>
-                </div>
-                
-                <div class="slide">
-                    <h2>Your Listener Type</h2>
-                    <p>{{ listener_type }}</p>
-                    <p>You've explored {{ unique_artists }} different artists recently!</p>
-                </div>
-                
-                <div class="slide">
-                    <h2>3 Random Songs</h2>
-                    <ul>
-                        {% for song in random_songs %}
-                            <li>{{ song.name }} by {{ song.artists.0.name }}</li>
-                        {% endfor %}
-                    </ul>
-                </div>
-                
-                <div class="slide">
-                    <h2>Your Total Listening Time</h2>
-                    <p>You've listened to {{ total_listening_time }} minutes of music!</p>
-                </div>
-                
-                <div class="slide">
-                    <h2>Your Top Song</h2>
-                    <p>{{ top_song.name }} by {{ top_song.artists.0.name }}</p>
-                    <img src="{{ top_song.album.images.0.url }}" alt="{{ top_song.name }} album cover" style="max-width: 200px;">
-                </div>
-                
-                <div class="slide">
-                    <h2>Your Memorable Moment</h2>
-                    <p>{{ memorable_moment_description }}</p>
-                    <p>{{ memorable_track.name }} by {{ memorable_track.artists.0.name }}</p>
-                </div>
-                
-                <div id="progress-bar"></div>
-            </div>
-
-            <!-- Your existing list of links -->
-            <h2>Your Spotify Data</h2>
-            <ul>
-                <li><a href="{% url 'spotify:top_tracks' %}">View Top 5 Tracks</a></li>
-                <li><a href="{% url 'spotify:top_artists' %}">View Top Artists</a></li>
-                <li><a href="{% url 'spotify:top_genre' %}">View Top Genre</a></li>
-                <li><a href="{% url 'spotify:listener_type' %}">View Listener Type</a></li>
-                <li><a href="{% url 'spotify:random_songs' %}">View 3 Random Songs</a></li>
-                <li><a href="{% url 'spotify:total_listening_time' %}">View Total Listening Time</a></li>
-                <li><a href="{% url 'spotify:top_song' %}">View Top Song</a></li>
-                <li><a href="{% url 'spotify:memorable_moment' %}">View Memorable Moment</a></li>
-            </ul>
->>>>>>> 3aeb77cd329ad251dc1bb76f1d2f5b5c5f8db3f9
         {% else %}
             <p>Connect your Spotify account to generate a wrap.</p>
         {% endif %}
