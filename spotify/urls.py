@@ -15,4 +15,4 @@ urlpatterns = [
     path('total-listening-time/', views.total_listening_time_view, name='total_listening_time'),
     path('top-song/', views.top_song_view, name='top_song'),
     path('memorable-moment/', views.memorable_moment_view, name='memorable_moment'),
-    ]
+]
