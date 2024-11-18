@@ -1,10 +1,5 @@
-from django.shortcuts import redirect
-from django.contrib.auth.decorators import login_required
-from django.contrib import messages
 from spotipy.oauth2 import SpotifyOAuth
 from django.conf import settings
-from .models import SpotifyProfile
-from django.utils import timezone
 import secrets
 import spotipy
 from spotipy.exceptions import SpotifyException
@@ -14,7 +9,6 @@ from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from .models import SpotifyProfile
 import random
-
 
 @login_required
 def spotify_connect(request):
@@ -347,7 +341,7 @@ def top_song_view(request):
         messages.error(request, f"Spotify API error: {str(e)}")
         return redirect('home')
 @login_required
-def listening_trends_view(request):
+def memorable_moment_view(request):
     try:
         spotify_profile = request.user.spotifyprofile
         
@@ -356,28 +350,107 @@ def listening_trends_view(request):
         
         sp = spotipy.Spotify(auth=spotify_profile.spotify_token)
         
+        # Get top tracks of the year
+        top_tracks = sp.current_user_top_tracks(limit=50, time_range='long_term')
+        
         # Get recently played tracks
-        recent_tracks = sp.current_user_recently_played(limit=100)  # Fetch more data if needed
+        recent_tracks = sp.current_user_recently_played(limit=50)
         
-        monthly_data = {}
+        # Combine and shuffle the tracks
+        all_tracks = top_tracks['items'] + recent_tracks['items']
+        random.shuffle(all_tracks)
         
-        for track in recent_tracks['items']:
-            played_at = track['played_at']
-            month_year = played_at[:7]  # Extract YYYY-MM
-            
-            track_name = track['track']['name']
-            artist_name = track['track']['artists'][0]['name']
-            
-            if month_year not in monthly_data:
-                monthly_data[month_year] = []
-            
-            monthly_data[month_year].append(f"{track_name} by {artist_name}")
+        # Select a random track as the "memorable moment"
+        memorable_track = random.choice(all_tracks)
+        
+        # Get additional context for the track
+        track_info = sp.track(memorable_track['id'])
+        artist_info = sp.artist(track_info['artists'][0]['id'])
         
         context = {
-            'monthly_data': monthly_data
+            'track': track_info,
+            'artist': artist_info,
+            'moment_description': generate_moment_description(track_info, artist_info)
+        }
+        return render(request, 'spotify/memorable_moment.html', context)
+    except SpotifyProfile.DoesNotExist:
+        messages.warning(request, "Please connect your Spotify account first.")
+        return redirect('spotify:spotify_connect')
+    except SpotifyException as e:
+        messages.error(request, f"Spotify API error: {str(e)}")
+        return redirect('home')
+
+def generate_moment_description(track, artist):
+    """Generate a description for the memorable moment."""
+    moments = [
+        f"Remember when you couldn't stop playing '{track['name']}' by {artist['name']}?",
+        f"That time '{track['name']}' became the soundtrack to your life.",
+        f"When {artist['name']}'s '{track['name']}' hit differently and became your anthem.",
+        f"The day you discovered '{track['name']}' and fell in love with {artist['name']}'s music.",
+        f"That perfect moment when '{track['name']}' came on and everything felt right."
+    ]
+    return random.choice(moments)
+@login_required
+def spotify_wrapped_view(request):
+    try:
+        spotify_profile = request.user.spotifyprofile
+        if spotify_profile.token_expires <= timezone.now():
+            spotify_profile.refresh_spotify_token()
+        
+        sp = spotipy.Spotify(auth=spotify_profile.spotify_token)
+        
+        # Fetch all required data
+        top_tracks = sp.current_user_top_tracks(limit=5, time_range='short_term')['items']
+        top_artists = sp.current_user_top_artists(limit=5, time_range='short_term')['items']
+        
+        # Top genres
+        all_artists = sp.current_user_top_artists(limit=50, time_range='medium_term')['items']
+        genres = {}
+        for artist in all_artists:
+            for genre in artist['genres']:
+                genres[genre] = genres.get(genre, 0) + 1
+        top_genres = sorted(genres.items(), key=lambda x: x[1], reverse=True)[:5]
+        
+        # Listener type
+        recent_tracks = sp.current_user_recently_played(limit=50)['items']
+        unique_artists = len(set([track['track']['artists'][0]['id'] for track in recent_tracks]))
+        if unique_artists > 30:
+            listener_type = "Explorer"
+        elif unique_artists > 15:
+            listener_type = "Diverse"
+        else:
+            listener_type = "Focused"
+        
+        # Random songs
+        random_tracks = random.sample(top_tracks, min(3, len(top_tracks)))
+        
+        # Total listening time
+        total_duration = sum(track['track']['duration_ms'] for track in recent_tracks)
+        total_duration_minutes = total_duration / (1000 * 60)
+        
+        # Top song
+        top_song = top_tracks[0] if top_tracks else None
+        
+        # Memorable moment
+        all_tracks = top_tracks + recent_tracks
+        memorable_track = random.choice(all_tracks)
+        artist_info = sp.artist(memorable_track['track']['artists'][0]['id'])
+        moment_description = generate_moment_description(memorable_track['track'], artist_info)
+        
+        context = {
+            'top_tracks': top_tracks,
+            'top_artists': top_artists,
+            'top_genres': top_genres,
+            'listener_type': listener_type,
+            'unique_artists': unique_artists,
+            'random_tracks': random_tracks,
+            'total_duration_minutes': total_duration_minutes,
+            'top_song': top_song,
+            'memorable_track': memorable_track['track'],
+            'moment_description': moment_description,
         }
         
-        return render(request, 'spotify/listening_trends.html', context)
+        return render(request, 'spotify/wrapped.html', context)
     except SpotifyProfile.DoesNotExist:
         messages.warning(request, "Please connect your Spotify account first.")
         return redirect('spotify:spotify_connect')

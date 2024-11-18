@@ -11,10 +11,12 @@ urlpatterns = [
     path('top-artists/', views.top_artists_view, name='top_artists'),
     path('top-genre/', views.top_genre_view, name='top_genre'),
     path('listener-type/', views.listener_type_view, name='listener_type'),
-    
-    # New URL patterns for additional features
     path('random-songs/', views.random_songs_view, name='random_songs'),
     path('total-listening-time/', views.total_listening_time_view, name='total_listening_time'),
     path('top-song/', views.top_song_view, name='top_song'),
     path('memorable-moment/', views.memorable_moment_view, name='memorable_moment'),
+<<<<<<< HEAD
 ]
+=======
+    ]
+>>>>>>> 3aeb77cd329ad251dc1bb76f1d2f5b5c5f8db3f9
