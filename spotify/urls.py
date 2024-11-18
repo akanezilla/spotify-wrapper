@@ -16,5 +16,5 @@ urlpatterns = [
     path('random-songs/', views.random_songs_view, name='random_songs'),
     path('total-listening-time/', views.total_listening_time_view, name='total_listening_time'),
     path('top-song/', views.top_song_view, name='top_song'),
-    path('listening-trends/', views.listening_trends_view, name='listening_trends'),  # Ensure this line is present
+    path('memorable-moment/', views.memorable_moment_view, name='memorable_moment'),
 ]

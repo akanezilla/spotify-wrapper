@@ -384,3 +384,53 @@ def listening_trends_view(request):
     except SpotifyException as e:
         messages.error(request, f"Spotify API error: {str(e)}")
         return redirect('home')
+@login_required
+def memorable_moment_view(request):
+    try:
+        spotify_profile = request.user.spotifyprofile
+        
+        if spotify_profile.token_expires <= timezone.now():
+            spotify_profile.refresh_spotify_token()
+        
+        sp = spotipy.Spotify(auth=spotify_profile.spotify_token)
+        
+        # Get top tracks of the year
+        top_tracks = sp.current_user_top_tracks(limit=50, time_range='long_term')
+        
+        # Get recently played tracks
+        recent_tracks = sp.current_user_recently_played(limit=50)
+        
+        # Combine and shuffle the tracks
+        all_tracks = top_tracks['items'] + recent_tracks['items']
+        random.shuffle(all_tracks)
+        
+        # Select a random track as the "memorable moment"
+        memorable_track = random.choice(all_tracks)
+        
+        # Get additional context for the track
+        track_info = sp.track(memorable_track['id'])
+        artist_info = sp.artist(track_info['artists'][0]['id'])
+        
+        context = {
+            'track': track_info,
+            'artist': artist_info,
+            'moment_description': generate_moment_description(track_info, artist_info)
+        }
+        return render(request, 'spotify/memorable_moment.html', context)
+    except SpotifyProfile.DoesNotExist:
+        messages.warning(request, "Please connect your Spotify account first.")
+        return redirect('spotify:spotify_connect')
+    except SpotifyException as e:
+        messages.error(request, f"Spotify API error: {str(e)}")
+        return redirect('home')
+
+def generate_moment_description(track, artist):
+    """Generate a description for the memorable moment."""
+    moments = [
+        f"Remember when you couldn't stop playing '{track['name']}' by {artist['name']}?",
+        f"That time '{track['name']}' became the soundtrack to your life.",
+        f"When {artist['name']}'s '{track['name']}' hit differently and became your anthem.",
+        f"The day you discovered '{track['name']}' and fell in love with {artist['name']}'s music.",
+        f"That perfect moment when '{track['name']}' came on and everything felt right."
+    ]
+    return random.choice(moments)

@@ -1,11 +1,10 @@
 from django.urls import path
-from django.contrib.auth import views as auth_views
-from .views import SignUpView, CustomLoginView
+from .views import SignUpView, CustomLoginView, delete_account, logout_view
 from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
     path("login/", CustomLoginView.as_view(), name="login"),
     path("signup/", SignUpView.as_view(), name="signup"),
-    path('logout/', LogoutView.as_view(), name='logout'),
-
+    path('logout/', logout_view, name='logout'),  # Use your custom logout view
+    path('delete-account/', delete_account, name='delete_account'),
 ]
