@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Random Songs</h1>
+<ul>
+    {% for track in random_tracks %}
+        <li>{{ track.name }} by {{ track.artist_name }}</li>
+    {% empty %}
+        <li>No random songs found.</li>
+    {% endfor %}
+</ul>
+<a href="{% url 'home' %}">Back to Home</a>
+{% endblock %}

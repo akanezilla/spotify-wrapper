@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Listener Type{% endblock %}
+
+{% block content %}
+<div class="spotify-data">
+    <h1>Your Listener Type</h1>
+    {% if listener_type %}
+        <div class="listener-type">
+            <h2>You are a <span class="type-highlight">{{ listener_type }}</span> listener!</h2>
+            <p>Based on your listening habits, you've explored {{ unique_artists }} unique artists recently.</p>
+            {% if listener_type == "Explorer" %}
+                <p>You love discovering new music and artists. Keep exploring!</p>
+            {% elif listener_type == "Diverse" %}
+                <p>You have a varied taste in music. Great job balancing your favorites with new discoveries!</p>
+            {% else %}
+                <p>You know what you like and stick to it. Nothing wrong with having firm favorites!</p>
+            {% endif %}
+        </div>
+    {% else %}
+        <p>We couldn't determine your listener type. Try listening to more music!</p>
+    {% endif %}
+    <a href="{% url 'home' %}" class="back-button">Back to Home</a>
+</div>
+{% endblock %}

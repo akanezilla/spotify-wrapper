@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Top Artists{% endblock %}
+
+{% block content %}
+<div class="spotify-data">
+    <h1>Your Top 5 Artists</h1>
+    {% if top_artists %}
+        <ol class="artist-list">
+        {% for artist in top_artists %}
+            <li class="artist-item">
+                <span class="artist-name">{{ artist.name }}</span>
+            </li>
+        {% endfor %}
+        </ol>
+    {% else %}
+        <p>No top artists found. Explore more artists!</p>
+    {% endif %}
+    <a href="{% url 'home' %}" class="back-button">Back to Home</a>
+</div>
+{% endblock %}
