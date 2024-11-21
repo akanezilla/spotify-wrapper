@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from spotify.models import SpotifyProfile
+from spotify.models import SpotifyProfile
 
 @login_required
 def home_view(request):
