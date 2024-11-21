@@ -35,7 +35,9 @@ def spotify_connect(request):
         scope="user-read-private user-read-email user-top-read user-read-recently-played"
     )
     auth_url = sp_oauth.get_authorize_url()
+    print(f"Redirecting to Spotify auth URL: {auth_url}")
     return redirect(auth_url)
+
 
 @login_required
 def spotify_callback(request):

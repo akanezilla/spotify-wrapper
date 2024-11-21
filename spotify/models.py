@@ -6,8 +6,8 @@ from django.conf import settings
 
 class SpotifyProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    spotify_token = models.TextField()
-    refresh_token = models.TextField()
+    spotify_token = models.CharField(max_length=255)
+    refresh_token = models.CharField(max_length=255)
     token_expires = models.DateTimeField()
 
     def __str__(self):
