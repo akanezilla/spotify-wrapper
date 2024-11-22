@@ -1,13 +1,21 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 
 {% block content %}
-<h1>Random Songs</h1>
-<ul>
-    {% for track in random_tracks %}
-        <li>{{ track.name }} by {{ track.artist_name }}</li>
-    {% empty %}
-        <li>No random songs found.</li>
-    {% endfor %}
-</ul>
-<a href="{% url 'home' %}">Back to Home</a>
+<h2>Your Random Top Tracks</h2>
+
+{% if random_tracks %}
+    <div class="random-tracks">
+        {% for track in random_tracks %}
+            <div class="track">
+                {% if track.cover_url %}
+                    <img src="{{ track.cover_url }}" alt="{{ track.name }} cover" class="track-cover">
+                {% endif %}
+                <h3>{{ track.name }}</h3>
+                <p>by {{ track.artist }}</p>
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <p>No tracks found.</p>
+{% endif %}
 {% endblock %}

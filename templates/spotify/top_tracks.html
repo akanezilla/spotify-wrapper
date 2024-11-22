@@ -9,8 +9,13 @@
         <ol class="track-list">
         {% for track in top_tracks %}
             <li class="track-item">
-                <span class="track-name">{{ track.name }}</span>
-                <span class="track-artist">by {{ track.artists.0.name }}</span>
+                {% if track.cover_url %}
+                    <img src="{{ track.cover_url }}" alt="{{ track.name }} cover" class="track-cover">
+                {% endif %}
+                <div class="track-info">
+                    <span class="track-name">{{ track.name }}</span>
+                    <span class="track-artist">by {{ track.artist }}</span>
+                </div>
             </li>
         {% endfor %}
         </ol>
