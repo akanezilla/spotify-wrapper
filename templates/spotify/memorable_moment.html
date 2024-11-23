@@ -24,12 +24,7 @@
         <ul>
             <li>Release Date: {{ track.album.release_date }}</li>
             <li>Popularity: {{ track.popularity }} / 100</li>
-            <li>Duration: {{ track.duration_ms|divisibleby:60000 }} minutes</li>
         </ul>
-    </div>
-
-    <div class="mt-4">
-        <a href="{% url 'spotify:spotify_data' %}" class="btn btn-secondary">Back to Spotify Data</a>
     </div>
 </div>
 {% endblock %}

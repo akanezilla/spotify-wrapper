@@ -168,10 +168,18 @@ def top_tracks_view(request):
         
         sp = spotipy.Spotify(auth=spotify_profile.spotify_token)
         
-        top_tracks = sp.current_user_top_tracks(limit=5, time_range='short_term')
+        # Change time_range to 'long_term' for approximately the last year
+        top_tracks = sp.current_user_top_tracks(limit=5, time_range='long_term')
+        
+        # Extract relevant information including cover photo URL
+        tracks_info = [{
+            'name': track['name'],
+            'artist': track['artists'][0]['name'],
+            'cover_url': track['album']['images'][0]['url'] if track['album']['images'] else None
+        } for track in top_tracks['items']]
         
         context = {
-            'top_tracks': top_tracks['items']
+            'top_tracks': tracks_info
         }
         return render(request, 'spotify/top_tracks.html', context)
     except SpotifyProfile.DoesNotExist:
@@ -180,7 +188,6 @@ def top_tracks_view(request):
     except SpotifyException as e:
         messages.error(request, f"Spotify API error: {str(e)}")
         return redirect('home')
-
 @login_required
 def top_artists_view(request):
     try:
@@ -191,10 +198,18 @@ def top_artists_view(request):
         
         sp = spotipy.Spotify(auth=spotify_profile.spotify_token)
         
-        top_artists = sp.current_user_top_artists(limit=5, time_range='short_term')
+        # Change time_range to 'long_term' for approximately the last year
+        top_artists = sp.current_user_top_artists(limit=5, time_range='long_term')
+        
+        # Extract relevant information including artist image
+        artists_info = [{
+            'name': artist['name'],
+            'image_url': artist['images'][0]['url'] if artist['images'] else None,
+            'genres': ', '.join(artist['genres'][:3])  # Include up to 3 genres
+        } for artist in top_artists['items']]
         
         context = {
-            'top_artists': top_artists['items']
+            'top_artists': artists_info
         }
         return render(request, 'spotify/top_artists.html', context)
     except SpotifyProfile.DoesNotExist:
@@ -203,7 +218,6 @@ def top_artists_view(request):
     except SpotifyException as e:
         messages.error(request, f"Spotify API error: {str(e)}")
         return redirect('home')
-
 @login_required
 def top_genre_view(request):
     try:
@@ -214,7 +228,8 @@ def top_genre_view(request):
         
         sp = spotipy.Spotify(auth=spotify_profile.spotify_token)
         
-        top_artists = sp.current_user_top_artists(limit=50, time_range='medium_term')
+        # Change time_range to 'long_term' for approximately the last year
+        top_artists = sp.current_user_top_artists(limit=50, time_range='long_term')
         
         genres = {}
         for artist in top_artists['items']:
@@ -223,8 +238,15 @@ def top_genre_view(request):
         
         top_genres = sorted(genres.items(), key=lambda x: x[1], reverse=True)[:5]
         
+        # Calculate percentages
+        total_count = sum(count for _, count in top_genres)
+        top_genres_with_percentage = [
+            (genre, count, (count / total_count) * 100) 
+            for genre, count in top_genres
+        ]
+        
         context = {
-            'top_genres': top_genres
+            'top_genres': top_genres_with_percentage
         }
         return render(request, 'spotify/top_genre.html', context)
     except SpotifyProfile.DoesNotExist:
@@ -233,6 +255,7 @@ def top_genre_view(request):
     except SpotifyException as e:
         messages.error(request, f"Spotify API error: {str(e)}")
         return redirect('home')
+from collections import Counter
 
 @login_required
 def listener_type_view(request):
@@ -244,19 +267,42 @@ def listener_type_view(request):
         
         sp = spotipy.Spotify(auth=spotify_profile.spotify_token)
         
-        recent_tracks = sp.current_user_recently_played(limit=50)
+        # Get top tracks and artists for the long term (approximately last year)
+        top_tracks = sp.current_user_top_tracks(limit=50, time_range='long_term')
+        top_artists = sp.current_user_top_artists(limit=50, time_range='long_term')
         
-        unique_artists = len(set([track['track']['artists'][0]['id'] for track in recent_tracks['items']]))
-        if unique_artists > 30:
+        # Count unique artists from top tracks
+        track_artists = [track['artists'][0]['id'] for track in top_tracks['items']]
+        
+        # Add artists from top artists
+        artist_ids = [artist['id'] for artist in top_artists['items']]
+        
+        # Combine and count unique artists
+        all_artists = track_artists + artist_ids
+        unique_artists = len(set(all_artists))
+        
+        # Count repetitions
+        artist_counts = Counter(all_artists)
+        repeat_listens = sum(count for count in artist_counts.values() if count > 1)
+        
+        # Determine listener type
+        if unique_artists > 40:
             listener_type = "Explorer"
-        elif unique_artists > 15:
+        elif unique_artists > 25:
             listener_type = "Diverse"
         else:
             listener_type = "Focused"
         
+        # Additional context
+        total_artists = len(all_artists)
+        diversity_score = (unique_artists / total_artists) * 100
+        
         context = {
             'listener_type': listener_type,
-            'unique_artists': unique_artists
+            'unique_artists': unique_artists,
+            'total_artists': total_artists,
+            'diversity_score': round(diversity_score, 2),
+            'repeat_listens': repeat_listens
         }
         return render(request, 'spotify/listener_type.html', context)
     except SpotifyProfile.DoesNotExist:
@@ -278,11 +324,18 @@ def random_songs_view(request):
         # Get top tracks
         top_tracks = sp.current_user_top_tracks(limit=50, time_range='short_term')
         
-        # Select 3 random tracks
+        # Select 3 random tracks and extract relevant information
         random_tracks = random.sample(top_tracks['items'], min(3, len(top_tracks['items'])))
+        track_info = []
+        for track in random_tracks:
+            track_info.append({
+                'name': track['name'],
+                'artist': track['artists'][0]['name'],
+                'cover_url': track['album']['images'][0]['url'] if track['album']['images'] else None
+            })
         
         context = {
-            'random_tracks': random_tracks
+            'random_tracks': track_info
         }
         return render(request, 'spotify/random_songs.html', context)
     except SpotifyProfile.DoesNotExist:
@@ -301,14 +354,18 @@ def total_listening_time_view(request):
         
         sp = spotipy.Spotify(auth=spotify_profile.spotify_token)
         
-        # Get recently played tracks
-        recent_tracks = sp.current_user_recently_played(limit=50)
+        # Get top tracks for the year
+        top_tracks = sp.current_user_top_tracks(limit=50, time_range='long_term')
         
-        total_duration = sum(track['track']['duration_ms'] for track in recent_tracks['items'])
-        total_duration_minutes = total_duration / (1000 * 60)  # Convert to minutes
+        # Calculate total duration
+        total_duration = sum(track['duration_ms'] for track in top_tracks['items'])
+        total_duration_minutes = round(total_duration / (1000 * 60))  # Convert to minutes and round
+        
+        # Estimate yearly listening time (multiply by a factor to account for all tracks)
+        estimated_yearly_minutes = total_duration_minutes * 20  # Adjust this factor as needed
         
         context = {
-            'total_duration': total_duration_minutes
+            'total_duration': estimated_yearly_minutes
         }
         return render(request, 'spotify/total_listening_time.html', context)
     except SpotifyProfile.DoesNotExist:
@@ -327,12 +384,23 @@ def top_song_view(request):
         
         sp = spotipy.Spotify(auth=spotify_profile.spotify_token)
         
-        # Get top tracks
-        top_tracks = sp.current_user_top_tracks(limit=1, time_range='short_term')
+        # Get top tracks for the long term (approximately last year)
+        top_tracks = sp.current_user_top_tracks(limit=1, time_range='long_term')
         
-        context = {
-            'top_song': top_tracks['items'][0] if top_tracks['items'] else None
-        }
+        if top_tracks['items']:
+            top_song = top_tracks['items'][0]
+            context = {
+                'top_song': {
+                    'name': top_song['name'],
+                    'artist': top_song['artists'][0]['name'],
+                    'cover_url': top_song['album']['images'][0]['url'] if top_song['album']['images'] else None,
+                    'preview_url': top_song['preview_url'],
+                    'spotify_url': top_song['external_urls']['spotify']
+                }
+            }
+        else:
+            context = {'top_song': None}
+        
         return render(request, 'spotify/top_song.html', context)
     except SpotifyProfile.DoesNotExist:
         messages.warning(request, "Please connect your Spotify account first.")
