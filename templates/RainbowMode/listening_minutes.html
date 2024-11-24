@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify Wrapped</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* Prevent scrolling */
+            font-family: 'Poppins', Arial, sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            position: relative;
+        }
+
+        .gradient-bg {
+            width: 100vw;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-size: 400% 400%;
+            background: linear-gradient(40deg, #0079F2, #8944B1, #E54DD4, #FF9E30, #FFCE33);
+            animation: gradient-shift 15s ease infinite;
+            z-index: 1;
+        }
+
+        @keyframes gradient-shift {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .content {
+            z-index: 1000;
+            position: relative;
+            text-align: center;
+            color: white;
+        }
+
+        h1 {
+            font-size: 50px;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.7);
+            margin-top: 20px;
+        }
+
+        img {
+            position: relative;
+            z-index: 1001;
+        }
+
+        /* Floating Effects */
+        .gradients-container {
+            filter: url(#goo) blur(40px);
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        .g1, .g2, .g3, .g4, .g5 {
+            position: absolute;
+            border-radius: 50%;
+            mix-blend-mode: hard-light;
+            opacity: 1;
+        }
+
+        .g1 {
+            background: radial-gradient(circle at center, rgba(0, 121, 242, 0.8) 0, rgba(0, 121, 242, 0) 50%);
+            width: 80%;
+            height: 80%;
+            top: calc(50% - 40%);
+            left: calc(50% - 40%);
+            animation: moveVertical 30s ease infinite;
+        }
+
+        .g2 {
+            background: radial-gradient(circle at center, rgba(137, 68, 177, 0.8) 0, rgba(137, 68, 177, 0) 50%);
+            width: 60%;
+            height: 60%;
+            top: calc(50% - 30%);
+            left: calc(50% - 30%);
+            animation: moveInCircle 20s reverse infinite;
+        }
+
+        .g3 {
+            background: radial-gradient(circle at center, rgba(229, 77, 212, 0.8) 0, rgba(229, 77, 212, 0) 50%);
+            width: 90%;
+            height: 90%;
+            top: calc(50% - 45%);
+            left: calc(50% - 45%);
+            animation: moveInCircle 40s linear infinite;
+        }
+
+        .g4 {
+            background: radial-gradient(circle at center, rgba(255, 158, 48, 0.8) 0, rgba(255, 158, 48, 0) 50%);
+            width: 70%;
+            height: 70%;
+            top: calc(50% - 35%);
+            left: calc(50% - 35%);
+            animation: moveHorizontal 40s ease infinite;
+        }
+
+        .g5 {
+            background: radial-gradient(circle at center, rgba(255, 206, 51, 0.8) 0, rgba(255, 206, 51, 0) 50%);
+            width: 120%;
+            height: 120%;
+            top: calc(50% - 60%);
+            left: calc(50% - 60%);
+            animation: moveInCircle 30s ease infinite;
+        }
+
+        @keyframes moveVertical {
+            0% {
+                transform: translateY(-50%);
+            }
+            50% {
+                transform: translateY(50%);
+            }
+            100% {
+                transform: translateY(-50%);
+            }
+        }
+
+        @keyframes moveHorizontal {
+            0% {
+                transform: translateX(-50%) translateY(-10%);
+            }
+            50% {
+                transform: translateX(50%) translateY(10%);
+            }
+            100% {
+                transform: translateX(-50%) translateY(-10%);
+            }
+        }
+
+        @keyframes moveInCircle {
+            0% {
+                transform: rotate(0deg);
+            }
+            50% {
+                transform: rotate(180deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .hourglass-container {
+            position: relative;
+            width: 400px; /* Increase width */
+            height: 600px; /* Increase height */
+            margin: 0 auto;
+        }
+
+        #hourglass {
+            width: 100%; /* Make sure it fills the container */
+            height: auto; /* Maintain aspect ratio */
+            position: relative;
+            z-index: 2;
+        }
+
+        .sand-container {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%; /* Adjust based on your hourglass image */
+            overflow: hidden;
+        }
+
+
+        .sand-container.top {
+            top: 10%; /* Adjust based on your hourglass image */
+            height: 35%; /* Adjust based on your hourglass image */
+            clip-path: polygon(0% 0%, 100% 0%, 50% 100%); /* Triangle shape */
+        }
+
+        .sand-container.bottom {
+            top: 50%; /* Starts where the top ends */
+            height: 30%; /* Adjust based on your hourglass image */
+            clip-path: polygon(0% 100%, 100% 100%, 50% 0%); /* Inverted triangle shape */
+        }
+
+        .sand {
+            width: 100%;
+            height: 100%;
+            background: #FFD700; /* Sand color */
+        }
+
+        .sand-container.top .sand {
+            animation: sand-fall-top 5s linear forwards; /* Animation for falling sand */
+        }
+
+        .sand-container.bottom .sand {
+            transform: translateY(-100%);
+            animation: sand-fall-bottom 5s linear forwards;
+        }
+
+        @keyframes sand-fall-top {
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(100%);
+            }
+            /* Move down out of view */
+        }
+
+        @keyframes sand-fall-bottom {
+            0% {
+                transform: translateY(-100%);
+            }
+            /* Start off-screen */
+            100% {
+                transform: translateY(0);
+            }
+            /* Fill the bottom */
+        }
+
+        #listening-time {
+            font-size: 30px;
+            margin-top: 5px;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+<div class="gradient-bg">
+    <svg xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <filter id="goo">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur"/>
+                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8"
+                               result="goo"/>
+                <feBlend in="SourceGraphic" in2="goo"/>
+            </filter>
+        </defs>
+    </svg>
+    <div class="gradients-container">
+        <div class="g1"></div>
+        <div class="g2"></div>
+        <div class="g3"></div>
+        <div class="g4"></div>
+        <div class="g5"></div>
+    </div>
+</div>
+<div class="content">
+    <h1>Your Cosmic Clock</h1>
+    <div class="hourglass-container">
+        <img src="hourglass_rainbow.png" alt="Time Glass" id="hourglass">
+        <div class="sand-container top">
+            <div class="sand"></div>
+        </div>
+        <div class="sand-container bottom">
+            <div class="sand"></div>
+        </div>
+    </div>
+    <div id="listening-time"></div>
+</div>
+</body>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        function fetchListeningTime() {
+            // Replace this with your actual API call
+            return new Promise((resolve) => {
+                setTimeout(() => resolve(Math.floor(Math.random() * 1000)), 5000);
+            });
+        }
+
+        function revealListeningTime(minutes) {
+            const listeningTimeElement = document.getElementById('listening-time');
+            listeningTimeElement.textContent = `You've listened to ${minutes} minutes of music!`;
+            listeningTimeElement.style.opacity = 1;
+        }
+
+        fetchListeningTime().then(minutes => {
+            const topSand = document.querySelector('.sand-container.top .sand');
+            const bottomSand = document.querySelector('.sand-container.bottom .sand');
+
+            // Start the animations
+            topSand.style.animation = 'sand-fall-top 5s linear forwards';
+            bottomSand.style.animation = 'sand-fall-bottom 5s linear forwards';
+
+            // Once the bottom sand animation is complete, reveal listening time
+            bottomSand.addEventListener('animationend', () => {
+                revealListeningTime(minutes);
+            });
+        });
+    });
+</script>
+</html>
