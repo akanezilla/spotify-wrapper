@@ -201,11 +201,11 @@
         }
 
         .sand-container.top .sand {
-            animation: sand-fall-top 5s linear forwards; /* Animation for falling sand */
+            animation: sand-fall-top 5s linear forwards;
         }
 
         .sand-container.bottom .sand {
-            transform: translateY(-100%);
+            transform: translateY(100%);
             animation: sand-fall-bottom 5s linear forwards;
         }
 
@@ -216,18 +216,15 @@
             100% {
                 transform: translateY(100%);
             }
-            /* Move down out of view */
         }
 
         @keyframes sand-fall-bottom {
             0% {
-                transform: translateY(-100%);
+                transform: translateY(100%);
             }
-            /* Start off-screen */
             100% {
                 transform: translateY(0);
             }
-            /* Fill the bottom */
         }
 
         #listening-time {
@@ -291,11 +288,11 @@
             const topSand = document.querySelector('.sand-container.top .sand');
             const bottomSand = document.querySelector('.sand-container.bottom .sand');
 
-            // Start the animations
+            // Start both animations at the same time
             topSand.style.animation = 'sand-fall-top 5s linear forwards';
             bottomSand.style.animation = 'sand-fall-bottom 5s linear forwards';
 
-            // Once the bottom sand animation is complete, reveal listening time
+            // Reveal listening time after both animations complete
             bottomSand.addEventListener('animationend', () => {
                 revealListeningTime(minutes);
             });
