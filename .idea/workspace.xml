@@ -4,10 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2b7ffd8d-02b9-4b57-9ee5-3fba1fa5c456" name="Changes" comment="add rainbow mode">
+    <list default="true" id="2b7ffd8d-02b9-4b57-9ee5-3fba1fa5c456" name="Changes" comment="add rainbow mode memorable moment">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spotify/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/spotify/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/RainbowMode/listening_minutes.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/RainbowMode/listening_minutes.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/RainbowMode/memorable_moment.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/RainbowMode/memorable_moment.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/RainbowMode/top_5_songs.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/RainbowMode/top_5_songs.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/RainbowMode/top_artist.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/RainbowMode/top_artist.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/RainbowMode/top_genre.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/RainbowMode/top_genre.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,6 +72,9 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/templates" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/templates/RainbowMode/images" />
     </key>
   </component>
   <component name="RunManager">
@@ -147,7 +154,7 @@
       <workItem from="1732044164076" duration="703000" />
       <workItem from="1732045422888" duration="246000" />
       <workItem from="1732205009963" duration="249000" />
-      <workItem from="1732400322212" duration="13238000" />
+      <workItem from="1732400322212" duration="21285000" />
     </task>
     <task id="LOCAL-00001" summary="add new code">
       <option name="closed" value="true" />
@@ -189,7 +196,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732474049567</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="add rainbow mode memorable moment">
+      <option name="closed" value="true" />
+      <created>1732477096226</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1732477096226</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -200,6 +215,7 @@
     <MESSAGE value="add new code" />
     <MESSAGE value="add dark mode" />
     <MESSAGE value="add rainbow mode" />
-    <option name="LAST_COMMIT_MESSAGE" value="add rainbow mode" />
+    <MESSAGE value="add rainbow mode memorable moment" />
+    <option name="LAST_COMMIT_MESSAGE" value="add rainbow mode memorable moment" />
   </component>
 </project>

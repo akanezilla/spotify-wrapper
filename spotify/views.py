@@ -197,7 +197,6 @@ def top_tracks_view(request):
         return redirect('home')
 
 
-@login_required
 def top_artists_view(request):
     try:
         spotify_profile = request.user.spotifyprofile
@@ -207,14 +206,14 @@ def top_artists_view(request):
 
         sp = spotipy.Spotify(auth=spotify_profile.spotify_token)
 
-        # Change time_range to 'long_term' for approximately the last year
+        # Get top 5 artists from Spotify
         top_artists = sp.current_user_top_artists(limit=5, time_range='long_term')
 
-        # Extract relevant information including artist image
+        # Prepare artist data for template
         artists_info = [{
             'name': artist['name'],
             'image_url': artist['images'][0]['url'] if artist['images'] else None,
-            'genres': ', '.join(artist['genres'][:3])  # Include up to 3 genres
+            'genres': ', '.join(artist['genres'][:3])  # Limit to top 3 genres
         } for artist in top_artists['items']]
 
         context = {
