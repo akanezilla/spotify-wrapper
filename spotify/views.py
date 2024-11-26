@@ -1,4 +1,4 @@
-gitfrom django.shortcuts import render, redirect
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from spotipy.oauth2 import SpotifyOAuth
 from django.conf import settings

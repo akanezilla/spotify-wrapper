@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="62d0ec5a-df22-467c-a6ed-ae14da36ecba" name="Changes" comment="first pull">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spotify/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/spotify/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,6 +115,8 @@
       <workItem from="1731266754517" duration="5690000" />
       <workItem from="1731439424817" duration="1421000" />
       <workItem from="1732043291448" duration="1192000" />
+      <workItem from="1732412967172" duration="837000" />
+      <workItem from="1732413848469" duration="1891000" />
     </task>
     <task id="LOCAL-00001" summary="unversioned files">
       <option name="closed" value="true" />
