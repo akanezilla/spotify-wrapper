@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark Mode Background</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            background-image: url('darkmodebackground.png');
+            background-size: cover;
+            background-position: center;
+            color: rgb(166, 115, 225);
+            font-family: 'Poppins', Arial, sans-serif;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 0;
+            padding-top: 20px;
+            font-size: 40px;
+            text-shadow: 
+                0 0 10px rgba(166, 115, 225, 0.7), /* Soft outer glow */
+                0 0 30px rgba(166, 115, 225, 0.3); /* Even wider glow */
+            
+        }
+        .content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: nowrap;
+            gap: 20px;
+            padding: 20px;
+        }
+        img {
+            max-width: 35%;
+            height: auto;
+            filter: drop-shadow(0 0 50px rgba(166, 115, 225, 0.7));
+        }
+
+    </style>
+    <body>
+        <h1>Your Musical Prophecy</h1>
+        <div class="content">
+            <img src="dmscroll.png" alt="Dark Mode Scroll" id="img1">
+        </div>
+    </body>  
+</head>
+</html>

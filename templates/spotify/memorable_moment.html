@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Your Memorable Musical Moment{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="mt-5 mb-4">Your Memorable Musical Moment of the Year</h1>
+    
+    <div class="card mb-4">
+        <div class="card-body">
+            <h2 class="card-title">{{ moment_description }}</h2>
+            <h3 class="card-subtitle mb-2 text-muted">{{ track.name }}</h3>
+            <p class="card-text">by {{ artist.name }}</p>
+        </div>
+        <img src="{{ track.album.images.0.url }}" class="card-img-top" alt="{{ track.album.name }} cover">
+        <div class="card-body">
+            <p class="card-text">From the album: {{ track.album.name }}</p>
+            <a href="{{ track.external_urls.spotify }}" class="btn btn-primary" target="_blank">Listen on Spotify</a>
+        </div>
+    </div>
+
+    <div class="mt-4">
+        <h4>More About This Moment:</h4>
+        <ul>
+            <li>Release Date: {{ track.album.release_date }}</li>
+            <li>Popularity: {{ track.popularity }} / 100</li>
+        </ul>
+    </div>
+</div>
+{% endblock %}

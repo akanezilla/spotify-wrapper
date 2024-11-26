@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Total Listening Time</h1>
+<p>Total listening time: {{ total_duration }} minutes</p>
+<a href="{% url 'home' %}">Back to Home</a>
+{% endblock %}

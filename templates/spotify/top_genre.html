@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Top Genres{% endblock %}
+
+{% block content %}
+<div class="spotify-data">
+    <h1>Your Top 5 Genres of the Year</h1>
+    {% if top_genres %}
+        <ul class="genre-list">
+        {% for genre, count, percentage in top_genres %}
+            <li class="genre-item">
+                <span class="genre-name">{{ genre|title }}</span>
+                <div class="genre-bar"></div>
+                <span class="genre-percentage">{{ percentage|floatformat:1 }}%</span>
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No top genres found. Try listening to more music!</p>
+    {% endif %}
+    <a href="{% url 'home' %}" class="back-button">Back to Home</a>
+</div>
+{% endblock %}

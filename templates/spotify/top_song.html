@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Your Top Song</h1>
+
+{% if top_song %}
+    <div class="top-song">
+        {% if top_song.cover_url %}
+            <img src="{{ top_song.cover_url }}" alt="{{ top_song.name }} cover" class="song-cover">
+        {% endif %}
+        <h2>{{ top_song.name }}</h2>
+        <p>by {{ top_song.artist }}</p>
+    </div>
+{% else %}
+    <p>No top song found.</p>
+{% endif %}
+
+<a href="{% url 'home' %}">Back to Home</a>
+{% endblock %}

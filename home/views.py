@@ -1,7 +1,16 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
+from spotify.models import SpotifyProfile
 
 @login_required
 def home_view(request):
-    username = request.user.username if request.user.is_authenticated else "Guest"
-    return render(request, 'home/home.html', {'username': username})
+    try:
+        spotify_profile = SpotifyProfile.objects.get(user=request.user)
+        is_connected = spotify_profile.spotify_token is not None
+    except SpotifyProfile.DoesNotExist:
+        is_connected = False
+
+    return render(request, 'home/home.html', {
+        'username': request.user.username,
+        'is_connected': is_connected
+    })

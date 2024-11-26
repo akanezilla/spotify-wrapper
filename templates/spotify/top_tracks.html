@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Top Tracks{% endblock %}
+
+{% block content %}
+<div class="spotify-data">
+    <h1>Your Top 5 Tracks</h1>
+    {% if top_tracks %}
+        <ol class="track-list">
+        {% for track in top_tracks %}
+            <li class="track-item">
+                {% if track.cover_url %}
+                    <img src="{{ track.cover_url }}" alt="{{ track.name }} cover" class="track-cover">
+                {% endif %}
+                <div class="track-info">
+                    <span class="track-name">{{ track.name }}</span>
+                    <span class="track-artist">by {{ track.artist }}</span>
+                </div>
+            </li>
+        {% endfor %}
+        </ol>
+    {% else %}
+        <p>No top tracks found. Try listening to more music!</p>
+    {% endif %}
+    <a href="{% url 'home' %}" class="back-button">Back to Home</a>
+</div>
+{% endblock %}
