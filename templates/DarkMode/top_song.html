@@ -3,48 +3,338 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dark Mode Background</title>
+    <title>Rainbow Mode Top Song</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body {
+        html, body {
             margin: 0;
-            height: 100vh;
-            background-image: url('darkmodebackground.png');
-            background-size: cover;
-            background-position: center;
-            color: rgb(166, 115, 225);
+            padding: 0;
+            overflow: hidden; /* Prevent scrolling */
             font-family: 'Poppins', Arial, sans-serif;
         }
-        h1 {
-            text-align: center;
-            margin-top: 0;
-            padding-top: 20px;
-            font-size: 40px;
-            text-shadow: 
-                0 0 10px rgba(166, 115, 225, 0.7), /* Soft outer glow */
-                0 0 30px rgba(166, 115, 225, 0.3); /* Even wider glow */
-            
+
+        body {
+            height: 100vh;
+            position: relative;
         }
+
+        .gradient-bg {
+            width: 100vw;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-size: 400% 400%;
+            background: linear-gradient(40deg, #3B2496, #24114C, #3A1F7A, #5F2A98, #9516FC,#A673E1);
+            animation: gradient-shift 15s ease infinite;
+            z-index: 1;
+        }
+
+        @keyframes gradient-shift {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
         .content {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: nowrap;
-            gap: 20px;
-            padding: 20px;
+            z-index: 1000;
+            position: relative;
+            text-align: center;
+            color: white;
         }
+
+        h1 {
+            font-size: 50px;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.7);
+            margin-top: 20px;
+        }
+
         img {
-            max-width: 35%;
-            height: auto;
-            filter: drop-shadow(0 0 50px rgba(166, 115, 225, 0.7));
+            position: relative;
+            z-index: 1001;
+        }
+
+        /* Floating Effects */
+        .gradients-container {
+            filter: url(#goo) blur(40px);
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        .g1, .g2, .g3, .g4, .g5, .g6 {
+            position: absolute;
+            border-radius: 50%;
+            mix-blend-mode: hard-light;
+            opacity: 1;
+        }
+
+        .g1 {
+            background: radial-gradient(circle at center, rgba(59,36, 150, 0.8) 0, rgba(0, 121, 242, 0) 50%);
+            width: 80%;
+            height: 80%;
+            top: calc(50% - 40%);
+            left: calc(50% - 40%);
+            animation: moveVertical 30s ease infinite;
+        }
+
+        .g2 {
+            background: radial-gradient(circle at center, rgba(80, 11, 229, 0.8) 0, rgba(137, 68, 177, 0) 50%);
+            width: 60%;
+            height: 60%;
+            top: calc(50% - 30%);
+            left: calc(50% - 30%);
+            animation: moveInCircle 20s reverse infinite;
+        }
+
+        .g3 {
+            background: radial-gradient(circle at center, rgba(103, 34, 142, 0.8)0, rgba(229, 77, 212, 0) 50%);
+            width: 90%;
+            height: 90%;
+            top: calc(50% - 45%);
+            left: calc(50% - 45%);
+            animation: moveInCircle 40s linear infinite;
+        }
+
+        .g4 {
+            background: radial-gradient(circle at center, rgba(178, 7, 240, 0.8) 0, rgba(255, 158, 48, 0) 50%);
+            width: 70%;
+            height: 70%;
+            top: calc(50% - 35%);
+            left: calc(50% - 35%);
+            animation: moveHorizontal 40s ease infinite;
+        }
+
+        .g5 {
+            background: radial-gradient(circle at center, rgba(207, 128, 240, 0.8) 0, rgba(255, 206, 51, 0) 50%);
+            width: 120%;
+            height: 120%;
+            top: calc(50% - 60%);
+            left: calc(50% - 60%);
+            animation: moveInCircle 30s ease infinite;
+        }
+        .g6 {
+            background: radial-gradient(circle at center, rgba(115, 166, 225, 0.8) 0, rgba(255, 206, 51, 0) 50%);
+            width: 120%;
+            height: 120%;
+            top: calc(50% - 60%);
+            left: calc(50% - 60%);
+            animation: moveInCircle 30s ease infinite;
+        }
+        @keyframes moveVertical {
+            0% {
+                transform: translateY(-50%);
+            }
+            50% {
+                transform: translateY(50%);
+            }
+            100% {
+                transform: translateY(-50%);
+            }
+        }
+
+        @keyframes moveHorizontal {
+            0% {
+                transform: translateX(-50%) translateY(-10%);
+            }
+            50% {
+                transform: translateX(50%) translateY(10%);
+            }
+            100% {
+                transform: translateX(-50%) translateY(-10%);
+            }
+        }
+
+        @keyframes moveInCircle {
+            0% {
+                transform: rotate(0deg);
+            }
+            50% {
+                transform: rotate(180deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .scroll-container {
+            position: relative;
+            width: 300px; /* Adjust to your image width */
+            margin-top: 300px;
+            margin-left: 475px;
+            text-align: center;
+        }
+
+        .scroll-top, .scroll-bottom {
+            position: absolute;
+            width: 100%;
+            z-index: 1;
+            transition: transform 1.5s ease-in-out; /* Smooth movement during animation */
+        }
+
+        .scroll-top {
+            top: 0;
+            transform: translateY(0); /* Initially in position */
+        }
+
+        .scroll-bottom {
+            bottom: 0;
+            transform: translateY(0); /* Initially in position */
+        }
+
+        .scroll-mask {
+            overflow: hidden; /* Reveal scroll body */
+            width: 100%;
+            height: 0; /* Initially hidden */
+            transition: height 1.5s ease-in-out; /* Smooth unrolling animation */
+            position: relative;
+            z-index: 0;
+        }
+
+        #scroll-image {
+            width: 100%; /* Ensure the scroll body scales properly */
+        }
+
+        #scroll-content {
+            margin-top: 10px;
+            opacity: 0; /* Hidden initially */
+            transition: opacity 1s ease-in-out 1.5s; /* Fade-in after unrolling */
+        }
+
+        #scroll-content.visible {
+            opacity: 1;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            80% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .scroll-top {
+            animation: bounce 0.5s ease-out 1.5s; /* Bounce at the end of unrolling */
+        }
+
+        .scroll-bottom {
+            animation: bounce 0.5s ease-out 1.5s reverse;
+        }
+
+
+        #song-cover {
+            width: 150px;
+            height: 150px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        #song-title {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+
+        #song-artist {
+            font-size: 18px;
         }
 
     </style>
-    <body>
-        <h1>Your Musical Prophecy</h1>
-        <div class="content">
-            <img src="dmscroll.png" alt="Dark Mode Scroll" id="img1">
+<body>
+<div class="gradient-bg">
+    <svg xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <filter id="goo">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur"/>
+                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8"
+                               result="goo"/>
+                <feBlend in="SourceGraphic" in2="goo"/>
+            </filter>
+        </defs>
+    </svg>
+    <div class="gradients-container">
+        <div class="g1"></div>
+        <div class="g2"></div>
+        <div class="g3"></div>
+        <div class="g4"></div>
+        <div class="g5"></div>
+        <div class="g6"></div>
+
+    </div>
+</div>
+<div class="content">
+    <h1>Your Musical Prophecy</h1>
+    <div class="scroll-container">
+        <div class="scroll-top">
+            <img src="dmscroll.png" alt="Scroll Top">
         </div>
-    </body>  
-</head>
+        <div id="scroll-content" class="hidden">
+            <img id="song-cover" src="" alt="Album Cover">
+            <h2 id="song-title"></h2>
+            <p id="song-artist"></p>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const scrollTop = document.querySelector('.scroll-top');
+        const scrollBottom = document.querySelector('.scroll-bottom');
+        const scrollMask = document.querySelector('.scroll-mask');
+        const scrollContent = document.getElementById('scroll-content');
+        const songCover = document.getElementById('song-cover');
+        const songTitle = document.getElementById('song-title');
+        const songArtist = document.getElementById('song-artist');
+
+        function unrollScroll() {
+            // Move the top and bottom scroll parts
+            scrollTop.style.transform = 'translateY(-50px)'; // Adjust based on design
+            scrollBottom.style.transform = 'translateY(50px)'; // Adjust based on design
+
+            // Animate the mask height to reveal the scroll body
+            scrollMask.style.height = '400px'; // Adjust to the full height of your scroll body
+
+            // Reveal content after animation completes
+            setTimeout(() => {
+                scrollContent.classList.add('visible');
+            }, 1500); // Matches the CSS transition duration
+        }
+
+        function fetchTopSong() {
+            fetch('/spotify/top-song/')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to fetch top song data');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.top_song) {
+                        songCover.src = data.top_song.cover_url || 'default_cover.png';
+                        songTitle.textContent = data.top_song.name || 'Unknown Title';
+                        songArtist.textContent = data.top_song.artist || 'Unknown Artist';
+                        unrollScroll();
+                    } else {
+                        alert('No top song data available. Please try again later.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching top song:', error);
+                    alert('Could not fetch your top song. Please try again.');
+                });
+        }
+
+        document.querySelector('.scroll-container').addEventListener('click', fetchTopSong);
+    });
+
+</script>
 </html>

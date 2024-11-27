@@ -6,33 +6,271 @@
     <title>Dark Mode Background</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body {
+        html, body {
             margin: 0;
-            height: 100vh;
-            background-image: url('darkmodebackground.png');
-            background-size: cover;
-            background-position: center;
-            color: rgb(166, 115, 225);
+            padding: 0;
+            overflow: hidden; /* Prevent scrolling */
             font-family: 'Poppins', Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
         }
-        h1 {
+
+        body {
+            height: 100vh;
+            position: relative;
+        }
+
+        .gradient-bg {
+            width: 100vw;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-size: 400% 400%;
+            background: linear-gradient(40deg, #3B2496, #24114C, #3A1F7A, #5F2A98, #9516FC,#A673E1);
+            animation: gradient-shift 15s ease infinite;
+            z-index: 1;
+        }
+
+        @keyframes gradient-shift {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        img {
+            position: relative;
+            z-index: 1001;
+        }
+
+        /* Floating Effects */
+        .gradients-container {
+            filter: url(#goo) blur(40px);
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        .g1, .g2, .g3, .g4, .g5, .g6 {
+            position: absolute;
+            border-radius: 50%;
+            mix-blend-mode: hard-light;
+            opacity: 1;
+        }
+
+        .g1 {
+            background: radial-gradient(circle at center, rgba(59,36, 150, 0.8) 0, rgba(0, 121, 242, 0) 50%);
+            width: 80%;
+            height: 80%;
+            top: calc(50% - 40%);
+            left: calc(50% - 40%);
+            animation: moveVertical 30s ease infinite;
+        }
+
+        .g2 {
+            background: radial-gradient(circle at center, rgba(80, 11, 229, 0.8) 0, rgba(137, 68, 177, 0) 50%);
+            width: 60%;
+            height: 60%;
+            top: calc(50% - 30%);
+            left: calc(50% - 30%);
+            animation: moveInCircle 20s reverse infinite;
+        }
+
+        .g3 {
+            background: radial-gradient(circle at center, rgba(103, 34, 142, 0.8)0, rgba(229, 77, 212, 0) 50%);
+            width: 90%;
+            height: 90%;
+            top: calc(50% - 45%);
+            left: calc(50% - 45%);
+            animation: moveInCircle 40s linear infinite;
+        }
+
+        .g4 {
+            background: radial-gradient(circle at center, rgba(178, 7, 240, 0.8) 0, rgba(255, 158, 48, 0) 50%);
+            width: 70%;
+            height: 70%;
+            top: calc(50% - 35%);
+            left: calc(50% - 35%);
+            animation: moveHorizontal 40s ease infinite;
+        }
+
+        .g5 {
+            background: radial-gradient(circle at center, rgba(207, 128, 240, 0.8) 0, rgba(255, 206, 51, 0) 50%);
+            width: 120%;
+            height: 120%;
+            top: calc(50% - 60%);
+            left: calc(50% - 60%);
+            animation: moveInCircle 30s ease infinite;
+        }
+        .g6 {
+            background: radial-gradient(circle at center, rgba(115, 166, 225, 0.8) 0, rgba(255, 206, 51, 0) 50%);
+            width: 120%;
+            height: 120%;
+            top: calc(50% - 60%);
+            left: calc(50% - 60%);
+            animation: moveInCircle 30s ease infinite;
+        }
+
+        @keyframes moveVertical {
+            0% {
+                transform: translateY(-50%);
+            }
+            50% {
+                transform: translateY(50%);
+            }
+            100% {
+                transform: translateY(-50%);
+            }
+        }
+
+        @keyframes moveHorizontal {
+            0% {
+                transform: translateX(-50%) translateY(-10%);
+            }
+            50% {
+                transform: translateX(50%) translateY(10%);
+            }
+            100% {
+                transform: translateX(-50%) translateY(-10%);
+            }
+        }
+
+        @keyframes moveInCircle {
+            0% {
+                transform: rotate(0deg);
+            }
+            50% {
+                transform: rotate(180deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .content {
+            position: relative;
+            z-index: 1000;
             text-align: center;
-            font-size: 60px;
-            color: rgb(166, 115, 225); /* Text color */
-            text-shadow: 
-                0 0 10px rgba(166, 115, 225, 0.7), /* Soft outer glow */
-                0 0 30px rgba(166, 115, 225, 0.3); /* Even wider glow */
+            color: white;
+            top: 40%;
+            transform: translateY(-50%);
         }
+
+        h1 {
+            font-size: 70px;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.7);
+            opacity: 100; /* Initially invisible */
+            margin-bottom: 20px;
+            line-height: 1.5;
+            transition: opacity 1.5s ease; /* Smooth fade-in */
+        }
+
+        #arrow-btn {
+            padding: 10px 20px;
+            font-size: 40px;
+            cursor: pointer;
+            background-color: rgba(255, 255, 255, 0.8);
+            color: #333;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            transition: transform 0.3s ease, opacity 0.5s ease;
+        }
+
+        #arrow-btn:hover {
+            transform: scale(1.1);
+        }
+
+        #arrow-btn:active {
+            transform: scale(1);
+        }
+
     </style>
 </head>
 <body>
-    <h1>The cards have been drawn,<br>
-        the stars aligned, <br>
-       and now the universe reveals <br>
-       your auditory divination!
-       </h1>
+<div class="gradient-bg">
+    <svg xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <filter id="goo">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur"/>
+                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8"
+                               result="goo"/>
+                <feBlend in="SourceGraphic" in2="goo"/>
+            </filter>
+        </defs>
+    </svg>
+    <div class="gradients-container">
+        <div class="g1"></div>
+        <div class="g2"></div>
+        <div class="g3"></div>
+        <div class="g4"></div>
+        <div class="g5"></div>
+        <div class="g6"></div>
+
+    </div>
+</div>
+<div class="content">
+    <h1 class="fade-in-text" id="text-container">
+        <!-- Text will be dynamically inserted here -->
+    </h1>
+    <button id="arrow-btn" style="display: none;">→</button>
+</div>
 </body>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+    const textContainer = document.getElementById('text-container');
+    const arrowBtn = document.getElementById('arrow-btn');
+
+    // Array of text lines to display
+    const textLines = [
+        "The cards have been drawn,",
+        "the stars aligned,",
+        "and now the universe reveals",
+        "your auditory divination!"
+    ];
+
+    let currentLine = 0;
+
+    function fadeInText() {
+        if (currentLine < textLines.length) {
+            // Create a new line element
+            const line = document.createElement('div');
+            line.textContent = textLines[currentLine];
+
+            // Apply styles to the new line
+            line.style.opacity = "0"; // Initially invisible
+            line.style.transition = "opacity 1.5s ease"; // Smooth fade-in
+            line.style.fontSize = "70px"; // Match parent style
+            line.style.textShadow = "0 0 20px rgba(255, 255, 255, 0.7)";
+            line.style.marginBottom = "10px"; // Spacing between lines
+
+            // Append line and trigger fade-in
+            textContainer.appendChild(line);
+            setTimeout(() => line.style.opacity = "1", 50);
+
+            currentLine++;
+
+            // Schedule the next line
+            setTimeout(fadeInText, 2000); // Adjust timing as needed
+        } else {
+            // Show arrow button after all lines appear
+            setTimeout(() => {
+                arrowBtn.style.display = "inline-block";
+                arrowBtn.style.opacity = "0";
+                arrowBtn.style.transition = "opacity 1.5s ease";
+                setTimeout(() => arrowBtn.style.opacity = "1", 50);
+            }, 1000); // Delay before showing the button
+        }
+    }
+
+    fadeInText(); // Start the animation
+});
+</script>
 </html>

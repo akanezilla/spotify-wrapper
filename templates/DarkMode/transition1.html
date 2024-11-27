@@ -3,34 +3,323 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dark Mode Background</title>
+    <title>Rainbow Mode Generating Wrapped</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body {
+        html, body {
             margin: 0;
-            height: 100vh;
-            background-image: url('darkmodebackground.png');
-            background-size: cover;
-            background-position: center;
-            color: rgb(166, 115, 225);
+            padding: 0;
+            overflow: hidden; /* Prevent scrolling */
             font-family: 'Poppins', Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
         }
-        h1 {
+
+        body {
+            height: 100vh;
+            position: relative;
+        }
+
+        .gradient-bg {
+            width: 100vw;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-size: 400% 400%;
+            background: linear-gradient(40deg, #3B2496, #24114C, #3A1F7A, #5F2A98, #9516FC,#A673E1);
+            animation: gradient-shift 15s ease infinite;
+            z-index: 1;
+        }
+
+        @keyframes gradient-shift {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .content {
+            z-index: 1000;
+            position: absolute;
+            top: 30%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             text-align: center;
-            font-size: 60px;
-            color: rgb(166, 115, 225); /* Text color */
-            text-shadow: 
-                0 0 10px rgba(166, 115, 225, 0.7), /* Soft outer glow */
-                0 0 30px rgba(166, 115, 225, 0.3); /* Even wider glow */
+            color: white;
+            width: 100%; /* Ensures text and child elements are responsive */
         }
+
+
+        /* Floating Effects */
+        .gradients-container {
+            filter: url(#goo) blur(40px);
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        .g1, .g2, .g3, .g4, .g5, .g6 {
+            position: absolute;
+            border-radius: 50%;
+            mix-blend-mode: hard-light;
+            opacity: 1;
+        }
+
+        .g1 {
+            background: radial-gradient(circle at center, rgba(59,36, 150, 0.8) 0, rgba(0, 121, 242, 0) 50%);
+            width: 80%;
+            height: 80%;
+            top: calc(50% - 40%);
+            left: calc(50% - 40%);
+            animation: moveVertical 30s ease infinite;
+        }
+
+        .g2 {
+            background: radial-gradient(circle at center, rgba(80, 11, 229, 0.8) 0, rgba(137, 68, 177, 0) 50%);
+            width: 60%;
+            height: 60%;
+            top: calc(50% - 30%);
+            left: calc(50% - 30%);
+            animation: moveInCircle 20s reverse infinite;
+        }
+
+        .g3 {
+            background: radial-gradient(circle at center, rgba(103, 34, 142, 0.8)0, rgba(229, 77, 212, 0) 50%);
+            width: 90%;
+            height: 90%;
+            top: calc(50% - 45%);
+            left: calc(50% - 45%);
+            animation: moveInCircle 40s linear infinite;
+        }
+
+        .g4 {
+            background: radial-gradient(circle at center, rgba(178, 7, 240, 0.8) 0, rgba(255, 158, 48, 0) 50%);
+            width: 70%;
+            height: 70%;
+            top: calc(50% - 35%);
+            left: calc(50% - 35%);
+            animation: moveHorizontal 40s ease infinite;
+        }
+
+        .g5 {
+            background: radial-gradient(circle at center, rgba(207, 128, 240, 0.8) 0, rgba(255, 206, 51, 0) 50%);
+            width: 120%;
+            height: 120%;
+            top: calc(50% - 60%);
+            left: calc(50% - 60%);
+            animation: moveInCircle 30s ease infinite;
+        }
+        .g6 {
+            background: radial-gradient(circle at center, rgba(115, 166, 225, 0.8) 0, rgba(255, 206, 51, 0) 50%);
+            width: 120%;
+            height: 120%;
+            top: calc(50% - 60%);
+            left: calc(50% - 60%);
+            animation: moveInCircle 30s ease infinite;
+        }
+
+        @keyframes moveVertical {
+            0% {
+                transform: translateY(-50%);
+            }
+            50% {
+                transform: translateY(50%);
+            }
+            100% {
+                transform: translateY(-50%);
+            }
+        }
+
+        @keyframes moveHorizontal {
+            0% {
+                transform: translateX(-50%) translateY(-10%);
+            }
+            50% {
+                transform: translateX(50%) translateY(10%);
+            }
+            100% {
+                transform: translateX(-50%) translateY(-10%);
+            }
+        }
+
+        @keyframes moveInCircle {
+            0% {
+                transform: rotate(0deg);
+            }
+            50% {
+                transform: rotate(180deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        h1 {
+            font-size: 100px;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.7);
+            position: absolute;
+            margin-top: 200px;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 2px solid white;
+            animation: blink-cursor 0.5s step-end infinite;
+        }
+
+        @keyframes blink-cursor {
+            from {
+                border-right-color: white;
+            }
+            to {
+                border-right-color: transparent;
+            }
+        }
+
+        .progress-bar {
+            width: 70%;
+            height: 10px;
+            background-color: rgba(255, 255, 255, 0.2);
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            overflow: hidden;
+            border-radius: 2px;
+        }
+
+        .progress {
+            width: 0;
+            height: 100%;
+            background-color: white;
+            animation: progress-animation 6s linear forwards;
+        }
+
+        @keyframes progress-animation {
+            to {
+                width: 100%;
+            }
+        }
+
+        button {
+            position: absolute;
+            top: 70%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 24px;
+            background: none;
+            border: 2px solid white;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        button.hidden {
+            display: none;
+        }
+
+        button.visible {
+            display: block;
+            opacity: 1;
+            pointer-events: all;
+            margin-top: 350px;
+            transform: translateX(-50%) translateY(0);
+        }
+
     </style>
 </head>
 <body>
-    <h1>Analyzing your data...<br>
-        Generating your wrap...<br>
-        Complete!</h1>
+<div class="gradient-bg">
+    <svg xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <filter id="goo">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur"/>
+                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8"
+                               result="goo"/>
+                <feBlend in="SourceGraphic" in2="goo"/>
+            </filter>
+        </defs>
+    </svg>
+    <div class="gradients-container">
+        <div class="g1"></div>
+        <div class="g2"></div>
+        <div class="g3"></div>
+        <div class="g4"></div>
+        <div class="g5"></div>
+        <div class="g6"></div>
+
+    </div>
+</div>
+<div class="content">
+    <h1 id="text-display"></h1>
+    <div class="progress-bar">
+        <div class="progress"></div>
+    </div>
+    <button id="next-button" class="hidden">→</button>
+</div>
 </body>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const textDisplay = document.getElementById('text-display');
+        const progressBar = document.querySelector('.progress-bar');
+        const nextButton = document.getElementById('next-button');
+
+        const messages = [
+            "Analyzing your data...",
+            "Generating your wrap...",
+            "Complete!"
+        ];
+
+        let currentMessageIndex = 0;
+
+        function typeText(message, callback) {
+            let i = 0;
+            const interval = setInterval(() => {
+                textDisplay.textContent += message[i];
+                i++;
+                if (i === message.length) {
+                    clearInterval(interval);
+                    setTimeout(callback, 1000); // Pause before moving to the next text
+                }
+            }, 100); // Typing speed
+        }
+
+        function showMessage() {
+            if (currentMessageIndex < messages.length) {
+                textDisplay.textContent = ''; // Clear the text display
+                typeText(messages[currentMessageIndex], () => {
+                    currentMessageIndex++;
+                    showMessage();
+                });
+            } else {
+                // Show the button when all messages are complete
+                nextButton.classList.add('visible');
+            }
+        }
+
+        // Start the text animation and progress bar
+        showMessage();
+
+        // Animate progress bar
+        progressBar.querySelector('.progress').style.animationPlayState = 'running';
+
+        // Show button click effect
+        nextButton.addEventListener('click', () => {
+            alert('Next action triggered!');
+        });
+    });
+
+</script>
 </html>
