@@ -257,7 +257,7 @@
     <div class="progress-bar">
         <div class="progress"></div>
     </div>
-    <button id="next-button" class="hidden">→</button>
+    <button id="next-button" class="hidden" onclick="location.href='transition2.html'">→</button>
 </div>
 </body>
 <script>
@@ -305,10 +305,6 @@
         // Animate progress bar
         progressBar.querySelector('.progress').style.animationPlayState = 'running';
 
-        // Show button click effect
-        nextButton.addEventListener('click', () => {
-            alert('Next action triggered!');
-        });
     });
 
 </script>

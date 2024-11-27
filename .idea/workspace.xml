@@ -4,20 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2b7ffd8d-02b9-4b57-9ee5-3fba1fa5c456" name="Changes" comment="add rainbow mode">
-      <change afterPath="$PROJECT_DIR$/templates/RainbowMode/images/CardFrontRB.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/RainbowMode/images/StarCardRB.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/RainbowMode/images/SunCardRB.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/RainbowMode/images/closedScrollRB.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/RainbowMode/images/crystalBallRB.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/RainbowMode/images/heartCardRB.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/RainbowMode/images/hourglass_rainbow.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/RainbowMode/images/moonCardRB.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/RainbowMode/images/personRB.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/RainbowMode/images/scrollRB.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/RainbowMode/images/swordCardRB.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/RainbowMode/images/topscrollRB.svg" afterDir="false" />
+    <list default="true" id="2b7ffd8d-02b9-4b57-9ee5-3fba1fa5c456" name="Changes" comment="add rainbow mode images">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/home/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/home/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/home/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/home/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/RainbowMode/slideShowRB.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/RainbowMode/slideShowRB.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/RainbowMode/transition1.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/RainbowMode/transition1.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/RainbowMode/transition2.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/RainbowMode/transition2.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/home/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/home.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -160,7 +154,7 @@
       <workItem from="1732044164076" duration="703000" />
       <workItem from="1732045422888" duration="246000" />
       <workItem from="1732205009963" duration="249000" />
-      <workItem from="1732400322212" duration="35286000" />
+      <workItem from="1732400322212" duration="39212000" />
     </task>
     <task id="LOCAL-00001" summary="add new code">
       <option name="closed" value="true" />
@@ -226,7 +220,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732697251448</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="add rainbow mode images">
+      <option name="closed" value="true" />
+      <created>1732739574946</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1732739574947</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -239,6 +241,7 @@
     <MESSAGE value="add rainbow mode memorable moment" />
     <MESSAGE value="add rainbow mode top artist and songs" />
     <MESSAGE value="add rainbow mode" />
-    <option name="LAST_COMMIT_MESSAGE" value="add rainbow mode" />
+    <MESSAGE value="add rainbow mode images" />
+    <option name="LAST_COMMIT_MESSAGE" value="add rainbow mode images" />
   </component>
 </project>

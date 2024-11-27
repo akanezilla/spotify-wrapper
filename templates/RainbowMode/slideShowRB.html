@@ -3,28 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dynamic Slideshow</title>
+    <title>Slideshow</title>
     <style>
         body {
             margin: 0;
             padding: 0;
-            overflow: hidden;
             font-family: Arial, sans-serif;
-            background-color: #000;
-            color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+            overflow: hidden;
         }
 
-        #slide-container {
+        .slideshow-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            background: black;
+        }
+
+        .iframe-slide {
+            display: none;
             width: 100%;
             height: 100%;
-            position: relative;
-            overflow: hidden;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
         }
 
+        .iframe-slide.active {
+            display: block;
+            opacity: 1;
+        }
+
+        /* Navigation Buttons */
         .nav-button {
             position: absolute;
             top: 50%;
@@ -35,7 +46,7 @@
             border: none;
             cursor: pointer;
             padding: 10px 20px;
-            z-index: 100;
+            z-index: 1000;
         }
 
         .prev {
@@ -45,86 +56,53 @@
         .next {
             right: 20px;
         }
-
-        .loader {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 20px;
-        }
     </style>
 </head>
 <body>
-<div id="slide-container">
-    <div class="loader">Loading...</div>
+<div class="slideshow-container">
+    <!-- Embedding your HTML pages as slides -->
+    <iframe src="top_5_songs.html" class="iframe-slide active"></iframe>
+    <iframe src="top_song.html" class="iframe-slide"></iframe>
+    <iframe src="top_artist.html" class="iframe-slide"></iframe>
+    <iframe src="top_genre.html" class="iframe-slide"></iframe>
+    <iframe src="listening_minutes.html" class="iframe-slide"></iframe>
+    <iframe src="type_of_listener.html" class="iframe-slide"></iframe>
+    <iframe src="memorable_moment.html" class="iframe-slide"></iframe>
 </div>
+
+<!-- Navigation Buttons -->
 <button class="nav-button prev">❮</button>
 <button class="nav-button next">❯</button>
 
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const slideContainer = document.getElementById('slide-container');
+    // JavaScript for navigating through the iframes
+    document.addEventListener('DOMContentLoaded', function () {
+        const slides = document.querySelectorAll('.iframe-slide');
         const prevButton = document.querySelector('.prev');
         const nextButton = document.querySelector('.next');
+        let currentSlide = 0;
 
-        // Array of external HTML file paths
-        const slideFiles = [
-            'transition1.html',
-            'transition2.html',
-            'top_artist.html',
-            'top_5_songs.html',
-            'top_song.html',
-            'top_genre.html',
-            'type_of_listener.html',
-            'listening_minutes.html',
-            'memorable_moment.html'
-        ];
-
-        let currentSlideIndex = 0;
-
-        // Function to load a slide
-        function loadSlide(index) {
-            // Show loading text
-            slideContainer.innerHTML = `<div class="loader">Loading...</div>`;
-
-            fetch(slideFiles[index])
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`Error loading slide: ${response.statusText}`);
-                    }
-                    return response.text();
-                })
-                .then(html => {
-                    slideContainer.innerHTML = html; // Replace slide content with fetched HTML
-                })
-                .catch(error => {
-                    slideContainer.innerHTML = `<div class="loader">${error.message}</div>`;
-                });
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+            });
         }
 
-        // Load the initial slide
-        loadSlide(currentSlideIndex);
-
-        // Navigation logic
         prevButton.addEventListener('click', () => {
-            currentSlideIndex = (currentSlideIndex - 1 + slideFiles.length) % slideFiles.length;
-            loadSlide(currentSlideIndex);
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
         });
 
         nextButton.addEventListener('click', () => {
-            currentSlideIndex = (currentSlideIndex + 1) % slideFiles.length;
-            loadSlide(currentSlideIndex);
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
         });
-        let autoplayInterval = setInterval(() => {
-            currentSlideIndex = (currentSlideIndex + 1) % slideFiles.length;
-            loadSlide(currentSlideIndex);
-        }, 15000); // Change slide every 5 seconds
 
-        // Stop autoplay when navigating manually
-        prevButton.addEventListener('click', () => clearInterval(autoplayInterval));
-        nextButton.addEventListener('click', () => clearInterval(autoplayInterval));
-
+        // Optional Autoplay
+        setInterval(() => {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }, 15000); // Change slides every 5 seconds
     });
 </script>
 </body>
