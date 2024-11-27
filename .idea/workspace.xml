@@ -4,7 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2b7ffd8d-02b9-4b57-9ee5-3fba1fa5c456" name="Changes" comment="add dark mode updates" />
+    <list default="true" id="2b7ffd8d-02b9-4b57-9ee5-3fba1fa5c456" name="Changes" comment="add dark mode updates">
+      <change afterPath="$PROJECT_DIR$/templates/DarkMode/slideShowDM.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/DarkMode/crystalball.png" beforeDir="false" afterPath="$PROJECT_DIR$/templates/DarkMode/images/crystalball.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/DarkMode/darkmodebackground.png" beforeDir="false" afterPath="$PROJECT_DIR$/templates/DarkMode/images/darkmodebackground.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/DarkMode/dmcard.png" beforeDir="false" afterPath="$PROJECT_DIR$/templates/DarkMode/images/dmcard.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/DarkMode/dmperson.png" beforeDir="false" afterPath="$PROJECT_DIR$/templates/DarkMode/images/dmperson.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/DarkMode/dmscroll.png" beforeDir="false" afterPath="$PROJECT_DIR$/templates/DarkMode/images/dmscroll.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/DarkMode/dmsign_in.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/DarkMode/icon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/DarkMode/login_page.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/DarkMode/memorable_moment.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/DarkMode/memorable_moment.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/DarkMode/top_5_songs.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/DarkMode/top_5_songs.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/DarkMode/top_artist.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/DarkMode/top_artist.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/DarkMode/top_genre.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/DarkMode/top_genre.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/DarkMode/top_song.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/DarkMode/top_song.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/DarkMode/type_of_listener.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/DarkMode/type_of_listener.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -66,6 +83,7 @@
       <recent name="$PROJECT_DIR$/templates" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/templates/DarkMode/images" />
       <recent name="$PROJECT_DIR$/templates/RainbowMode/images" />
     </key>
   </component>
@@ -146,7 +164,7 @@
       <workItem from="1732044164076" duration="703000" />
       <workItem from="1732045422888" duration="246000" />
       <workItem from="1732205009963" duration="249000" />
-      <workItem from="1732400322212" duration="39537000" />
+      <workItem from="1732400322212" duration="40558000" />
     </task>
     <task id="LOCAL-00001" summary="add new code">
       <option name="closed" value="true" />
@@ -236,7 +254,23 @@
       <option name="project" value="LOCAL" />
       <updated>1732745193727</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="add dark mode updates">
+      <option name="closed" value="true" />
+      <created>1732746309025</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1732746309026</updated>
+    </task>
+    <task id="LOCAL-00013" summary="add dark mode updates">
+      <option name="closed" value="true" />
+      <created>1732746341208</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1732746341208</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
