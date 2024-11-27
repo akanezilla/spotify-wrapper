@@ -56,6 +56,7 @@
         }
 
         img {
+            margin-top: 70px;
             position: relative;
             z-index: 1001;
         }
@@ -158,6 +159,83 @@
                 transform: rotate(360deg);
             }
         }
+
+        .clickable {
+            cursor: pointer;
+        }
+
+        /* Modal Overlay */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 2000; /* Above other content */
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black background */
+        }
+
+        /* Modal Content */
+        .modal-content {
+            background-color: #222;
+            margin: 15% auto; /* Center vertically and horizontally */
+            padding: 20px;
+            border-radius: 10px;
+            color: white;
+            max-width: 400px;
+            text-align: center;
+            animation: fadeIn 0.5s ease; /* Smooth appearance */
+        }
+
+        /* Close Button */
+        .close {
+            color: white;
+            float: right;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* Close Button Hover Effect */
+        .close:hover, .close:focus {
+            color: #ff0000;
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+
+        .genre-info {
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            max-width: 300px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .genre-info h2 {
+            margin-top: 0;
+        }
+
+        .genre-info ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .genre-info li {
+            margin-bottom: 10px;
+        }
     </style>
 <body>
 <div class="gradient-bg">
@@ -181,7 +259,61 @@
 </div>
 <div class="content">
     <h1>Sound of Your Soul</h1>
-    <img src="images/personRB.svg" alt="Mysterious Person" id="img1">
+    <img src="images/personRB.svg" alt="Mysterious Person" id="img1" class="clickable">
+    <!-- Modal for Top Genres -->
+    <div id="genreModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Your Top Genres</h2>
+            <ul id="genreList"></ul>
+        </div>
+    </div>
 </div>
 </body>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const img = document.getElementById('img1'); // Person image
+        const modal = document.getElementById('genreModal'); // Modal container
+        const closeModal = document.querySelector('.close'); // Close button
+        const genreList = document.getElementById('genreList'); // Genre list container
+
+        // Open the modal and fetch top genres
+        img.addEventListener('click', function () {
+            fetch('spotify/top-genre/')  // Ensure this matches your URL configuration
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.error) {
+                        alert(data.error);
+                        return;
+                    }
+                    genreList.innerHTML = ''; // Clear previous genres
+                    data.top_genres.forEach(genre => {
+                        const li = document.createElement('li');
+                        li.textContent = `${genre[0]}: ${genre[2].toFixed(2)}%`;
+                        genreList.appendChild(li);
+                    });
+                    modal.style.display = 'block'; // Show the modal
+                })
+                .catch(error => console.error('Error:', error));
+        });
+
+        // Close the modal when clicking the close button
+        closeModal.addEventListener('click', function () {
+            modal.style.display = 'none';
+        });
+
+        // Close the modal when clicking outside of it
+        window.addEventListener('click', function (event) {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+    });
+
+</script>
 </html>

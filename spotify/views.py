@@ -1,3 +1,4 @@
+from django.http import JsonResponse
 from spotipy.oauth2 import SpotifyOAuth
 from django.conf import settings
 import secrets
@@ -238,7 +239,6 @@ def top_genre_view(request):
 
         sp = spotipy.Spotify(auth=spotify_profile.spotify_token)
 
-        # Change time_range to 'long_term' for approximately the last year
         top_artists = sp.current_user_top_artists(limit=50, time_range='long_term')
 
         genres = {}
@@ -248,27 +248,17 @@ def top_genre_view(request):
 
         top_genres = sorted(genres.items(), key=lambda x: x[1], reverse=True)[:5]
 
-        # Calculate percentages
         total_count = sum(count for _, count in top_genres)
         top_genres_with_percentage = [
             (genre, count, (count / total_count) * 100)
             for genre, count in top_genres
         ]
 
-        context = {
-            'top_genres': top_genres_with_percentage
-        }
-        return render(request, 'spotify/top_genre.html', context)
+        return JsonResponse({'top_genres': top_genres_with_percentage})
     except SpotifyProfile.DoesNotExist:
-        messages.warning(request, "Please connect your Spotify account first.")
-        return redirect('spotify:spotify_connect')
+        return JsonResponse({'error': 'Please connect your Spotify account first.'}, status=400)
     except SpotifyException as e:
-        messages.error(request, f"Spotify API error: {str(e)}")
-        return redirect('home')
-
-
-from collections import Counter
-
+        return JsonResponse({'error': f'Spotify API error: {str(e)}'}, status=500)
 
 @login_required
 def listener_type_view(request):
@@ -403,12 +393,11 @@ def top_song_view(request):
 
         sp = spotipy.Spotify(auth=spotify_profile.spotify_token)
 
-        # Get top tracks for the long term (approximately last year)
         top_tracks = sp.current_user_top_tracks(limit=1, time_range='long_term')
 
         if top_tracks['items']:
             top_song = top_tracks['items'][0]
-            context = {
+            data = {
                 'top_song': {
                     'name': top_song['name'],
                     'artist': top_song['artists'][0]['name'],
@@ -418,15 +407,13 @@ def top_song_view(request):
                 }
             }
         else:
-            context = {'top_song': None}
+            data = {'top_song': None}
 
-        return render(request, 'spotify/top_song.html', context)
+        return JsonResponse(data)
     except SpotifyProfile.DoesNotExist:
-        messages.warning(request, "Please connect your Spotify account first.")
-        return redirect('spotify:spotify_connect')
+        return JsonResponse({'error': 'Please connect your Spotify account first.'}, status=400)
     except SpotifyException as e:
-        messages.error(request, f"Spotify API error: {str(e)}")
-        return redirect('home')
+        return JsonResponse({'error': f'Spotify API error: {str(e)}'}, status=500)
 
 
 @login_required
