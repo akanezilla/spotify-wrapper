@@ -15,5 +15,3 @@ def home_view(request):
         'is_connected': is_connected
     })
 
-def slideshow_view(request):
-    return render(request, 'RainbowMode/transition1.html', {'mode': 'rainbow'})

@@ -201,7 +201,7 @@
             }
         }
 
-        button {
+        .next-button {
             position: absolute;
             top: 70%;
             left: 50%;
@@ -218,11 +218,11 @@
             transition: opacity 0.5s ease, transform 0.5s ease;
         }
 
-        button.hidden {
+        .next-button.hidden {
             display: none;
         }
 
-        button.visible {
+        .next-button.visible {
             display: block;
             opacity: 1;
             pointer-events: all;
@@ -257,7 +257,7 @@
     <div class="progress-bar">
         <div class="progress"></div>
     </div>
-    <button id="next-button" class="hidden" onclick="location.href='transition2.html'">→</button>
+    <a id="next-button" href="{% url 'transition2RB' %}" class="next-button hidden">→</a>
 </div>
 </body>
 <script>

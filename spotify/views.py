@@ -10,6 +10,8 @@ from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from .models import SpotifyProfile
 import random
+from django.utils.timezone import now
+import logging
 
 
 @login_required
@@ -260,6 +262,7 @@ def top_genre_view(request):
     except SpotifyException as e:
         return JsonResponse({'error': f'Spotify API error: {str(e)}'}, status=500)
 
+
 @login_required
 def listener_type_view(request):
     try:
@@ -351,36 +354,41 @@ def random_songs_view(request):
         return redirect('home')
 
 
+from django.http import JsonResponse
+
+
 @login_required
 def total_listening_time_view(request):
     try:
+        # Ensure the user has a Spotify profile
         spotify_profile = request.user.spotifyprofile
 
-        if spotify_profile.token_expires <= timezone.now():
+        # Refresh token if expired
+        if spotify_profile.token_expires <= now():
             spotify_profile.refresh_spotify_token()
 
+        # Connect to Spotify API
         sp = spotipy.Spotify(auth=spotify_profile.spotify_token)
 
-        # Get top tracks for the year
+        # Fetch top tracks and calculate total listening time
         top_tracks = sp.current_user_top_tracks(limit=50, time_range='long_term')
-
-        # Calculate total duration
         total_duration = sum(track['duration_ms'] for track in top_tracks['items'])
-        total_duration_minutes = round(total_duration / (1000 * 60))  # Convert to minutes and round
+        total_duration_minutes = round(total_duration / (1000 * 60))  # Convert ms to minutes
 
-        # Estimate yearly listening time (multiply by a factor to account for all tracks)
-        estimated_yearly_minutes = total_duration_minutes * 20  # Adjust this factor as needed
+        # Estimate yearly listening time
+        estimated_yearly_minutes = total_duration_minutes * 20  # Adjust multiplier as needed
 
-        context = {
-            'total_duration': estimated_yearly_minutes
-        }
-        return render(request, 'spotify/total_listening_time.html', context)
+        # Return JSON response
+        return JsonResponse({'listening_minutes': estimated_yearly_minutes})
+
     except SpotifyProfile.DoesNotExist:
-        messages.warning(request, "Please connect your Spotify account first.")
-        return redirect('spotify:spotify_connect')
+        return JsonResponse({'error': 'Spotify account not connected'}, status=400)
+
     except SpotifyException as e:
-        messages.error(request, f"Spotify API error: {str(e)}")
-        return redirect('home')
+        return JsonResponse({'error': f'Spotify API error: {str(e)}'}, status=500)
+
+    except Exception as e:
+        return JsonResponse({'error': f'Unexpected error: {str(e)}'}, status=500)
 
 
 @login_required
@@ -419,11 +427,14 @@ def top_song_view(request):
 @login_required
 def memorable_moment_view(request):
     try:
+        # Fetch the user's Spotify profile
         spotify_profile = request.user.spotifyprofile
 
+        # Refresh Spotify token if expired
         if spotify_profile.token_expires <= timezone.now():
             spotify_profile.refresh_spotify_token()
 
+        # Initialize Spotify client
         sp = spotipy.Spotify(auth=spotify_profile.spotify_token)
 
         # Get top tracks of the year
@@ -432,41 +443,87 @@ def memorable_moment_view(request):
         # Get recently played tracks
         recent_tracks = sp.current_user_recently_played(limit=50)
 
-        # Combine and shuffle the tracks
-        all_tracks = top_tracks['items'] + recent_tracks['items']
+        # Extract top tracks with valid 'id'
+        top_tracks_list = [
+            track for track in top_tracks.get('items', [])
+            if track.get('id')  # Ensure 'id' is present
+        ]
+
+        # Extract recent tracks with valid 'id'
+        recent_tracks_list = [
+            item['track'] for item in recent_tracks.get('items', [])
+            if 'track' in item and item['track'].get('id')  # Ensure 'id' in 'track'
+        ]
+
+        # Combine tracks
+        all_tracks = top_tracks_list + recent_tracks_list
+
+        for track in all_tracks:
+            if 'id' not in track:
+                logging.warning(f"Track without 'id': {track}")
+
+        if not all_tracks:
+            logging.error("No valid tracks found.")
+            raise ValueError("No valid tracks found to create a memorable moment.")
         random.shuffle(all_tracks)
 
-        # Select a random track as the "memorable moment"
-        memorable_track = random.choice(all_tracks)
+        # Select a random track
+        valid_tracks = [track for track in all_tracks if 'id' in track]
+        if not valid_tracks:
+            logging.error("No tracks with valid 'id' found.")
+            raise ValueError("No valid tracks found to create a memorable moment.")
 
-        # Get additional context for the track
-        track_info = sp.track(memorable_track['id'])
-        artist_info = sp.artist(track_info['artists'][0]['id'])
+        memorable_track = random.choice(valid_tracks)
 
+        # Validate selected track
+        if not memorable_track.get('id'):
+            logging.error(f"Selected track has no 'id': {memorable_track}")
+            raise ValueError("Selected track does not contain an 'id' key.")
+
+        try:
+            track_info = sp.track(memorable_track['id'])
+            artist_info = sp.artist(track_info['artists'][0]['id'])
+        except SpotifyException as e:
+            logging.error(f"Spotify API error: {str(e)}")
+            raise ValueError(f"Error fetching track or artist info: {str(e)}")
+
+        # Generate a memorable description
+        moment_description = generate_moment_description(track_info, artist_info)
+
+        # Handle AJAX requests
+        if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+            return JsonResponse({
+                'track_name': track_info['name'],
+                'artist_name': artist_info['name'],
+                'moment_description': moment_description,
+                'track_image': track_info['album']['images'][0]['url']  # Use album artwork
+            })
+
+        # Render the HTML page
         context = {
             'track': track_info,
             'artist': artist_info,
-            'moment_description': generate_moment_description(track_info, artist_info)
+            'moment_description': moment_description
         }
         return render(request, 'spotify/memorable_moment.html', context)
+
     except SpotifyProfile.DoesNotExist:
         messages.warning(request, "Please connect your Spotify account first.")
         return redirect('spotify:spotify_connect')
     except SpotifyException as e:
         messages.error(request, f"Spotify API error: {str(e)}")
         return redirect('home')
-
-
-def generate_moment_description(track, artist):
-    """Generate a description for the memorable moment."""
-    moments = [
-        f"Remember when you couldn't stop playing '{track['name']}' by {artist['name']}?",
-        f"That time '{track['name']}' became the soundtrack to your life.",
-        f"When {artist['name']}'s '{track['name']}' hit differently and became your anthem.",
-        f"The day you discovered '{track['name']}' and fell in love with {artist['name']}'s music.",
-        f"That perfect moment when '{track['name']}' came on and everything felt right."
-    ]
-    return random.choice(moments)
+    except ValueError as e:
+        messages.error(request, f"Error: {str(e)}")
+        return redirect('home')
+    except KeyError as e:
+        logging.error(f"KeyError in memorable_moment_view: Missing key {str(e)}")
+        messages.error(request, f"Data error: Missing expected key {str(e)}")
+        return redirect('home')
+    except Exception as e:
+        logging.error(f"Unexpected error in memorable_moment_view: {str(e)}")
+        messages.error(request, "An unexpected error occurred.")
+        return redirect('home')
 
 
 @login_required
