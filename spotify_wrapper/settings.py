@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from pathlib import Path
 import os
 from dotenv import load_dotenv
+from django.utils.translation import gettext_lazy as _
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -52,6 +54,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
 ]
 
 ROOT_URLCONF = 'spotify_wrapper.urls'
@@ -118,6 +121,13 @@ USE_TZ = True
 
 LOCALE_PATHS = [
     BASE_DIR / 'locale/',  # Directory for translation files
+    os.path.join(BASE_DIR, 'locale'),
+]
+
+LANGUAGES = [
+    ('en', 'English'),
+    ('fr', 'French'),
+    ('es', 'Spanish'),
 ]
 
 

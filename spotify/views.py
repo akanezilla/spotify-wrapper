@@ -10,6 +10,8 @@ from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from .models import SpotifyProfile
 import random
+from django.utils.translation import gettext as _
+
 
 
 @login_required
