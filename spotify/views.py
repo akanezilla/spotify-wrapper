@@ -10,8 +10,12 @@ from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from .models import SpotifyProfile
 import random
+from django.utils.translation import gettext as _
 from django.utils.timezone import now
 import logging
+from collections import Counter
+from spotipy import Spotify
+
 
 
 @login_required
@@ -178,32 +182,38 @@ def top_tracks_view(request):
 
         sp = spotipy.Spotify(auth=spotify_profile.spotify_token)
 
-        # Change time_range to 'long_term' for approximately the last year
+        # Fetch user's top tracks
         top_tracks = sp.current_user_top_tracks(limit=5, time_range='long_term')
 
         # Extract relevant information including cover photo URL
-        tracks_info = [{
-            'name': track['name'],
-            'artist': track['artists'][0]['name'],
-            'cover_url': track['album']['images'][0]['url'] if track['album']['images'] else None
-        } for track in top_tracks['items']]
+        tracks_info = []
+        for track in top_tracks['items']:
+            cover_url = track['album']['images'][0]['url'] if track['album']['images'] else '/static/images/default_cover.jpg'
+            tracks_info.append({
+                'name': track['name'],
+                'artist': track['artists'][0]['name'],
+                'cover_url': cover_url,
+                'id': track['id']  # Store the track ID if needed
+            })
 
         context = {
             'top_tracks': tracks_info
         }
-        return render(request, 'spotify/top_tracks.html', context)
+        return render(request, 'RainbowMode/top_5_songs.html', context)
+
     except SpotifyProfile.DoesNotExist:
         messages.warning(request, "Please connect your Spotify account first.")
         return redirect('spotify:spotify_connect')
     except SpotifyException as e:
         messages.error(request, f"Spotify API error: {str(e)}")
         return redirect('home')
-
-
-def top_artists_view(request):
+    
+@login_required
+def top_artists_rb(request):
     try:
         spotify_profile = request.user.spotifyprofile
 
+        # Check if the Spotify token is expired and refresh if necessary
         if spotify_profile.token_expires <= timezone.now():
             spotify_profile.refresh_spotify_token()
 
@@ -215,22 +225,28 @@ def top_artists_view(request):
         # Prepare artist data for template
         artists_info = [{
             'name': artist['name'],
-            'image_url': artist['images'][0]['url'] if artist['images'] else None,
+            'image_url': artist['images'][0]['url'] if artist['images'] else '/static/images/default_artist.jpg',  # Default image if none available
             'genres': ', '.join(artist['genres'][:3])  # Limit to top 3 genres
         } for artist in top_artists['items']]
 
         context = {
-            'top_artists': artists_info
+            'top_artists': artists_info,
+            'card_images': [
+                'StarCardRB.svg',
+                'swordCardRB.svg',
+                'SunCardRB.svg',
+                'moonCardRB.svg',
+                'heartCardRB.svg'
+            ],
         }
-        return render(request, 'spotify/top_artists.html', context)
+        return render(request, 'RainbowMode/top_artists.html', context)
+
     except SpotifyProfile.DoesNotExist:
         messages.warning(request, "Please connect your Spotify account first.")
         return redirect('spotify:spotify_connect')
-    except SpotifyException as e:
+    except Exception as e:
         messages.error(request, f"Spotify API error: {str(e)}")
         return redirect('home')
-
-
 @login_required
 def top_genre_view(request):
     try:
@@ -310,7 +326,7 @@ def listener_type_view(request):
             'diversity_score': round(diversity_score, 2),
             'repeat_listens': repeat_listens
         }
-        return render(request, 'spotify/listener_type.html', context)
+        return render(request, 'RainbowMode/type_of_listener.html', context)
     except SpotifyProfile.DoesNotExist:
         messages.warning(request, "Please connect your Spotify account first.")
         return redirect('spotify:spotify_connect')
@@ -548,3 +564,46 @@ def generate_moment_description(track, artist):
         f"That perfect moment when '{track['name']}' came on and everything felt right."
     ]
     return random.choice(moments)
+@login_required
+def top_5_songs_rb(request):
+    try:
+        spotify_profile = request.user.spotifyprofile
+
+        if spotify_profile.token_expires <= timezone.now():
+            spotify_profile.refresh_spotify_token()
+
+        sp = spotipy.Spotify(auth=spotify_profile.spotify_token)
+
+        # Fetch user's top tracks
+        top_tracks = sp.current_user_top_tracks(limit=5, time_range='long_term')
+        tracks_info = []
+        for track in top_tracks['items']:
+            cover_url = track['album']['images'][0]['url'] if track['album']['images'] else '/static/images/default_cover.jpg'
+            tracks_info.append({
+                'name': track['name'],
+                'artist': track['artists'][0]['name'],
+                'cover_url': cover_url,
+                'id': track['id']
+            })
+
+        # Example card images list
+        card_images = [
+            'StarCardRB.svg',
+            'swordCardRB.svg',
+            'SunCardRB.svg',
+            'moonCardRB.svg',
+            'heartCardRB.svg'
+        ]
+
+        context = {
+            'top_tracks': tracks_info,
+            'card_images': card_images,
+        }
+        return render(request, 'RainbowMode/top_5_songs.html', context)
+
+    except SpotifyProfile.DoesNotExist:
+        messages.warning(request, "Please connect your Spotify account first.")
+        return redirect('spotify:spotify_connect')
+    except SpotifyException as e:
+        messages.error(request, f"Spotify API error: {str(e)}")
+        return redirect('home')

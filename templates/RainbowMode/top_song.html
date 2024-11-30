@@ -1,3 +1,5 @@
+{% load i18n %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -263,16 +265,16 @@
     </div>
 </div>
 <div class="content">
-    <h1>Your Musical Prophecy</h1>
+    <h1>{% trans "Your Musical Prophecy" %}</h1>
     <div class="scroll-container">
         <div class="scroll-top">
-            <img src="../../static/images/topscrollRB.svg" alt="Scroll Top">
+            <img src="static/images/topscrollRB.svg" alt="Scroll Top">
         </div>
         <div class="scroll-mask">
-            <img id="scroll-image" src="../../static/images/scrollRB.svg" alt="Scroll Body">
+            <img id="scroll-image" src="static/images/scrollRB.svg" alt="Scroll Body">
         </div>
         <div class="scroll-bottom">
-            <img src="../../static/images/topscrollRB.svg" alt="Scroll Bottom">
+            <img src="/static/images/topscrollRB.svg" alt="Scroll Bottom">
         </div>
         <div id="scroll-content" class="hidden">
             <img id="song-cover" src="" alt="Album Cover">

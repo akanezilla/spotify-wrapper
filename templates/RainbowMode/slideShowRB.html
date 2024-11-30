@@ -1,3 +1,5 @@
+{% load i18n %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -62,8 +64,8 @@
 <div class="slideshow-container">
     <iframe src="{% url 'top_5_songsRB' %}" class="iframe-slide active"></iframe>
     <iframe src="{% url 'top_songRB' %}" class="iframe-slide"></iframe>
-    <iframe src="{% url 'top_artistRB' %}" class="iframe-slide"></iframe>
     <iframe src="{% url 'top_genreRB' %}" class="iframe-slide"></iframe>
+    <iframe src="{% url 'spotify:top_artistsRB' %}" class="iframe-slide"></iframe>
     <iframe src="{% url 'listening_minutesRB' %}" class="iframe-slide"></iframe>
     <iframe src="{% url 'type_of_listenerRB' %}" class="iframe-slide"></iframe>
     <iframe src="{% url 'memorable_momentRB' %}" class="iframe-slide"></iframe>

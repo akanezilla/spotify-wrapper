@@ -1,3 +1,4 @@
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -220,10 +221,10 @@
 
     // Array of text lines to display
     const textLines = [
-        "The cards have been drawn,",
-        "the stars aligned,",
-        "and now the universe reveals",
-        "your auditory divination!"
+        "{% trans 'The cards have been drawn,' %}",
+        "{% trans 'the stars aligned,' %}",
+        "{% trans 'and now the universe reveals' %}",
+        "{% trans 'your auditory divination!' %}"
     ];
 
     let currentLine = 0;

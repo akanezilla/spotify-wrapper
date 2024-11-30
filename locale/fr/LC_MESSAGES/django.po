@@ -1,0 +1,159 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-11-29 16:50-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: French <LL@li.org>\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+
+#: .\templates\home\home.html:8
+msgid "Spotify Wrapper Home"
+msgstr "Accueil de Spotify Wrapper"
+
+#: .\templates\home\home.html:94
+msgid "Welcome,"
+msgstr "Bienvenue,"
+
+#: .\templates\home\home.html:98
+msgid "Spotify Connected"
+msgstr "Spotify Connecté"
+
+#: .\templates\home\home.html:100
+msgid "Connect with Spotify"
+msgstr "Connectez-vous avec Spotify"
+
+#: .\templates\home\home.html:102
+msgid "Stories"
+msgstr "Histoires"
+
+#: .\templates\home\home.html:103
+msgid "Profile"
+msgstr "Profil"
+
+#: .\templates\home\home.html:106
+msgid "Logout"
+msgstr "Déconnexion"
+
+#: .\templates\home\home.html:107
+msgid "Delete Account"
+msgstr "Supprimer le compte"
+
+#: .\templates\home\home.html:125
+msgid "Create your next story"
+msgstr "Créez votre prochaine histoire"
+
+#: .\templates\home\home.html:126
+msgid "Generate a Spotify wrapped to see what adventure your music takes you to."
+msgstr "Générez un Spotify Wrapped pour voir quelle aventure votre musique vous réserve."
+
+#: .\templates\home\home.html:129
+msgid "Generate Wrap"
+msgstr "Générer un Wrapped"
+
+#: .\templates\home\home.html:132
+msgid "Your Spotify Data"
+msgstr "Vos données Spotify"
+
+#: .\templates\home\home.html:134
+msgid "View Top 5 Tracks"
+msgstr "Voir les 5 morceaux principaux"
+
+#: .\templates\home\home.html:135
+msgid "View Top Artists"
+msgstr "Voir les meilleurs artistes"
+
+#: .\templates\home\home.html:136
+msgid "View Top Genre"
+msgstr "Voir le genre principal"
+
+#: .\templates\home\home.html:137
+msgid "View Listener Type"
+msgstr "Voir le type d'auditeur"
+
+#: .\templates\home\home.html:138
+msgid "View 3 Random Songs"
+msgstr "Voir 3 chansons aléatoires"
+
+#: .\templates\home\home.html:139
+msgid "View Total Listening Time"
+msgstr "Voir le temps total d'écoute"
+
+#: .\templates\home\home.html:140
+msgid "View Top Song"
+msgstr "Voir la chanson principale"
+
+#: .\templates\home\home.html:141
+msgid "View Memorable Moment"
+msgstr "Voir le moment mémorable"
+
+#: .\templates\home\home.html:144
+msgid "Connect your Spotify account to generate a wrap."
+msgstr "Connectez votre compte Spotify pour générer un Wrapped."
+
+#: .\templates\RainbowMode\transition1.html:270
+msgid "Analyzing your data..."
+msgstr "Analyse de vos données..."
+
+#: .\templates\RainbowMode\transition1.html:271
+msgid "Generating your wrap..."
+msgstr "Génération de votre Wrapped..."
+
+#: .\templates\RainbowMode\transition1.html:272
+msgid "Complete!"
+msgstr "Terminé!"
+
+#: .\templates\RainbowMode\transition2.html:223
+msgid "The cards have been drawn,"
+msgstr "Les cartes ont été tirées,"
+
+#: .\templates\RainbowMode\transition2.html:224
+msgid "the stars aligned,"
+msgstr "les étoiles se sont alignées,"
+
+#: .\templates\RainbowMode\transition2.html:225
+msgid "and now the universe reveals"
+msgstr "et maintenant l'univers révèle"
+
+#: .\templates\RainbowMode\transition2.html:226
+msgid "your auditory divination!"
+msgstr "votre divination auditive!"
+
+#: .\templates\RainbowMode\listening_minutes.html:34
+msgid "Your Cosmic Clock"
+msgstr "Votre Horloge Cosmique"
+
+#: .\templates\RainbowMode\memorable_moment.html:442
+msgid "Celestial Highlight"
+msgstr "Fait Marquant Céleste"
+
+#: .\templates\RainbowMode\top_5_songs.html:285
+msgid "Your Chords of Destiny"
+msgstr "Vos Accords du Destin"
+
+#: .\templates\RainbowMode\top_artist.html:270
+msgid "Your Top 5 Cosmic Influencers"
+msgstr "Vos 5 Influences Cosmiques Principales"
+
+#: .\templates\RainbowMode\top_genre.html:262
+msgid "Sound of Your Soul"
+msgstr "Le Son de Votre Âme"
+
+#: .\templates\RainbowMode\top_song.html:267
+msgid "Your Musical Prophecy"
+msgstr "Votre Prophétie Musicale"
+
+#: .\templates\RainbowMode\type_of_listener.html:267
+msgid "Aura"
+msgstr "Aura"

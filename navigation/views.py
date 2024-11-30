@@ -17,7 +17,7 @@ def top_song_rb(request):
     return render(request, 'RainbowMode/top_song.html')
 
 def top_artist_rb(request):
-    return render(request, 'RainbowMode/top_artist.html')
+  return render(request, 'RainbowMode/top_artists.html')
 
 def top_genre_rb(request):
     return render(request, 'RainbowMode/top_genre.html')
