@@ -423,109 +423,6 @@ def top_song_view(request):
     except SpotifyException as e:
         return JsonResponse({'error': f'Spotify API error: {str(e)}'}, status=500)
 
-
-@login_required
-def memorable_moment_view(request):
-    try:
-        # Fetch the user's Spotify profile
-        spotify_profile = request.user.spotifyprofile
-
-        # Refresh Spotify token if expired
-        if spotify_profile.token_expires <= timezone.now():
-            spotify_profile.refresh_spotify_token()
-
-        # Initialize Spotify client
-        sp = spotipy.Spotify(auth=spotify_profile.spotify_token)
-
-        # Get top tracks of the year
-        top_tracks = sp.current_user_top_tracks(limit=50, time_range='long_term')
-
-        # Get recently played tracks
-        recent_tracks = sp.current_user_recently_played(limit=50)
-
-        # Extract top tracks with valid 'id'
-        top_tracks_list = [
-            track for track in top_tracks.get('items', [])
-            if track.get('id')  # Ensure 'id' is present
-        ]
-
-        # Extract recent tracks with valid 'id'
-        recent_tracks_list = [
-            item['track'] for item in recent_tracks.get('items', [])
-            if 'track' in item and item['track'].get('id')  # Ensure 'id' in 'track'
-        ]
-
-        # Combine tracks
-        all_tracks = top_tracks_list + recent_tracks_list
-
-        for track in all_tracks:
-            if 'id' not in track:
-                logging.warning(f"Track without 'id': {track}")
-
-        if not all_tracks:
-            logging.error("No valid tracks found.")
-            raise ValueError("No valid tracks found to create a memorable moment.")
-        random.shuffle(all_tracks)
-
-        # Select a random track
-        valid_tracks = [track for track in all_tracks if 'id' in track]
-        if not valid_tracks:
-            logging.error("No tracks with valid 'id' found.")
-            raise ValueError("No valid tracks found to create a memorable moment.")
-
-        memorable_track = random.choice(valid_tracks)
-
-        # Validate selected track
-        if not memorable_track.get('id'):
-            logging.error(f"Selected track has no 'id': {memorable_track}")
-            raise ValueError("Selected track does not contain an 'id' key.")
-
-        try:
-            track_info = sp.track(memorable_track['id'])
-            artist_info = sp.artist(track_info['artists'][0]['id'])
-        except SpotifyException as e:
-            logging.error(f"Spotify API error: {str(e)}")
-            raise ValueError(f"Error fetching track or artist info: {str(e)}")
-
-        # Generate a memorable description
-        moment_description = generate_moment_description(track_info, artist_info)
-
-        # Handle AJAX requests
-        if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
-            return JsonResponse({
-                'track_name': track_info['name'],
-                'artist_name': artist_info['name'],
-                'moment_description': moment_description,
-                'track_image': track_info['album']['images'][0]['url']  # Use album artwork
-            })
-
-        # Render the HTML page
-        context = {
-            'track': track_info,
-            'artist': artist_info,
-            'moment_description': moment_description
-        }
-        return render(request, 'spotify/memorable_moment.html', context)
-
-    except SpotifyProfile.DoesNotExist:
-        messages.warning(request, "Please connect your Spotify account first.")
-        return redirect('spotify:spotify_connect')
-    except SpotifyException as e:
-        messages.error(request, f"Spotify API error: {str(e)}")
-        return redirect('home')
-    except ValueError as e:
-        messages.error(request, f"Error: {str(e)}")
-        return redirect('home')
-    except KeyError as e:
-        logging.error(f"KeyError in memorable_moment_view: Missing key {str(e)}")
-        messages.error(request, f"Data error: Missing expected key {str(e)}")
-        return redirect('home')
-    except Exception as e:
-        logging.error(f"Unexpected error in memorable_moment_view: {str(e)}")
-        messages.error(request, "An unexpected error occurred.")
-        return redirect('home')
-
-
 @login_required
 def spotify_wrapped_view(request):
     try:
@@ -622,17 +519,22 @@ def memorable_moment_view(request):
         track_info = sp.track(memorable_track['id'])
         artist_info = sp.artist(track_info['artists'][0]['id'])
 
-        context = {
-            'track': track_info,
-            'artist': artist_info,
+        data = {
+            'track_name': track_info['name'],
+            'artist_name': artist_info['name'],
+            'track_image': track_info['album']['images'][0]['url'],
             'moment_description': generate_moment_description(track_info, artist_info)
         }
-        return render(request, 'spotify/memorable_moment.html', context)
-    except SpotifyProfile.DoesNotExist:
-        messages.warning(request, "Please connect your Spotify account first.")
-        return redirect('spotify:spotify_connect')
-    except SpotifyException as e:
-        messages.error(request, f"Spotify API error: {str(e)}")
+
+        if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+            return JsonResponse(data)
+
+        return render(request, 'spotify/memorable_moment.html', {'initial_data': json.dumps(data)})
+
+    except Exception as e:
+        if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+            return JsonResponse({'error': str(e)}, status=400)
+        messages.error(request, str(e))
         return redirect('home')
 
 
