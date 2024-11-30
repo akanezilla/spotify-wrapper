@@ -25,10 +25,11 @@
             top: 0;
             left: 0;
             background-size: 400% 400%;
-            background: linear-gradient(40deg, #3B2496, #180e54, #3A1F7A, #5F2A98, #9516FC,#A673E1);
+            background: linear-gradient(40deg, #0079F2, #8944B1, #E54DD4, #FF9E30, #FFCE33);
             animation: gradient-shift 15s ease infinite;
             z-index: 1;
         }
+
         @keyframes gradient-shift {
             0% {
                 background-position: 0% 50%;
@@ -70,7 +71,7 @@
             pointer-events: none;
         }
 
-        .g1, .g2, .g3, .g4, .g5, .g6 {
+        .g1, .g2, .g3, .g4, .g5 {
             position: absolute;
             border-radius: 50%;
             mix-blend-mode: hard-light;
@@ -78,7 +79,7 @@
         }
 
         .g1 {
-            background: radial-gradient(circle at center, rgba(59,36, 150, 0.8) 0, rgba(0, 121, 242, 0) 50%);
+            background: radial-gradient(circle at center, rgba(0, 121, 242, 0.8) 0, rgba(0, 121, 242, 0) 50%);
             width: 80%;
             height: 80%;
             top: calc(50% - 40%);
@@ -87,7 +88,7 @@
         }
 
         .g2 {
-            background: radial-gradient(circle at center, rgba(80, 11, 229, 0.8) 0, rgba(137, 68, 177, 0) 50%);
+            background: radial-gradient(circle at center, rgba(137, 68, 177, 0.8) 0, rgba(137, 68, 177, 0) 50%);
             width: 60%;
             height: 60%;
             top: calc(50% - 30%);
@@ -96,7 +97,7 @@
         }
 
         .g3 {
-            background: radial-gradient(circle at center, rgba(103, 34, 142, 0.8)0, rgba(229, 77, 212, 0) 50%);
+            background: radial-gradient(circle at center, rgba(229, 77, 212, 0.8) 0, rgba(229, 77, 212, 0) 50%);
             width: 90%;
             height: 90%;
             top: calc(50% - 45%);
@@ -105,7 +106,7 @@
         }
 
         .g4 {
-            background: radial-gradient(circle at center, rgba(178, 7, 240, 0.8) 0, rgba(255, 158, 48, 0) 50%);
+            background: radial-gradient(circle at center, rgba(255, 158, 48, 0.8) 0, rgba(255, 158, 48, 0) 50%);
             width: 70%;
             height: 70%;
             top: calc(50% - 35%);
@@ -114,21 +115,14 @@
         }
 
         .g5 {
-            background: radial-gradient(circle at center, rgba(207, 128, 240, 0.8) 0, rgba(255, 206, 51, 0) 50%);
+            background: radial-gradient(circle at center, rgba(255, 206, 51, 0.8) 0, rgba(255, 206, 51, 0) 50%);
             width: 120%;
             height: 120%;
             top: calc(50% - 60%);
             left: calc(50% - 60%);
             animation: moveInCircle 30s ease infinite;
         }
-        .g6 {
-            background: radial-gradient(circle at center, rgba(115, 166, 225, 0.8) 0, rgba(255, 206, 51, 0) 50%);
-            width: 120%;
-            height: 120%;
-            top: calc(50% - 60%);
-            left: calc(50% - 60%);
-            animation: moveInCircle 30s ease infinite;
-        }
+
         @keyframes moveVertical {
             0% {
                 transform: translateY(-50%);
@@ -203,7 +197,7 @@
         .sand {
             width: 100%;
             height: 100%;
-            background: white; /* Sand color */
+            background: #FFD700; /* Sand color */
         }
 
         .sand-container.top .sand {
@@ -259,14 +253,12 @@
         <div class="g3"></div>
         <div class="g4"></div>
         <div class="g5"></div>
-        <div class="g6"></div>
-
     </div>
 </div>
 <div class="content">
     <h1>Your Cosmic Clock</h1>
     <div class="hourglass-container">
-        <img src="images/timeglass.svg" alt="Time Glass" id="hourglass">
+        <img src="../../static/images/hourglass_rainbow.png" alt="Time Glass" id="hourglass">
         <div class="sand-container top">
             <div class="sand"></div>
         </div>
@@ -275,36 +267,73 @@
         </div>
     </div>
     <div id="listening-time"></div>
+    <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
 </div>
 </body>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        function fetchListeningTime() {
-            // Replace this with your actual API call
-            return new Promise((resolve) => {
-                setTimeout(() => resolve(Math.floor(Math.random() * 1000)), 5000);
-            });
+        async function fetchListeningTime() {
+            try {
+                const response = await fetch('/total-listening-time/', {
+                    method: 'GET',
+                    headers: {'X-Requested-With': 'XMLHttpRequest'}
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(errorData.error || 'Failed to fetch listening time');
+                }
+
+                const data = await response.json();
+                return data.listening_minutes;
+            } catch (error) {
+                console.error('Error fetching listening time:', error.message);
+                return null;
+            }
         }
 
         function revealListeningTime(minutes) {
             const listeningTimeElement = document.getElementById('listening-time');
-            listeningTimeElement.textContent = `You've listened to ${minutes} minutes of music!`;
+            if (minutes !== null) {
+                listeningTimeElement.textContent = `You've listened to ${minutes} minutes of music!`;
+            } else {
+                listeningTimeElement.textContent = "We couldn't fetch your listening time. Please try again.";
+            }
             listeningTimeElement.style.opacity = 1;
         }
 
+
         fetchListeningTime().then(minutes => {
-            const topSand = document.querySelector('.sand-container.top .sand');
-            const bottomSand = document.querySelector('.sand-container.bottom .sand');
+            if (minutes !== null) {
+                const topSand = document.querySelector('.sand-container.top .sand');
+                const bottomSand = document.querySelector('.sand-container.bottom .sand');
 
-            // Start both animations at the same time
-            topSand.style.animation = 'sand-fall-top 5s linear forwards';
-            bottomSand.style.animation = 'sand-fall-bottom 5s linear forwards';
+                // Start both animations at the same time
+                topSand.style.animation = 'sand-fall-top 5s linear forwards';
+                bottomSand.style.animation = 'sand-fall-bottom 5s linear forwards';
 
-            // Reveal listening time after both animations complete
-            bottomSand.addEventListener('animationend', () => {
-                revealListeningTime(minutes);
-            });
+                // Reveal listening time after animations complete
+                bottomSand.addEventListener('animationend', () => {
+                    revealListeningTime(minutes);
+                });
+            } else {
+                revealListeningTime(null);
+            }
         });
     });
+
+    function getCSRFToken() {
+        return document.querySelector('[name=csrfmiddlewaretoken]').value;
+    }
+
+    // Include the CSRF token in the fetch request:
+    fetch('/spotify/total-listening-time/', {
+        method: 'GET',
+        headers: {
+            'X-Requested-With': 'XMLHttpRequest',
+            'X-CSRFToken': getCSRFToken()
+        }
+    });
+
 </script>
 </html>

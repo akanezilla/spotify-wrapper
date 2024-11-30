@@ -14,3 +14,4 @@ def home_view(request):
         'username': request.user.username,
         'is_connected': is_connected
     })
+
