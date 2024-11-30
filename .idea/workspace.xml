@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2b7ffd8d-02b9-4b57-9ee5-3fba1fa5c456" name="Changes" comment="connect navgiation app to navigate">
+    <list default="true" id="2b7ffd8d-02b9-4b57-9ee5-3fba1fa5c456" name="Changes" comment="connect memorable moment">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spotify/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/spotify/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/RainbowMode/memorable_moment.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/RainbowMode/memorable_moment.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -152,7 +151,11 @@
       <workItem from="1732044164076" duration="703000" />
       <workItem from="1732045422888" duration="246000" />
       <workItem from="1732205009963" duration="249000" />
-      <workItem from="1732400322212" duration="65040000" />
+      <workItem from="1732400322212" duration="65188000" />
+      <workItem from="1732954110675" duration="1069000" />
+      <workItem from="1732955374832" duration="1217000" />
+      <workItem from="1732956596551" duration="75000" />
+      <workItem from="1732956680482" duration="1239000" />
     </task>
     <task id="LOCAL-00001" summary="add new code">
       <option name="closed" value="true" />
@@ -290,7 +293,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732918084258</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="connect memorable moment">
+      <option name="closed" value="true" />
+      <created>1732950388586</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1732950388588</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -308,6 +319,7 @@
     <MESSAGE value="add dark mode updates" />
     <MESSAGE value="connect slides to api" />
     <MESSAGE value="connect navgiation app to navigate" />
-    <option name="LAST_COMMIT_MESSAGE" value="connect navgiation app to navigate" />
+    <MESSAGE value="connect memorable moment" />
+    <option name="LAST_COMMIT_MESSAGE" value="connect memorable moment" />
   </component>
 </project>
