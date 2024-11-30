@@ -1,3 +1,5 @@
+{% load i18n %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -201,7 +203,7 @@
             }
         }
 
-        button {
+        .next-button {
             position: absolute;
             top: 70%;
             left: 50%;
@@ -218,11 +220,11 @@
             transition: opacity 0.5s ease, transform 0.5s ease;
         }
 
-        button.hidden {
+        .next-button.hidden {
             display: none;
         }
 
-        button.visible {
+        .next-button.visible {
             display: block;
             opacity: 1;
             pointer-events: all;
@@ -257,7 +259,7 @@
     <div class="progress-bar">
         <div class="progress"></div>
     </div>
-    <button id="next-button" class="hidden">→</button>
+    <a id="next-button" href="{% url 'transition2RB' %}" class="next-button hidden">→</a>
 </div>
 </body>
 <script>
@@ -267,9 +269,9 @@
         const nextButton = document.getElementById('next-button');
 
         const messages = [
-            "Analyzing your data...",
-            "Generating your wrap...",
-            "Complete!"
+        "{% trans 'Analyzing your data...' %}",
+        "{% trans 'Generating your wrap...' %}",
+        "{% trans 'Complete!' %}"
         ];
 
         let currentMessageIndex = 0;
@@ -305,10 +307,6 @@
         // Animate progress bar
         progressBar.querySelector('.progress').style.animationPlayState = 'running';
 
-        // Show button click effect
-        nextButton.addEventListener('click', () => {
-            alert('Next action triggered!');
-        });
     });
 
 </script>

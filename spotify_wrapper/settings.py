@@ -29,7 +29,8 @@ SECRET_KEY = 'django-insecure-coum^q0#xjk^$on(70hug*p78)hq-ndy=4*_uw^$+$8+at)-zb
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+
 
 
 # Application definition
@@ -44,6 +45,7 @@ INSTALLED_APPS = [
     'accounts',
     'home',
     'spotify',
+    'navigation',
 ]
 
 MIDDLEWARE = [
@@ -156,3 +158,5 @@ load_dotenv()
 SPOTIFY_CLIENT_ID = os.getenv("SPOTIFY_CLIENT_ID")
 SPOTIFY_CLIENT_SECRET = os.getenv("SPOTIFY_CLIENT_SECRET")
 SPOTIFY_REDIRECT_URI = os.getenv("SPOTIFY_REDIRECT_URI")
+
+X_FRAME_OPTIONS = 'SAMEORIGIN'

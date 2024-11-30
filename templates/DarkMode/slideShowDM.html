@@ -1,5 +1,3 @@
-{% load i18n %}
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -62,19 +60,22 @@
 </head>
 <body>
 <div class="slideshow-container">
-    <iframe src="{% url 'top_5_songsRB' %}" class="iframe-slide active"></iframe>
-    <iframe src="{% url 'top_songRB' %}" class="iframe-slide"></iframe>
-    <iframe src="{% url 'top_genreRB' %}" class="iframe-slide"></iframe>
-    <iframe src="{% url 'spotify:top_artistsRB' %}" class="iframe-slide"></iframe>
-    <iframe src="{% url 'listening_minutesRB' %}" class="iframe-slide"></iframe>
-    <iframe src="{% url 'type_of_listenerRB' %}" class="iframe-slide"></iframe>
-    <iframe src="{% url 'memorable_momentRB' %}" class="iframe-slide"></iframe>
+    <!-- Embedding your HTML pages as slides -->
+    <iframe src="top_5_songs.html" class="iframe-slide active"></iframe>
+    <iframe src="top_song.html" class="iframe-slide"></iframe>
+    <iframe src="top_artist.html" class="iframe-slide"></iframe>
+    <iframe src="top_genre.html" class="iframe-slide"></iframe>
+    <iframe src="listening_minutes.html" class="iframe-slide"></iframe>
+    <iframe src="type_of_listener.html" class="iframe-slide"></iframe>
+    <iframe src="memorable_moment.html" class="iframe-slide"></iframe>
 </div>
+
 <!-- Navigation Buttons -->
 <button class="nav-button prev">❮</button>
 <button class="nav-button next">❯</button>
 
 <script>
+    // JavaScript for navigating through the iframes
     document.addEventListener('DOMContentLoaded', function () {
         const slides = document.querySelectorAll('.iframe-slide');
         const prevButton = document.querySelector('.prev');
@@ -101,7 +102,7 @@
         setInterval(() => {
             currentSlide = (currentSlide + 1) % slides.length;
             showSlide(currentSlide);
-        }, 15000); // 15 seconds per slide
+        }, 15000);
     });
 </script>
 </body>

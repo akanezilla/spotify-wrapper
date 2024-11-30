@@ -1,9 +1,11 @@
+{% load i18n %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rainbow Mode Top 5 Artists</title>
+    <title>{% trans "Rainbow Mode Top 5 Artists" %}</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <style>
         html, body {
@@ -265,58 +267,28 @@
         <div class="g5"></div>
     </div>
 </div>
-<div class="content">
-    <h1>Your Top 5 Cosmic Influencers</h1>
-    <div class="flip-card">
-        <div class="flip-card-inner">
-            <div class="flip-card-front">
-                <img src="images/StarCardRB.svg" alt="Card Front">
+</style>
+</head>
+<body>
+    <div class="content">
+        <h1>{% trans "Your Top 5 Cosmic Influencers" %}</h1>
+        <div class="card-container">
+            {% for artist in top_artists %}
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <img src="{% static 'images/card_images/' %}{{ card_images|slice:forloop.counter0 }}" alt="Card Front"> <!-- Example card front -->
+                    </div>
+                    <div class="flip-card-back">
+                        <p class="artist-name">{{ artist.name }}</p> <!-- Display artist name -->
+                        <p>Genres: {{ artist.genres }}</p> <!-- Optional genres display -->
+                    </div>
+                </div>
             </div>
-            <div class="flip-card-back">
-                <img id="song1-img" src="images/CardFrontRB.svg" alt="Song Cover">
-            </div>
+            {% empty %}
+              <p>No artists available.</p>
+          {% endfor %}
         </div>
     </div>
-    <div class="flip-card">
-        <div class="flip-card-inner">
-            <div class="flip-card-front">
-                <img src="images/swordCardRB.svg" alt="Card Front">
-            </div>
-            <div class="flip-card-back">
-                <img id="song2-img" src="images/CardFrontRB.svg" alt="Song Cover">
-            </div>
-        </div>
-    </div>
-    <div class="flip-card">
-        <div class="flip-card-inner">
-            <div class="flip-card-front">
-                <img src="images/SunCardRB.svg" alt="Card Front">
-            </div>
-            <div class="flip-card-back">
-                <img id="song3-img" src="images/CardFrontRB.svg" alt="Song Cover">
-            </div>
-        </div>
-    </div>
-    <div class="flip-card">
-        <div class="flip-card-inner">
-            <div class="flip-card-front">
-                <img src="images/moonCardRB.svg" alt="Card Front">
-            </div>
-            <div class="flip-card-back">
-                <img id="song4-img" src="images/CardFrontRB.svg" alt="Song Cover">
-            </div>
-        </div>
-    </div>
-    <div class="flip-card">
-        <div class="flip-card-inner">
-            <div class="flip-card-front">
-                <img src="images/heartCardRB.svg" alt="Card Front">
-            </div>
-            <div class="flip-card-back">
-                <img id="song5-img" src="images/CardFrontRB.svg" alt="Song Cover">
-            </div>
-        </div>
-    </div>
-</div>
-</body>
-</html>
+    </body>
+    </html>

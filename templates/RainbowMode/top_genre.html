@@ -1,3 +1,5 @@
+{% load i18n %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -258,8 +260,8 @@
     </div>
 </div>
 <div class="content">
-    <h1>Sound of Your Soul</h1>
-    <img src="images/personRB.svg" alt="Mysterious Person" id="img1" class="clickable">
+    <h1>{% trans "Sound of Your Soul" %}</h1>
+    <img src="/static/images/personRB.svg" alt="Mysterious Person" id="img1" class="clickable">
     <!-- Modal for Top Genres -->
     <div id="genreModal" class="modal">
         <div class="modal-content">

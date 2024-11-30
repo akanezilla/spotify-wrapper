@@ -101,3 +101,79 @@ msgstr "Ver momento memorable"
 #: .\templates\home\home.html:144
 msgid "Connect your Spotify account to generate a wrap."
 msgstr "Conecta tu cuenta de Spotify para generar un Wrapped."
+
+
+#: .\templates\RainbowMode\transition1.html:270
+msgid "Analyzing your data..."
+msgstr "Analizando tus datos..."
+
+#: .\templates\RainbowMode\transition1.html:271
+msgid "Generating your wrap..."
+msgstr "Generando tu wrap..."
+
+#: .\templates\RainbowMode\transition1.html:272
+msgid "Complete!"
+msgstr "¡Completado!"
+
+#: .\templates\RainbowMode\transition2.html:223
+msgid "The cards have been drawn,"
+msgstr "Las cartas han sido repartidas,"
+
+#: .\templates\RainbowMode\transition2.html:224
+msgid "the stars aligned,"
+msgstr "las estrellas se alinearon,"
+
+#: .\templates\RainbowMode\transition2.html:225
+msgid "and now the universe reveals"
+msgstr "y ahora el universo revela"
+
+#: .\templates\RainbowMode\transition2.html:226
+msgid "your auditory divination!"
+msgstr "¡tu adivinación auditiva!"
+
+#: .\templates\RainbowMode\listening_minutes.html:34
+msgid "Your Cosmic Clock"
+msgstr "Tu Reloj Cósmico"
+
+#: .\templates\RainbowMode\memorable_moment.html:442
+msgid "Celestial Highlight"
+msgstr "Destello Celestial" 
+
+#: .\templates\RainbowMode\top_5_songs.html:285
+msgid "Your Chords of Destiny"
+msgstr "Tus Acordes del Destino" 
+
+#: .\templates\RainbowMode\top_artist.html:270
+msgid "Your Top 5 Cosmic Influencers"
+msgstr "Tus 5 Principales Influencias Cósmicas"
+
+#: .\templates\RainbowMode\top_genre.html:262
+msgid "Sound of Your Soul"
+msgstr "Sonido de Tu Alma"
+
+#: .\templates\RainbowMode\top_song.html:267
+msgid "Your Musical Prophecy"
+msgstr "Tu Profecía Musical"
+
+#: .\templates\RainbowMode\type_of_listener.html:267
+msgid "Aura"
+msgstr "Aura"
+
+#: .\templates\RainbowMode\listening_minutes.html:271
+msgid "You've listened to %s minutes of music!"
+msgstr "¡Has escuchado %s minutos de música!"  # Example translation for Spanish
+
+#: .\templates\RainbowMode\listening_minutes.html:272
+msgid "We couldn't fetch your listening time. Please try again."
+msgstr "No pudimos obtener tu tiempo de escucha. Por favor, intenta de nuevo."  # Example translation for Spanish
+
+
+
+
+
+
+
+
+
+
+
