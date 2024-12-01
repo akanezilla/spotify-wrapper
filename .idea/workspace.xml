@@ -4,52 +4,30 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2b7ffd8d-02b9-4b57-9ee5-3fba1fa5c456" name="Changes" comment="add dark mode updates">
-      <change afterPath="$PROJECT_DIR$/navigation/urls.py" afterDir="false" />
+    <list default="true" id="2b7ffd8d-02b9-4b57-9ee5-3fba1fa5c456" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/home/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/home/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/home/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/home/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spotify/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/spotify/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spotify_wrapper/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/spotify_wrapper/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spotify_wrapper/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/spotify_wrapper/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/RainbowMode/images/CardFrontRB.svg" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/CardFrontRB.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/RainbowMode/images/StarCardRB.svg" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/StarCardRB.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/RainbowMode/images/SunCardRB.svg" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/SunCardRB.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/RainbowMode/images/closedScrollRB.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/closedScrollRB.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/RainbowMode/images/crystalBallRB.svg" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/crystalBallRB.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/RainbowMode/images/heartCardRB.svg" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/heartCardRB.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/RainbowMode/images/hourglass_rainbow.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/hourglass_rainbow.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/RainbowMode/images/moonCardRB.svg" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/moonCardRB.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/RainbowMode/images/personRB.svg" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/personRB.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/RainbowMode/images/scrollRB.svg" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/scrollRB.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/RainbowMode/images/swordCardRB.svg" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/swordCardRB.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/RainbowMode/images/topscrollRB.svg" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/topscrollRB.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/RainbowMode/listening_minutes.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/RainbowMode/listening_minutes.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/RainbowMode/memorable_moment.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/RainbowMode/memorable_moment.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/RainbowMode/slideShowRB.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/RainbowMode/slideShowRB.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/RainbowMode/top_5_songs.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/RainbowMode/top_5_songs.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/RainbowMode/top_artist.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/RainbowMode/top_artist.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/RainbowMode/top_genre.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/RainbowMode/top_genre.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/RainbowMode/top_song.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/RainbowMode/top_song.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/RainbowMode/transition1.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/RainbowMode/transition1.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/RainbowMode/transition2.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/RainbowMode/transition2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/RainbowMode/type_of_listener.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/RainbowMode/type_of_listener.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/home/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/LightMode/listening_minutes.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/LightMode/listening_minutes.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/LightMode/lmcard.png" beforeDir="false" afterPath="$PROJECT_DIR$/templates/LightMode/images/lmcard.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/LightMode/lmcrystalball.png" beforeDir="false" afterPath="$PROJECT_DIR$/templates/LightMode/images/lmcrystalball.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/LightMode/lmgradient.png" beforeDir="false" afterPath="$PROJECT_DIR$/templates/LightMode/images/lmgradient.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/LightMode/lmperson.png" beforeDir="false" afterPath="$PROJECT_DIR$/templates/LightMode/images/lmperson.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/LightMode/lmscroll.png" beforeDir="false" afterPath="$PROJECT_DIR$/templates/LightMode/images/lmscroll.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/LightMode/lmtimeglass.png" beforeDir="false" afterPath="$PROJECT_DIR$/templates/LightMode/images/lmtimeglass.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/LightMode/memorable_moment.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/LightMode/memorable_moment.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/LightMode/top_5_songs.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/LightMode/top_5_songs.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/LightMode/top_artist.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/LightMode/top_artist.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/LightMode/top_genre.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/LightMode/top_genre.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/LightMode/top_song.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/LightMode/top_song.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/LightMode/transition1.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/LightMode/transition1.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/LightMode/transition2.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/LightMode/transition2.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/LightMode/type_of_listener.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/LightMode/type_of_listener.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
-    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
-  </component>
   <component name="Git.Settings">
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="christy" />
-      </map>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -61,12 +39,9 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/akanezilla/spotify-wrapper.git&quot;,
-    &quot;accountId&quot;: &quot;496ef92e-f482-4601-852a-c7e0067486de&quot;
+    &quot;accountId&quot;: &quot;a4a8068b-4f74-4d4c-af43-e5b91045bdd4&quot;
   }
 }</component>
-  <component name="ProblemsViewState">
-    <option name="selectedTabId" value="QODANA_PROBLEMS_VIEW_TAB" />
-  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
 }</component>
@@ -77,33 +52,24 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Django Server.spotify-wrapper.executor": "Run",
     "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "norah2",
-    "last_opened_file_path": "/Users/norahli/CS2340/spotify-wrapper/templates",
+    "git-widget-placeholder": "akané",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/templates" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/static" />
-      <recent name="$PROJECT_DIR$/templates/DarkMode/images" />
-      <recent name="$PROJECT_DIR$/templates/RainbowMode/images" />
+      <recent name="$PROJECT_DIR$/templates/LightMode/images" />
     </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="Python.DjangoServer" factoryName="Django server">
+    <configuration name="spotify-wrapper" type="Python.DjangoServer" factoryName="Django server">
       <module name="spotify-wrapper" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -112,32 +78,6 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="SDK_NAME" value="Python 3.12 (mysite)" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="launchJavascriptDebuger" value="false" />
-      <option name="port" value="8000" />
-      <option name="host" value="localhost" />
-      <option name="additionalOptions" value="" />
-      <option name="browserUrl" value="" />
-      <option name="runTestServer" value="false" />
-      <option name="runNoReload" value="false" />
-      <option name="useCustomRunCommand" value="false" />
-      <option name="customRunCommand" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="spotify_wrapped" type="Python.DjangoServer" factoryName="Django server">
-      <module name="spotify-wrapper" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="SDK_NAME" value="Python 3.12 (AtlantaFoodFinder)" />
       <option name="WORKING_DIRECTORY" value="" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -157,8 +97,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-e768b9ed790e-JavaScript-PY-243.21565.199" />
-        <option value="bundled-python-sdk-cab1f2013843-4ae2d6a61b08-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-243.21565.199" />
+        <option value="bundled-js-predefined-d6986cc7102b-7c0b70fcd90d-JavaScript-PY-242.21829.153" />
+        <option value="bundled-python-sdk-464836ebc622-b74155a9e76b-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-242.21829.153" />
       </set>
     </attachedChunks>
   </component>
@@ -176,147 +116,10 @@
       <workItem from="1730400913351" duration="325000" />
       <workItem from="1730401456676" duration="1248000" />
       <workItem from="1730758578671" duration="37000" />
-      <workItem from="1732044164076" duration="703000" />
-      <workItem from="1732045422888" duration="246000" />
-      <workItem from="1732205009963" duration="249000" />
-      <workItem from="1732400322212" duration="53845000" />
     </task>
-    <task id="LOCAL-00001" summary="add new code">
-      <option name="closed" value="true" />
-      <created>1731979429020</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1731979429020</updated>
-    </task>
-    <task id="LOCAL-00002" summary="add new code">
-      <option name="closed" value="true" />
-      <created>1731980106164</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1731980106164</updated>
-    </task>
-    <task id="LOCAL-00003" summary="add dark mode">
-      <option name="closed" value="true" />
-      <created>1732400417298</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1732400417298</updated>
-    </task>
-    <task id="LOCAL-00004" summary="add rainbow mode">
-      <option name="closed" value="true" />
-      <created>1732472980995</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1732472980995</updated>
-    </task>
-    <task id="LOCAL-00005" summary="add rainbow mode">
-      <option name="closed" value="true" />
-      <created>1732474049567</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1732474049567</updated>
-    </task>
-    <task id="LOCAL-00006" summary="add rainbow mode memorable moment">
-      <option name="closed" value="true" />
-      <created>1732477096226</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1732477096226</updated>
-    </task>
-    <task id="LOCAL-00007" summary="add rainbow mode top artist and songs">
-      <option name="closed" value="true" />
-      <created>1732520871905</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1732520871905</updated>
-    </task>
-    <task id="LOCAL-00008" summary="add rainbow mode">
-      <option name="closed" value="true" />
-      <created>1732697251447</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1732697251448</updated>
-    </task>
-    <task id="LOCAL-00009" summary="add rainbow mode images">
-      <option name="closed" value="true" />
-      <created>1732739574946</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1732739574947</updated>
-    </task>
-    <task id="LOCAL-00010" summary="add rainbow mode slide show">
-      <option name="closed" value="true" />
-      <created>1732745092687</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1732745092687</updated>
-    </task>
-    <task id="LOCAL-00011" summary="add dark mode updates">
-      <option name="closed" value="true" />
-      <created>1732745193727</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1732745193727</updated>
-    </task>
-    <task id="LOCAL-00012" summary="add dark mode updates">
-      <option name="closed" value="true" />
-      <created>1732746309025</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1732746309026</updated>
-    </task>
-    <task id="LOCAL-00013" summary="add dark mode updates">
-      <option name="closed" value="true" />
-      <created>1732746341208</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1732746341208</updated>
-    </task>
-    <task id="LOCAL-00014" summary="add dark mode updates">
-      <option name="closed" value="true" />
-      <created>1732747165917</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1732747165917</updated>
-    </task>
-    <task id="LOCAL-00015" summary="add dark mode updates">
-      <option name="closed" value="true" />
-      <created>1732747221005</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1732747221005</updated>
-    </task>
-    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="first pull" />
-    <MESSAGE value="add new code" />
-    <MESSAGE value="add dark mode" />
-    <MESSAGE value="add rainbow mode memorable moment" />
-    <MESSAGE value="add rainbow mode top artist and songs" />
-    <MESSAGE value="add rainbow mode" />
-    <MESSAGE value="add rainbow mode images" />
-    <MESSAGE value="add rainbow mode slide show" />
-    <MESSAGE value="add dark mode updates" />
-    <option name="LAST_COMMIT_MESSAGE" value="add dark mode updates" />
   </component>
 </project>
