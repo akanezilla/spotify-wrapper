@@ -186,6 +186,7 @@
                 transform: translateY(0px);
             }
         }
+
         .card-container {
             display: flex; /* Use flexbox for horizontal layout */
             justify-content: center; /* Center align cards */
@@ -195,7 +196,7 @@
             padding: 20px; /* Spacing around cards */
         }
 
-         /* Alternating Floating Cards */
+        /* Alternating Floating Cards */
         .flip-card:nth-child(odd) {
             margin-top: 50px;
             animation: float-down-up 6s ease-in-out infinite; /* Cards start floating down */
@@ -215,7 +216,7 @@
             perspective: 1000px; /* Perspective for the flip effect */
             margin-right: 10px; /* Space between cards */
         }
-        
+
         .flip-card-inner {
             position: relative;
             width: 100%;
@@ -241,6 +242,7 @@
             color: white;
             text-align: center;
         }
+
         .flip-card-front img {
             max-width: 100%;
             max-height: 100%;
@@ -262,6 +264,7 @@
             font-size: 14px;
             opacity: 0.8;
         }
+
         .flip-card-back {
             background-image: url('/static/images/CardFrontRB.svg'); /* Set the background image */
             background-size: contain; /* Ensure the entire image is visible */
@@ -274,29 +277,28 @@
 
         .album-cover {
             width: 60%; /* Adjust width as needed */
-    height: auto; /* Maintain aspect ratio */
-    border-radius: 10px; /* Optional rounded corners for album cover */
-    margin-top: 35px; /* Adjust this value to move the cover lower */
+            height: auto; /* Maintain aspect ratio */
+            border-radius: 10px; /* Optional rounded corners for album cover */
+            margin-top: 35px; /* Adjust this value to move the cover lower */
         }
 
         .song-details {
-    text-align: center; /* Center align text details */
-    margin-top: 10px; /* Space above song details */
-    font-family: 'Poppins', sans-serif; /* Use Poppins font */
-}
+            text-align: center; /* Center align text details */
+            margin-top: 10px; /* Space above song details */
+            font-family: 'Poppins', sans-serif; /* Use Poppins font */
+        }
 
-.song-title {
-    font-size: 16px; /* Font size for song title */
-    font-weight: bold;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), /* White glow */
-                 0 0 20px rgba(255, 255, 255, 0.6); /* Softer white glow */
-}
+        .song-title {
+            font-size: 16px; /* Font size for song title */
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), /* White glow */ 0 0 20px rgba(255, 255, 255, 0.6); /* Softer white glow */
+        }
 
-.song-artist {
-    font-size: 14px; /* Font size for artist name */
-    opacity: 0.8; /* Slightly transparent for artist name */
-    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5); /* Soft white glow */
-}
+        .song-artist {
+            font-size: 14px; /* Font size for artist name */
+            opacity: 0.8; /* Slightly transparent for artist name */
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.5); /* Soft white glow */
+        }
     </style>
 </head>
 <body>
@@ -323,22 +325,23 @@
     <h1>{% trans "Your Chords of Destiny" %}</h1>
     <div class="card-container">
         {% for track in top_tracks %}
-        <div class="flip-card">
-            <div class="flip-card-inner">
-                <div class="flip-card-front">
-                    <img src="{% static 'images/card_images/' %}{{ card_images|slice:forloop.counter0 }}" alt="Card Front">                </div>
-                <div class="flip-card-back">
-                    <img src="{{ track.cover_url }}" alt="Album cover for {{ track.name }}" class="album-cover">
-                    <div class="song-details">
-                        <p class="song-title">{{ track.name }}</p>
-                        <p class="song-artist">{{ track.artist }}</p>
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <img src="{% static '/images/card_images/' %}{{ card_images|slice:forloop.counter0 }}"
+                             alt="Card Front"></div>
+                    <div class="flip-card-back">
+                        <img src="{{ track.cover_url }}" alt="Album cover for {{ track.name }}" class="album-cover">
+                        <div class="song-details">
+                            <p class="song-title">{{ track.name }}</p>
+                            <p class="song-artist">{{ track.artist }}</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
         {% empty %}
-          <p>No tracks available.</p>
-      {% endfor %}
+            <p>No tracks available.</p>
+        {% endfor %}
     </div>
 </body>
 </html>

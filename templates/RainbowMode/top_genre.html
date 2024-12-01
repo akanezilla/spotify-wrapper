@@ -281,14 +281,16 @@
 
         // Open the modal and fetch top genres
         img.addEventListener('click', function () {
-            fetch('spotify/top-genre/')  // Ensure this matches your URL configuration
+            fetch('/top-genre/')  // Ensure this matches your URL configuration
                 .then(response => {
                     if (!response.ok) {
+                        console.error('Network response was not ok');
                         throw new Error('Network response was not ok');
                     }
                     return response.json();
                 })
                 .then(data => {
+                    console.log('Fetched data:', data);  // Log the fetched data for debugging
                     if (data.error) {
                         alert(data.error);
                         return;
@@ -296,7 +298,7 @@
                     genreList.innerHTML = ''; // Clear previous genres
                     data.top_genres.forEach(genre => {
                         const li = document.createElement('li');
-                        li.textContent = `${genre[0]}: ${genre[2].toFixed(2)}%`;
+                        li.textContent = `${genre[0]}: ${genre[1]} (${genre[2].toFixed(2)}%)`;
                         genreList.appendChild(li);
                     });
                     modal.style.display = 'block'; // Show the modal
@@ -316,6 +318,7 @@
             }
         });
     });
+
 
 </script>
 </html>

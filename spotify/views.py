@@ -247,7 +247,8 @@ def top_artists_rb(request):
     except Exception as e:
         messages.error(request, f"Spotify API error: {str(e)}")
         return redirect('home')
-@login_required
+
+
 def top_genre_view(request):
     try:
         spotify_profile = request.user.spotifyprofile
@@ -257,27 +258,27 @@ def top_genre_view(request):
 
         sp = spotipy.Spotify(auth=spotify_profile.spotify_token)
 
-        top_artists = sp.current_user_top_artists(limit=50, time_range='long_term')
-
+        top_artists = sp.current_user_top_artists(limit=50, time_range="medium_term")
         genres = {}
+
         for artist in top_artists['items']:
             for genre in artist['genres']:
                 genres[genre] = genres.get(genre, 0) + 1
 
-        top_genres = sorted(genres.items(), key=lambda x: x[1], reverse=True)[:5]
+        sorted_genres = sorted(genres.items(), key=lambda x: x[1], reverse=True)
+        top_genres = sorted_genres[:5]
 
+        # Calculate percentages
         total_count = sum(count for _, count in top_genres)
         top_genres_with_percentage = [
             (genre, count, (count / total_count) * 100)
             for genre, count in top_genres
         ]
 
-        return JsonResponse({'top_genres': top_genres_with_percentage})
-    except SpotifyProfile.DoesNotExist:
-        return JsonResponse({'error': 'Please connect your Spotify account first.'}, status=400)
-    except SpotifyException as e:
-        return JsonResponse({'error': f'Spotify API error: {str(e)}'}, status=500)
+        return JsonResponse({"top_genres": top_genres_with_percentage})
 
+    except Exception as e:
+        return JsonResponse({"error": str(e)}, status=500)
 
 @login_required
 def listener_type_view(request):
