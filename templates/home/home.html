@@ -114,7 +114,15 @@
     <li><a href="{% url 'spotify:top_song' %}">View Top Song</a></li>
     <li><a href="{% url 'spotify:memorable_moment' %}">View Memorable Moment</a></li>
 </ul>
-</ul>
+
+            <!-- Display Gemini Description -->
+            <div id="slideshow-container">
+                <div class="slide active">
+                    <p><strong>Your Music Personality:</strong></p>
+                    <p>{{ gemini_description }}</p>
+                </div>
+                <div id="progress-bar"></div>
+            </div>
         {% else %}
             <p>Connect your Spotify account to generate a wrap.</p>
         {% endif %}
