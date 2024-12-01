@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2b7ffd8d-02b9-4b57-9ee5-3fba1fa5c456" name="Changes" comment="christy pull">
+    <list default="true" id="2b7ffd8d-02b9-4b57-9ee5-3fba1fa5c456" name="Changes" comment="top genre">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spotify/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/spotify/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/RainbowMode/memorable_moment.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/RainbowMode/memorable_moment.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/RainbowMode/top_5_songs.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/RainbowMode/top_5_songs.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/RainbowMode/top_genre.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/RainbowMode/top_genre.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/RainbowMode/top_song.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/RainbowMode/top_song.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -158,7 +156,7 @@
       <workItem from="1732954110675" duration="1069000" />
       <workItem from="1732955374832" duration="1217000" />
       <workItem from="1732956596551" duration="75000" />
-      <workItem from="1732956680482" duration="5923000" />
+      <workItem from="1732956680482" duration="12809000" />
     </task>
     <task id="LOCAL-00001" summary="add new code">
       <option name="closed" value="true" />
@@ -328,7 +326,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732959241002</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="top genre">
+      <option name="closed" value="true" />
+      <created>1733030601335</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1733030601335</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -348,6 +354,7 @@
     <MESSAGE value="connect navgiation app to navigate" />
     <MESSAGE value="connect memorable moment" />
     <MESSAGE value="christy pull" />
-    <option name="LAST_COMMIT_MESSAGE" value="christy pull" />
+    <MESSAGE value="top genre" />
+    <option name="LAST_COMMIT_MESSAGE" value="top genre" />
   </component>
 </project>

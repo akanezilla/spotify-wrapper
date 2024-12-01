@@ -412,13 +412,11 @@ def total_listening_time_view(request):
 def top_song_view(request):
     try:
         spotify_profile = request.user.spotifyprofile
-
         if spotify_profile.token_expires <= timezone.now():
             spotify_profile.refresh_spotify_token()
 
         sp = spotipy.Spotify(auth=spotify_profile.spotify_token)
-
-        top_tracks = sp.current_user_top_tracks(limit=1, time_range='long_term')
+        top_tracks = sp.current_user_top_tracks(limit=1, time_range='short_term')
 
         if top_tracks['items']:
             top_song = top_tracks['items'][0]
@@ -426,19 +424,14 @@ def top_song_view(request):
                 'top_song': {
                     'name': top_song['name'],
                     'artist': top_song['artists'][0]['name'],
-                    'cover_url': top_song['album']['images'][0]['url'] if top_song['album']['images'] else None,
-                    'preview_url': top_song['preview_url'],
-                    'spotify_url': top_song['external_urls']['spotify']
+                    'cover_url': top_song['album']['images'][0]['url']
                 }
             }
+            return JsonResponse(data)
         else:
-            data = {'top_song': None}
-
-        return JsonResponse(data)
-    except SpotifyProfile.DoesNotExist:
-        return JsonResponse({'error': 'Please connect your Spotify account first.'}, status=400)
-    except SpotifyException as e:
-        return JsonResponse({'error': f'Spotify API error: {str(e)}'}, status=500)
+            return JsonResponse({'error': 'No top song found'}, status=404)
+    except Exception as e:
+        return JsonResponse({'error': str(e)}, status=500)
 
 @login_required
 def spotify_wrapped_view(request):
