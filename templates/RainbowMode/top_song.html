@@ -169,7 +169,7 @@
             margin: 100px auto 20px;
             text-align: center;
             display: flex;
-    flex-direction: column;
+            flex-direction: column;
             align-items: center;
         }
 
@@ -213,10 +213,17 @@
         }
 
         #scroll-content {
+            position: absolute;
+            top: 70%; /* Move to the vertical center */
+            left: 50%; /* Move to the horizontal center */
+            transform: translate(-50%, -50%);
+            text-align: center;
             margin-top: 10px;
             opacity: 0;
-            transition: opacity 1s ease-in-out, height 1.5s ease-in-out;
+            transition: opacity 1s ease-in-out 1.5s;
             height: 0;
+            z-index: 2; /* Ensure it is above the scroll body */
+            pointer-events: none;
             overflow: hidden;
         }
 
@@ -301,71 +308,74 @@
         <div class="scroll-mask">
             <img id="scroll-image" src="/static/images/scrollBody.svg" alt="Scroll Body">
         </div>
-        <div class="scroll-bottom">
-            <img src="/static/images/topscrollRB.svg" alt="Scroll Bottom">
-        </div>
         <div id="scroll-content" class="hidden">
             <img id="song-cover" src="" alt="Album Cover">
             <h2 id="song-title"></h2>
             <p id="song-artist"></p>
         </div>
+        <div class="scroll-bottom">
+            <img src="/static/images/topscrollRB.svg" alt="Scroll Bottom">
+        </div>
     </div>
 </div>
 </body>
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-    const scrollTop = document.querySelector('.scroll-top');
-    const scrollBottom = document.querySelector('.scroll-bottom');
-    const scrollMask = document.querySelector('.scroll-mask');
-    const scrollContent = document.getElementById('scroll-content');
-    const songCover = document.getElementById('song-cover');
-    const songTitle = document.getElementById('song-title');
-    const songArtist = document.getElementById('song-artist');
+    function initializeScroll() {
+        const scrollTop = document.querySelector('.scroll-top');
+        const scrollBottom = document.querySelector('.scroll-bottom');
+        const scrollMask = document.querySelector('.scroll-mask');
+        const scrollContent = document.getElementById('scroll-content');
+        const songCover = document.getElementById('song-cover');
+        const songTitle = document.getElementById('song-title');
+        const songArtist = document.getElementById('song-artist');
 
-    // Hide scroll content initially
-    scrollContent.classList.remove('visible');
+        function unrollScroll() {
+            const scrollHeight = scrollMask.scrollHeight;
+            scrollTop.style.transform = `translateY(-${scrollHeight / 8}px)`;
+            scrollBottom.style.transform = `translateY(${scrollHeight / 10}px)`;
+            scrollMask.style.height = `${scrollHeight}px`;
 
-    function unrollScroll() {
-        const scrollHeight = scrollMask.scrollHeight;
-        scrollTop.style.transform = `translateY(-${scrollHeight / 8}px)`;
-        scrollBottom.style.transform = `translateY(${scrollHeight / 10}px)`;
-        scrollMask.style.height = `${scrollHeight}px`;
+            setTimeout(() => {
+                scrollContent.classList.add('visible');
+            }, 1000);
+        }
 
-        // Delay the visibility of content
-        setTimeout(() => {
-            scrollContent.classList.add('visible');
-        }, 1500); // Matches the duration of the animation
+        function fetchTopSong() {
+            fetch('/top-song/')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to fetch top song data');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.top_song) {
+                        unrollScroll();
+                        songCover.src = data.top_song.cover_url || 'default_cover.png';
+                        songTitle.textContent = data.top_song.name || 'Unknown Title';
+                        songArtist.textContent = data.top_song.artist || 'Unknown Artist';
+                    } else {
+                        throw new Error('No top song data available');
+                    }
+                })
+                .catch(error => {
+                    unrollScroll();
+                    console.error('Error fetching top song:', error);
+                    scrollContent.textContent = 'Could not fetch your top song. Please try again.';
+                });
+        }
+
+        fetchTopSong();
     }
 
-    function fetchTopSong() {
-        fetch('/top-song/')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Failed to fetch top song data');
-                }
-                return response.json();
-            })
-            .then(data => {
-                if (data.top_song) {
-                    songCover.src = data.top_song.cover_url || 'default_cover.png';
-                    songTitle.textContent = data.top_song.name || 'Unknown Title';
-                    songArtist.textContent = data.top_song.artist || 'Unknown Artist';
-                } else {
-                    throw new Error('No top song data available');
-                }
-
-                // Trigger unroll after fetching the data
-                unrollScroll();
-            })
-            .catch(error => {
-                console.error('Error fetching top song:', error);
-                scrollContent.textContent = 'Could not fetch your top song. Please try again.';
-                unrollScroll();
-            });
+    if (window.parent !== window) {
+        window.addEventListener('message', function (event) {
+            if (event.data === 'slideActive') {
+                initializeScroll();
+            }
+        });
+    } else {
+        document.addEventListener('DOMContentLoaded', initializeScroll);
     }
-
-    fetchTopSong();
-});
-
 </script>
 </html>

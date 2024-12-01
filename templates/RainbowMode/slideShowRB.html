@@ -19,6 +19,7 @@
             width: 100vw;
             height: 100vh;
             background: black;
+            overflow: hidden
         }
 
         .iframe-slide {
@@ -62,7 +63,8 @@
 </head>
 <body>
 <div class="slideshow-container">
-    <iframe src="{% url 'top_5_songsRB' %}" class="iframe-slide active"></iframe>
+    <iframe src="{% url 'top_5_songsRB' %}" class="iframe-slide active"
+            style="height: 100%; width: 100%; border: none;"></iframe>
     <iframe src="{% url 'top_songRB' %}" class="iframe-slide"></iframe>
     <iframe src="{% url 'top_genreRB' %}" class="iframe-slide"></iframe>
     <iframe src="{% url 'spotify:top_artistsRB' %}" class="iframe-slide"></iframe>
@@ -84,7 +86,12 @@
         function showSlide(index) {
             slides.forEach((slide, i) => {
                 slide.classList.toggle('active', i === index);
+                if (i === index) {
+                    slide.contentWindow.postMessage('slideActive', '*');
+                }
             });
+            // Dispatch a custom event when the slide changes
+            window.dispatchEvent(new CustomEvent('slideChanged', {detail: {slideIndex: index}}));
         }
 
         prevButton.addEventListener('click', () => {
@@ -102,6 +109,9 @@
             currentSlide = (currentSlide + 1) % slides.length;
             showSlide(currentSlide);
         }, 15000); // 15 seconds per slide
+
+        // Initialize the first slide
+        showSlide(currentSlide);
     });
 </script>
 </body>
