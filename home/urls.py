@@ -1,7 +1,8 @@
 from django.urls import path
-from .views import home_view
+from . import views
 
 urlpatterns = [
-    path('', home_view, name='home'),  # This will make the home view available at the root of the app
-
+    path('', views.home_view, name='home'),  # Home page URL
+    path('about/', views.about_view, name='about'),
+    path('contact/', views.contact, name='contact'),
 ]

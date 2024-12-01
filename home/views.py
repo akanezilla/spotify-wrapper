@@ -15,3 +15,11 @@ def home_view(request):
         'is_connected': is_connected
     })
 
+@login_required
+def about_view(request):
+    return render(request, 'home/about.html')
+
+@login_required
+def contact(request):
+    return render(request, 'home/contact.html')
+
