@@ -14,8 +14,7 @@ from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from .models import SavedWrap
 from django.contrib.auth.decorators import login_required
-from .models import SavedWrap  # Import the correct model
-from .models import WrappedData  # Import the correct model
+
 import json
 
 

@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'accounts',
     'home',
     'spotify',
+        'widget_tweaks',
+
 ]
 
 MIDDLEWARE = [

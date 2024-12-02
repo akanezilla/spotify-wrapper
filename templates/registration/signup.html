@@ -21,34 +21,33 @@
 </head>
 <body class="body-11">
   <div data-animation="default" class="nav-bar-signin w-nav" data-easing2="ease" fs-scrolldisable-element="smart-nav" data-easing="ease" data-collapse="medium" data-w-id="a6df697b-31f9-f69f-2475-dc6873284823" role="banner" data-duration="300">
-    <div class="container navigation-container">
-      <div class="nav-wrapper">
-        <a href="{% url 'home' %}" class="nav-logo w-inline-block">
-         <img
-        sizes="32.7890625px"
-        srcset="{% static 'images/Screenshot-2024-10-31-at-1.35.39-AM-p-500.png' %} 500w, {% static 'images/tarotifylogo.png' %} 751w"
-        alt=""
-        src="{% static 'images/tarotifylogo.png' %}"
->
-            <div class="text-block-3">Tarotify</div>
-        </a>
-        <nav role="navigation" class="nav-links-container w-nav-menu">
-          <div class="nav-sub-container">
-            <div class="nav-links-wrapper"></div>
-            <a href="{% url 'login' %}" class="nav-link nav_link--logout">Sign In</a>
+      <div class="container navigation-container">
+          <div class="nav-wrapper">
+              <a href="{% url 'home' %}" class="nav-logo w-inline-block">
+                  <img sizes="32.7890625px"
+                       srcset="{% static 'images/Screenshot-2024-10-31-at-1.35.39-AM-p-500.png' %} 500w, {% static 'images/tarotifylogo.png' %} 751w"
+                       alt=""
+                       src="{% static 'images/tarotifylogo.png' %}">
+                  <div class="text-block-3">Tarotify</div>
+              </a>
+              <nav role="navigation" class="nav-links-container w-nav-menu">
+                  <div class="nav-sub-container">
+                      <div class="nav-links-wrapper"></div>
+                      <!-- Sign In link -->
+                      <a href="{% url 'login' %}" class="nav-link nav_link--logout">Sign In</a>
+                  </div>
+              </nav>
+              <div class="nav-menu-button w-nav-button">
+                  <div class="nav-menu-icon">
+                      <div class="menu-icon-line-top"></div>
+                      <div class="menu-icon-line-middle">
+                          <div class="menu-icon-line-middle-inner"></div>
+                      </div>
+                      <div class="menu-icon-line-bottom"></div>
+                  </div>
+              </div>
           </div>
-        </nav>
-        <div class="nav-menu-button w-nav-button">
-          <div class="nav-menu-icon">
-            <div class="menu-icon-line-top"></div>
-            <div class="menu-icon-line-middle">
-              <div class="menu-icon-line-middle-inner"></div>
-            </div>
-            <div class="menu-icon-line-bottom"></div>
-          </div>
-        </div>
       </div>
-    </div>
   </div>
   <section class="section-4">
     <div class="signup w-form">
