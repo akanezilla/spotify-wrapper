@@ -4,27 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2b7ffd8d-02b9-4b57-9ee5-3fba1fa5c456" name="Changes" comment="top song animation">
-      <change afterPath="$PROJECT_DIR$/templates/LightMode/listening_minutes.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/LightMode/memorable_moment.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/LightMode/slideShowRB.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/LightMode/top_5_songs.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/LightMode/top_artists.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/LightMode/top_genre.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/LightMode/top_song.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/LightMode/transition1.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/LightMode/transition2.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/LightMode/type_of_listener.html" afterDir="false" />
+    <list default="true" id="2b7ffd8d-02b9-4b57-9ee5-3fba1fa5c456" name="Changes" comment="light mode images">
+      <change afterPath="$PROJECT_DIR$/static/images/lmSunCardFront.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/RainbowMode/listening_minutes.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/RainbowMode/listening_minutes.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/navigation/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/navigation/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/navigation/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/navigation/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/lmCardBack.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/lmCardFront.svg" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/lmCardBlank.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/LightMode/memorable_moment.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/LightMode/memorable_moment.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/LightMode/slideShowRB.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/LightMode/slideShowLM.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/LightMode/top_5_songs.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/LightMode/top_5_songs.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/LightMode/top_artists.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/LightMode/top_artists.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/LightMode/top_genre.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/LightMode/top_genre.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/LightMode/top_song.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/LightMode/top_song.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/LightMode/transition1.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/LightMode/transition1.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/LightMode/transition2.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/LightMode/transition2.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/LightMode/type_of_listener.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/LightMode/type_of_listener.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/RainbowMode/memorable_moment.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/RainbowMode/memorable_moment.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/RainbowMode/top_5_songs.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/RainbowMode/top_5_songs.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/RainbowMode/top_artists.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/RainbowMode/top_artists.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/RainbowMode/top_genre.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/RainbowMode/top_genre.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/RainbowMode/top_song.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/RainbowMode/top_song.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/RainbowMode/transition1.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/RainbowMode/transition1.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/RainbowMode/transition2.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/RainbowMode/transition2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/RainbowMode/type_of_listener.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/RainbowMode/type_of_listener.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -375,7 +372,23 @@
       <option name="project" value="LOCAL" />
       <updated>1733096051040</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="moblie adjustments">
+      <option name="closed" value="true" />
+      <created>1733118295030</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1733118295030</updated>
+    </task>
+    <task id="LOCAL-00027" summary="light mode images">
+      <option name="closed" value="true" />
+      <created>1733118308487</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1733118308487</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -398,6 +411,8 @@
     <MESSAGE value="top genre" />
     <MESSAGE value="top song" />
     <MESSAGE value="top song animation" />
-    <option name="LAST_COMMIT_MESSAGE" value="top song animation" />
+    <MESSAGE value="moblie adjustments" />
+    <MESSAGE value="light mode images" />
+    <option name="LAST_COMMIT_MESSAGE" value="light mode images" />
   </component>
 </project>

@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dark Mode Background</title>
+    <title>Light Mode Top Genre</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <style>
         html, body {
@@ -20,6 +20,14 @@
             position: relative;
         }
 
+        :root {
+            --rebecca-purple: #732894ff;
+            --hunyadi-yellow: #F1B44Aff;
+            --purpureus: #9B35BAff;
+            --mulberry: #C05EA1ff;
+            --lavender-floral: #CA85DFff;
+        }
+
         .gradient-bg {
             width: 100vw;
             height: 100vh;
@@ -27,7 +35,7 @@
             top: 0;
             left: 0;
             background-size: 400% 400%;
-            background: linear-gradient(40deg, #0079F2, #8944B1, #E54DD4, #FF9E30, #FFCE33);
+            background: linear-gradient(40deg, var(--rebecca-purple), var(--purpureus), var(--hunyadi-yellow), var(--mulberry), var(--lavender-floral));
             animation: gradient-shift 15s ease infinite;
             z-index: 1;
         }
@@ -90,7 +98,7 @@
         }
 
         .g1 {
-            background: radial-gradient(circle at center, rgba(0, 121, 242, 0.8) 0, rgba(0, 121, 242, 0) 50%);
+            background: radial-gradient(circle at center, var(--rebecca-purple) 0, transparent 50%);
             width: 80%;
             height: 80%;
             top: calc(50% - 40%);
@@ -99,7 +107,7 @@
         }
 
         .g2 {
-            background: radial-gradient(circle at center, rgba(137, 68, 177, 0.8) 0, rgba(137, 68, 177, 0) 50%);
+            background: radial-gradient(circle at center, var(--hunyadi-yellow) 0, transparent 50%);
             width: 60%;
             height: 60%;
             top: calc(50% - 30%);
@@ -108,7 +116,7 @@
         }
 
         .g3 {
-            background: radial-gradient(circle at center, rgba(229, 77, 212, 0.8) 0, rgba(229, 77, 212, 0) 50%);
+            background: radial-gradient(circle at center, var(--mulberry) 0, transparent 50%);
             width: 90%;
             height: 90%;
             top: calc(50% - 45%);
@@ -117,7 +125,7 @@
         }
 
         .g4 {
-            background: radial-gradient(circle at center, rgba(255, 158, 48, 0.8) 0, rgba(255, 158, 48, 0) 50%);
+            background: radial-gradient(circle at center, var(--lavender-floral) 0, transparent 50%);
             width: 70%;
             height: 70%;
             top: calc(50% - 35%);
@@ -126,7 +134,7 @@
         }
 
         .g5 {
-            background: radial-gradient(circle at center, rgba(255, 206, 51, 0.8) 0, rgba(255, 206, 51, 0) 50%);
+            background: radial-gradient(circle at center, var(--purpureus) 0, transparent 50%);
             width: 120%;
             height: 120%;
             top: calc(50% - 60%);
@@ -269,7 +277,7 @@
 </div>
 <div class="content">
     <h1>{% trans "Sound of Your Soul" %}</h1>
-    <img src="/static/images/personRB.svg" alt="Mysterious Person" id="img1" class="clickable">
+    <img src="/static/images/lmperson.svg" alt="Mysterious Person" id="img1" class="clickable">
     <!-- Modal for Top Genres -->
     <div id="genreModal" class="modal">
         <div class="modal-content">

@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% trans "Rainbow Mode Top 5 Artists" %}</title>
+    <title>{% trans "Light Mode Top 5 Artists" %}</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <style>
         html, body {
@@ -20,6 +20,14 @@
             position: relative;
         }
 
+        :root {
+            --rebecca-purple: #732894ff;
+            --hunyadi-yellow: #F1B44Aff;
+            --purpureus: #9B35BAff;
+            --mulberry: #C05EA1ff;
+            --lavender-floral: #CA85DFff;
+        }
+
         .gradient-bg {
             width: 100vw;
             height: 100vh;
@@ -27,7 +35,7 @@
             top: 0;
             left: 0;
             background-size: 400% 400%;
-            background: linear-gradient(40deg, #0079F2, #8944B1, #E54DD4, #FF9E30, #FFCE33);
+            background: linear-gradient(40deg, var(--rebecca-purple), var(--purpureus), var(--hunyadi-yellow), var(--mulberry), var(--lavender-floral));
             animation: gradient-shift 15s ease infinite;
             z-index: 1;
         }
@@ -81,7 +89,7 @@
         }
 
         .g1 {
-            background: radial-gradient(circle at center, rgba(0, 121, 242, 0.8) 0, rgba(0, 121, 242, 0) 50%);
+            background: radial-gradient(circle at center, var(--rebecca-purple) 0, transparent 50%);
             width: 80%;
             height: 80%;
             top: calc(50% - 40%);
@@ -90,7 +98,7 @@
         }
 
         .g2 {
-            background: radial-gradient(circle at center, rgba(137, 68, 177, 0.8) 0, rgba(137, 68, 177, 0) 50%);
+            background: radial-gradient(circle at center, var(--hunyadi-yellow) 0, transparent 50%);
             width: 60%;
             height: 60%;
             top: calc(50% - 30%);
@@ -99,7 +107,7 @@
         }
 
         .g3 {
-            background: radial-gradient(circle at center, rgba(229, 77, 212, 0.8) 0, rgba(229, 77, 212, 0) 50%);
+            background: radial-gradient(circle at center, var(--mulberry) 0, transparent 50%);
             width: 90%;
             height: 90%;
             top: calc(50% - 45%);
@@ -108,7 +116,7 @@
         }
 
         .g4 {
-            background: radial-gradient(circle at center, rgba(255, 158, 48, 0.8) 0, rgba(255, 158, 48, 0) 50%);
+            background: radial-gradient(circle at center, var(--lavender-floral) 0, transparent 50%);
             width: 70%;
             height: 70%;
             top: calc(50% - 35%);
@@ -117,7 +125,7 @@
         }
 
         .g5 {
-            background: radial-gradient(circle at center, rgba(255, 206, 51, 0.8) 0, rgba(255, 206, 51, 0) 50%);
+            background: radial-gradient(circle at center, var(--purpureus) 0, transparent 50%);
             width: 120%;
             height: 120%;
             top: calc(50% - 60%);
@@ -204,7 +212,7 @@
             width: 250px; /* Increased card size */
             height: 350px;
             margin-left: 20px;
-            margin-right: 20px ;
+            margin-right: 20px;
             perspective: 1000px;
             display: inline-block;
 
@@ -235,19 +243,19 @@
         }
 
         .flip-card-back {
-            background-image: url('/static/images/CardFrontRB.svg'); /* Set the background image */
-    background-size: contain; /* Ensure the entire image is visible */
-    transform: rotateY(180deg);
-    color: white;
-    text-align: center;
-    background-repeat: no-repeat;
-    background-position: center;
+            background-image: url('/static/images/lmCardBlank.svg'); /* Set the background image */
+            background-size: contain; /* Ensure the entire image is visible */
+            transform: rotateY(180deg);
+            color: white;
+            text-align: center;
+            background-repeat: no-repeat;
+            background-position: center;
 
-    display: flex;
-    flex-direction: column; /* Stack content vertically */
-    justify-content: center; /* Center the content vertically */
-    align-items: center; /* Center the content horizontally */
-    padding: 20px;
+            display: flex;
+            flex-direction: column; /* Stack content vertically */
+            justify-content: center; /* Center the content vertically */
+            align-items: center; /* Center the content horizontally */
+            padding: 20px;
         }
 
         .flip-card img {
@@ -256,21 +264,21 @@
             border-radius: 10px;
         }
 
-.artist-name {
-    font-size: 25px;
-    font-weight: 600; /* Bold artist name */
-    margin-bottom: 10px; /* Space between name and genres */
-    text-shadow: 0 0 10px #ffffff; /* Glow effect */
-}
+        .artist-name {
+            font-size: 25px;
+            font-weight: 600; /* Bold artist name */
+            margin-bottom: 10px; /* Space between name and genres */
+            text-shadow: 0 0 10px #ffffff; /* Glow effect */
+        }
 
-.genres {
-    font-size: 18px;
-    text-align: center;
-    font-weight: 300; /* Bold artist name */
-    margin-left: 20px;
-    margin-right: 20px;
+        .genres {
+            font-size: 18px;
+            text-align: center;
+            font-weight: 300; /* Bold artist name */
+            margin-left: 20px;
+            margin-right: 20px;
 
-}
+        }
     </style>
 </head>
 <body>
@@ -296,14 +304,15 @@
 </style>
 </head>
 <body>
-    <div class="content">
-        <h1>{% trans "Your Top 5 Cosmic Influencers" %}</h1>
-        <div class="card-container">
-            {% for artist in top_artists %}
+<div class="content">
+    <h1>{% trans "Your Top 5 Cosmic Influencers" %}</h1>
+    <div class="card-container">
+        {% for artist in top_artists %}
             <div class="flip-card">
                 <div class="flip-card-inner">
                     <div class="flip-card-front">
-                        <img src="{% static 'images/card_images/' %}{{ card_images|slice:forloop.counter0 }}" alt="Card Front"> <!-- Example card front -->
+                        <img src="{% static 'images/lmSunCardFront.svg/' %}{{ card_images|slice:forloop.counter0 }}"
+                             alt="Card Front"> <!-- Example card front -->
                     </div>
                     <div class="flip-card-back">
                         <p class="artist-name">{{ artist.name }}</p> <!-- Display artist name -->
@@ -311,10 +320,10 @@
                     </div>
                 </div>
             </div>
-            {% empty %}
-              <p>No artists available.</p>
-          {% endfor %}
-        </div>
+        {% empty %}
+            <p>No artists available.</p>
+        {% endfor %}
     </div>
-    </body>
-    </html>
+</div>
+</body>
+</html>

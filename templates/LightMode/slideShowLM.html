@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Slideshow</title>
+    <title>Slideshow Light Mode</title>
     <style>
         body {
             margin: 0;
@@ -63,14 +63,14 @@
 </head>
 <body>
 <div class="slideshow-container">
-    <iframe src="{% url 'top_5_songsRB' %}" class="iframe-slide active"
+    <iframe src="{% url 'top_5_songsLM' %}" class="iframe-slide active"
             style="height: 100%; width: 100%; border: none;"></iframe>
-    <iframe src="{% url 'top_songRB' %}" class="iframe-slide"></iframe>
-    <iframe src="{% url 'top_genreRB' %}" class="iframe-slide"></iframe>
-    <iframe src="{% url 'spotify:top_artistsRB' %}" class="iframe-slide"></iframe>
-    <iframe src="{% url 'listening_minutesRB' %}" class="iframe-slide"></iframe>
-    <iframe src="{% url 'type_of_listenerRB' %}" class="iframe-slide"></iframe>
-    <iframe src="{% url 'memorable_momentRB' %}" class="iframe-slide"></iframe>
+    <iframe src="{% url 'top_songLM' %}" class="iframe-slide"></iframe>
+    <iframe src="{% url 'top_genreLM' %}" class="iframe-slide"></iframe>
+    <iframe src="{% url 'spotify:top_artistsLM' %}" class="iframe-slide"></iframe>
+    <iframe src="{% url 'listening_minutesLM' %}" class="iframe-slide"></iframe>
+    <iframe src="{% url 'type_of_listenerLM' %}" class="iframe-slide"></iframe>
+    <iframe src="{% url 'memorable_momentLM' %}" class="iframe-slide"></iframe>
 </div>
 <!-- Navigation Buttons -->
 <button class="nav-button prev">❮</button>
