@@ -17,4 +17,5 @@ urlpatterns = [
     path('RainbowMode/type_of_listener/', views.listener_type_view, name='listener_typeRB'),  
     path('', views.home_view, name='home'),
     path('top-genres/', views.top_genre_view, name='top_genres'),
+    path('home/', views.home_view, name='home'),
 ]
