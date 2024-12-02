@@ -5,15 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2b7ffd8d-02b9-4b57-9ee5-3fba1fa5c456" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/spotify-wrapper.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/spotify-wrapper.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/home/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/home/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/home/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/home/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/tarotify-wrapper.webflow.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/tarotify-wrapper.webflow.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/webflow.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/webflow.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/javascript/webflow.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/javascript/webflow.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spotify_wrapper/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/spotify_wrapper/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/home/about.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/about.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/home/contact.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/contact.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/home/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/registration/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/registration/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/registration/signup.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/registration/signup.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,7 +110,7 @@
       <workItem from="1730400913351" duration="325000" />
       <workItem from="1730401456676" duration="1248000" />
       <workItem from="1730758578671" duration="37000" />
-      <workItem from="1733082816849" duration="6870000" />
+      <workItem from="1733082816849" duration="17920000" />
     </task>
     <servers />
   </component>

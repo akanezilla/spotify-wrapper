@@ -1,11 +1,11 @@
 {% load static %}
 <!DOCTYPE html><!--  This site was created in Webflow. https://webflow.com  --><!--  Last Published: Sun Dec 01 2024 07:06:49 GMT+0000 (Coordinated Universal Time)  -->
-<html data-wf-page="674a7b5e6748393670b41e0d" data-wf-site="67232149875170c31d5eb871" lang="en">
+<html data-wf-page="673cdd6433a399c4b46ba9a5" data-wf-site="67232149875170c31d5eb871" lang="en">
 <head>
   <meta charset="utf-8">
-  <title>SignUp</title>
-  <meta content="SignUp" property="og:title">
-  <meta content="SignUp" property="twitter:title">
+  <title>Account</title>
+  <meta content="Account" property="og:title">
+  <meta content="Account" property="twitter:title">
   <meta content="width=device-width, initial-scale=1" name="viewport">
   <meta content="Webflow" name="generator">
   <link href="{% static 'css/normalize.css' %}" rel="stylesheet" type="text/css">
@@ -19,23 +19,29 @@
   <link href="images/favicon.png" rel="shortcut icon" type="image/x-icon">
   <link href="images/webclip.png" rel="apple-touch-icon">
 </head>
-<body class="body-11">
-  <div data-animation="default" class="nav-bar-signin w-nav" data-easing2="ease" fs-scrolldisable-element="smart-nav" data-easing="ease" data-collapse="medium" data-w-id="a6df697b-31f9-f69f-2475-dc6873284823" role="banner" data-duration="300">
+<body class="body-15">
+  <div data-animation="default" class="nav-bar-signin w-nav" data-easing2="ease" fs-scrolldisable-element="smart-nav" data-easing="ease" data-collapse="medium" data-w-id="0d699ee9-bfec-d02b-d6ea-c3edeeae146e" role="banner" data-duration="300">
     <div class="container navigation-container">
       <div class="nav-wrapper">
         <a href="{% url 'home' %}" class="nav-logo w-inline-block">
-         <img
-        sizes="32.7890625px"
-        srcset="{% static 'images/Screenshot-2024-10-31-at-1.35.39-AM-p-500.png' %} 500w, {% static 'images/tarotifylogo.png' %} 751w"
-        alt=""
-        src="{% static 'images/tarotifylogo.png' %}"
->
+            <img src="{% static 'images/tarotifylogo.png' %}" loading="lazy" sizes="32.7890625px" srcset="{% static 'images/Screenshot-2024-10-31-at-1.35.39-AM-p-500.png' %} 500w, {% static 'images/tarotifylogo.png' %} 751w" alt="" class="nav-logo-image">
             <div class="text-block-3">Tarotify</div>
         </a>
         <nav role="navigation" class="nav-links-container w-nav-menu">
           <div class="nav-sub-container">
             <div class="nav-links-wrapper"></div>
-            <a href="{% url 'login' %}" class="nav-link nav_link--logout">Sign In</a>
+            <a href="https://puginarug.com/" class="nav-link nav_link--logout">Connect to Spotify</a>
+            <a href="{% url 'about' %}" class="nav-link nav_link--logout">About</a>
+            <a href="{% url 'contact' %}" class="nav-link nav_link--logout">Contact Us</a>
+            <a href="{% url 'login' %}" class="nav-link nav_link--logout">Log out</a>
+            <div class="toggle-btn">
+              <div class="div-block-10 toggle-track">
+                <div data-w-id="ceb3e6d8-f4fe-cee6-30d7-75b5b3132a60" class="div-block-11 toggle-knob"></div>
+              </div>
+            </div>
+            <div class="rainbow-btn">
+              <div class="div-block-13"> 🌈</div>
+            </div>
           </div>
         </nav>
         <div class="nav-menu-button w-nav-button">
@@ -50,18 +56,12 @@
       </div>
     </div>
   </div>
-  <section class="section-4">
-    <div class="signup w-form">
-      <form id="email-form" name="email-form" data-name="Email Form" method="get" class="form-2" data-wf-page-id="674a7b5e6748393670b41e0d" data-wf-element-id="be00dcb4-986a-8fcc-66b1-b37c4df55e10">
-        <div class="div-block">
-          <h1 class="heading">Sign Up for Tarotify</h1><label for="name-2" class="field-label-2">Email</label><input class="text-field-3 w-input" maxlength="256" name="name-2" data-name="Name 2" placeholder="" type="text" id="name-2"><label for="email-2" class="field-label-3">Password</label><input class="text-field-4 w-input" maxlength="256" name="email-2" data-name="Email 2" placeholder="" type="email" id="email-2" required=""><input type="submit" data-wait="Please wait..." class="submit-button w-button" value="Sign Up">
-        </div>
-      </form>
-      <div class="w-form-done">
-        <div>Thank you for signing up!</div>
-      </div>
-      <div class="w-form-fail">
-        <div>Oops! Something went wrong while submitting the form.</div>
+  <section class="section-8">
+    <img src="{% static 'images/Frame-1.png' %}" loading="lazy" alt="spotify-person" class="image-7">
+    <div class="div-block-14">
+      <div class="text-block-17"><strong>@sophiezilla</strong></div>
+      <div class="div-block-15">
+        <div class="div-block-16">Delete account</div>
       </div>
     </div>
   </section>

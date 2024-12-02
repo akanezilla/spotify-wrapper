@@ -25,4 +25,6 @@ urlpatterns = [
     path('', include('home.urls')),
     path('', include('spotify.urls')),
     path('', include('navigation.urls')),
+    path('', TemplateView.as_view(template_name="index.html"), name="home"),
+
 ]
