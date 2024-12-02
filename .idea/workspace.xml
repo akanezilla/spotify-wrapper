@@ -4,33 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2b7ffd8d-02b9-4b57-9ee5-3fba1fa5c456" name="Changes" comment="light mode images">
+    <list default="true" id="2b7ffd8d-02b9-4b57-9ee5-3fba1fa5c456" name="Changes" comment="dark mode images">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/navigation/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/navigation/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/navigation/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/navigation/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/DarkMode/images/crystalball.svg" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/crystalball.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/DarkMode/images/darkmodebackground.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/darkmodebackground.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/DarkMode/images/dmcard.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/dmcard.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/DarkMode/images/dmperson.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/dmperson.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/DarkMode/images/dmscroll.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/dmscroll.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/DarkMode/images/heartfrontcard.svg" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/heartfrontcard.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/DarkMode/images/moonfrontcard.svg" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/moonfrontcard.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/DarkMode/images/starfrontcard.svg" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/starfrontcard.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/DarkMode/images/suncardFront.svg" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/suncardFront.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/DarkMode/images/swordfrontcard.svg" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/swordfrontcard.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/DarkMode/images/timeglass.svg" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/timeglass.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/DarkMode/listening_minutes.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/DarkMode/listening_minutes.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/DarkMode/memorable_moment.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/DarkMode/memorable_moment.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/DarkMode/slideShowDM.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/DarkMode/slideShowDM.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/DarkMode/top_5_songs.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/DarkMode/top_5_songs.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/DarkMode/top_artist.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/DarkMode/top_artist.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/DarkMode/top_genre.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/DarkMode/top_genre.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/DarkMode/top_song.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/DarkMode/top_song.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/DarkMode/transition1.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/DarkMode/transition1.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/DarkMode/transition2.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/DarkMode/transition2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/DarkMode/type_of_listener.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/DarkMode/type_of_listener.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/RainbowMode/top_5_songs.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/RainbowMode/top_5_songs.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/RainbowMode/transition2.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/RainbowMode/transition2.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/LightMode/transition1.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/LightMode/transition1.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/LightMode/transition2.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/LightMode/transition2.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/RainbowMode/memorable_moment.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/RainbowMode/memorable_moment.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -414,7 +395,23 @@
       <option name="project" value="LOCAL" />
       <updated>1733122018368</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="dark mode">
+      <option name="closed" value="true" />
+      <created>1733124115989</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1733124115989</updated>
+    </task>
+    <task id="LOCAL-00031" summary="dark mode images">
+      <option name="closed" value="true" />
+      <created>1733124121795</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1733124121795</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -440,6 +437,8 @@
     <MESSAGE value="moblie adjustments" />
     <MESSAGE value="light mode" />
     <MESSAGE value="light mode images" />
-    <option name="LAST_COMMIT_MESSAGE" value="light mode images" />
+    <MESSAGE value="dark mode" />
+    <MESSAGE value="dark mode images" />
+    <option name="LAST_COMMIT_MESSAGE" value="dark mode images" />
   </component>
 </project>
