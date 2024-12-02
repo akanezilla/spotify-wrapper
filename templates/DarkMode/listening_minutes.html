@@ -1,9 +1,11 @@
+{% load i18n %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rainbow Mode Minutes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Dark Mode Minutes</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <style>
         html, body {
@@ -16,6 +18,10 @@
         body {
             height: 100vh;
             position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
 
         .gradient-bg {
@@ -29,6 +35,8 @@
             animation: gradient-shift 15s ease infinite;
             z-index: 1;
         }
+
+
         @keyframes gradient-shift {
             0% {
                 background-position: 0% 50%;
@@ -44,7 +52,12 @@
         .content {
             z-index: 1000;
             position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             text-align: center;
+            padding: 20px;
             color: white;
         }
 
@@ -129,6 +142,7 @@
             left: calc(50% - 60%);
             animation: moveInCircle 30s ease infinite;
         }
+
         @keyframes moveVertical {
             0% {
                 transform: translateY(-50%);
@@ -165,11 +179,35 @@
             }
         }
 
+        .gradient-bg {
+            background-size: 200% 200%; /* Adjust for smaller screens */
+        }
+
+        @media (max-width: 768px) {
+            .gradient-bg {
+                background-size: 300% 300%; /* Smaller adjustments for mobile */
+            }
+
+            h1 {
+                font-size: 30px; /* Reduce size for smaller screens */
+            }
+
+            .hourglass-container {
+                width: 80%; /* Make the hourglass smaller for mobile */
+            }
+
+            #hourglass {
+                max-width: 300px; /* Limit the size for smaller devices */
+            }
+        }
+
+
         .hourglass-container {
             position: relative;
             width: 400px; /* Increase width */
             height: 600px; /* Increase height */
             margin: 0 auto;
+            max-width: 400px;
         }
 
         #hourglass {
@@ -177,6 +215,7 @@
             height: auto; /* Maintain aspect ratio */
             position: relative;
             z-index: 2;
+            max-width: 400px;
         }
 
         .sand-container {
@@ -203,11 +242,11 @@
         .sand {
             width: 100%;
             height: 100%;
-            background: white; /* Sand color */
+            background: #FFD700; /* Sand color */
         }
 
         .sand-container.top .sand {
-            animation: sand-fall-top 5s linear forwards;
+            animation: sand-fall-top 3s linear forwards;
         }
 
         .sand-container.bottom .sand {
@@ -259,52 +298,106 @@
         <div class="g3"></div>
         <div class="g4"></div>
         <div class="g5"></div>
-        <div class="g6"></div>
-
     </div>
 </div>
 <div class="content">
     <h1>{% trans "Your Cosmic Clock" %}</h1>
     <div class="hourglass-container">
-        <img src="images/timeglass.svg" alt="Time Glass" id="hourglass">
+        <img src="{% static 'images/timeglass.svg' %}" alt="Time Glass" id="hourglass">
         <div class="sand-container top">
             <div class="sand"></div>
         </div>
         <div class="sand-container bottom">
             <div class="sand"></div>
         </div>
+        <span id="listening-time"
+              data-listening-text="{% trans 'You\'ve listened to %s minutes of music!' %}"
+        data-error-text="{% trans 'We couldn\'t fetch your listening time. Please try again.' %}">
+        </span>
     </div>
     <div id="listening-time"></div>
+    <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
 </div>
 </body>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        function fetchListeningTime() {
-            // Replace this with your actual API call
-            return new Promise((resolve) => {
-                setTimeout(() => resolve(Math.floor(Math.random() * 1000)), 5000);
-            });
+        async function fetchListeningTime() {
+            try {
+                const response = await fetch('/total-listening-time/', {
+                    method: 'GET',
+                    headers: {'X-Requested-With': 'XMLHttpRequest'}
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(errorData.error || 'Failed to fetch listening time');
+                }
+
+                const data = await response.json();
+                return data.listening_minutes;
+            } catch (error) {
+                console.error('Error fetching listening time:', error.message);
+                return null;
+            }
         }
 
         function revealListeningTime(minutes) {
             const listeningTimeElement = document.getElementById('listening-time');
-            listeningTimeElement.textContent = `You've listened to ${minutes} minutes of music!`;
+
+            // Retrieve the translated text from data attributes
+            const listeningText = listeningTimeElement.getAttribute('data-listening-text');
+            const errorText = listeningTimeElement.getAttribute('data-error-text');
+
+            // Set styling properties
+            listeningTimeElement.style.fontFamily = "'Poppins', Arial, sans-serif"; // Font family
+            listeningTimeElement.style.fontSize = '30px';                          // Font size
+            listeningTimeElement.style.fontStyle = 'italic';                       // Font style
+            listeningTimeElement.style.color = '#fff';                             // Font color
+            listeningTimeElement.style.textShadow = '0 0 8px rgba(255, 255, 255, 0.6), 0 0 20px rgba(255, 255, 255, 0.5)'; // Soft glow effect
+
+            // Set the text content based on the value of minutes
+            if (minutes !== null) {
+                listeningTimeElement.textContent = listeningText.replace("%s", minutes);
+            } else {
+                listeningTimeElement.textContent = errorText;
+            }
+
+            // Make sure the element is visible
             listeningTimeElement.style.opacity = 1;
         }
 
+
         fetchListeningTime().then(minutes => {
-            const topSand = document.querySelector('.sand-container.top .sand');
-            const bottomSand = document.querySelector('.sand-container.bottom .sand');
+            if (minutes !== null) {
+                const topSand = document.querySelector('.sand-container.top .sand');
+                const bottomSand = document.querySelector('.sand-container.bottom .sand');
 
-            // Start both animations at the same time
-            topSand.style.animation = 'sand-fall-top 5s linear forwards';
-            bottomSand.style.animation = 'sand-fall-bottom 5s linear forwards';
+                // Start both animations at the same time
+                topSand.style.animation = 'sand-fall-top 5s linear forwards';
+                bottomSand.style.animation = 'sand-fall-bottom 5s linear forwards';
 
-            // Reveal listening time after both animations complete
-            bottomSand.addEventListener('animationend', () => {
-                revealListeningTime(minutes);
-            });
+                // Reveal listening time after animations complete
+                bottomSand.addEventListener('animationend', () => {
+                    revealListeningTime(minutes);
+                });
+            } else {
+                revealListeningTime(null);
+            }
         });
     });
+
+    function getCSRFToken() {
+        return document.querySelector('[name=csrfmiddlewaretoken]').value;
+    }
+
+    // Include the CSRF token in the fetch request:
+    fetch('/spotify/total-listening-time/', {
+        method: 'GET',
+        headers: {
+            'X-Requested-With': 'XMLHttpRequest',
+            'X-CSRFToken': getCSRFToken()
+        }
+    });
+
 </script>
 </html>

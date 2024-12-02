@@ -31,6 +31,7 @@ def type_of_listener_rb(request):
 def memorable_moment_rb(request):
     return render(request, 'RainbowMode/memorable_moment.html')
 
+
 def transition1_lm(request):
     return render(request, 'LightMode/transition1.html')
 
@@ -60,3 +61,34 @@ def type_of_listener_lm(request):
 
 def memorable_moment_lm(request):
     return render(request, 'LightMode/memorable_moment.html')
+
+
+def transition1_dm(request):
+    return render(request, 'DarkMode/transition1.html')
+
+def transition2_dm(request):
+    return render(request, 'DarkMode/transition2.html')
+
+def slideshow_dm(request):
+    return render(request, 'DarkMode/slideShowDM.html')
+
+def top_5_songs_dm(request):
+    return render(request, 'DarkMode/top_5_songs.html')
+
+def top_song_dm(request):
+    return render(request, 'DarkMode/top_song.html')
+
+def top_artist_dm(request):
+  return render(request, 'DarkMode/top_artist.html')
+
+def top_genre_dm(request):
+    return render(request, 'DarkMode/top_genre.html')
+
+def listening_minutes_dm(request):
+    return render(request, 'DarkMode/listening_minutes.html')
+
+def type_of_listener_dm(request):
+    return render(request, 'DarkMode/type_of_listener.html')
+
+def memorable_moment_dm(request):
+    return render(request, 'DarkMode/memorable_moment.html')

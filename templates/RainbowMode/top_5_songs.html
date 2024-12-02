@@ -300,32 +300,33 @@
             opacity: 0.8; /* Slightly transparent for artist name */
             text-shadow: 0 0 5px rgba(255, 255, 255, 0.5); /* Soft white glow */
         }
+
         /* Responsive Adjustments */
-@media (min-width: 768px) {
-    .flip-card {
-        width: 200px; /* Slightly larger on tablets and up */
-        height: 300px;
-    }
+        @media (min-width: 768px) {
+            .flip-card {
+                width: 200px; /* Slightly larger on tablets and up */
+                height: 300px;
+            }
 
-    .song-title {
-        font-size: 16px; /* Larger font for bigger screens */
-    }
+            .song-title {
+                font-size: 16px; /* Larger font for bigger screens */
+            }
 
-    .song-artist {
-        font-size: 14px;
-    }
-}
+            .song-artist {
+                font-size: 14px;
+            }
+        }
 
-@media (min-width: 1200px) {
-    .card-container {
-        justify-content: center; /* Keep cards centered on larger screens */
-    }
+        @media (min-width: 1200px) {
+            .card-container {
+                justify-content: center; /* Keep cards centered on larger screens */
+            }
 
-    .flip-card {
-        width: 250px; /* Full size on larger screens */
-        height: 350px;
-    }
-}
+            .flip-card {
+                width: 250px; /* Full size on larger screens */
+                height: 350px;
+            }
+        }
     </style>
 </head>
 <body>

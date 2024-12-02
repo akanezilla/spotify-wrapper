@@ -1,9 +1,11 @@
+{% load i18n %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dark Mode Background</title>
+    <title>Dark Mode Top Genre</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <style>
         html, body {
@@ -25,7 +27,7 @@
             top: 0;
             left: 0;
             background-size: 400% 400%;
-            background: linear-gradient(40deg, #3B2496, #24114C, #3A1F7A, #5F2A98, #9516FC,#A673E1);
+            background: linear-gradient(40deg, #3B2496, #180e54, #3A1F7A, #5F2A98, #9516FC,#A673E1);
             animation: gradient-shift 15s ease infinite;
             z-index: 1;
         }
@@ -47,6 +49,11 @@
             position: relative;
             text-align: center;
             color: white;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%; /* Full height of the viewport */
+            padding: 0 20px; /* Add padding for smaller screens */
         }
 
         h1 {
@@ -59,6 +66,9 @@
             margin-top: 70px;
             position: relative;
             z-index: 1001;
+            max-width: 80%; /* Ensure the image scales on smaller screens */
+            height: auto; /* Maintain aspect ratio */
+            cursor: pointer;
         }
 
         /* Floating Effects */
@@ -72,7 +82,7 @@
             pointer-events: none;
         }
 
-        .g1, .g2, .g3, .g4, .g5, .g6 {
+       .g1, .g2, .g3, .g4, .g5, .g6 {
             position: absolute;
             border-radius: 50%;
             mix-blend-mode: hard-light;
@@ -131,6 +141,7 @@
             left: calc(50% - 60%);
             animation: moveInCircle 30s ease infinite;
         }
+
         @keyframes moveVertical {
             0% {
                 transform: translateY(-50%);
@@ -262,13 +273,11 @@
         <div class="g3"></div>
         <div class="g4"></div>
         <div class="g5"></div>
-        <div class="g6"></div>
-
     </div>
 </div>
 <div class="content">
-    <h1>Sound of Your Soul</h1>
-    <img src="images/dmperson.png" alt="Mysterious Person" id="img1" class="clickable">
+    <h1>{% trans "Sound of Your Soul" %}</h1>
+    <img src="/static/images/dmperson.png" alt="Mysterious Person" id="img1" class="clickable">
     <!-- Modal for Top Genres -->
     <div id="genreModal" class="modal">
         <div class="modal-content">
@@ -288,14 +297,16 @@
 
         // Open the modal and fetch top genres
         img.addEventListener('click', function () {
-            fetch('spotify/top-genre/')  // Ensure this matches your URL configuration
+            fetch('/top-genre/')  // Ensure this matches your URL configuration
                 .then(response => {
                     if (!response.ok) {
+                        console.error('Network response was not ok');
                         throw new Error('Network response was not ok');
                     }
                     return response.json();
                 })
                 .then(data => {
+                    console.log('Fetched data:', data);  // Log the fetched data for debugging
                     if (data.error) {
                         alert(data.error);
                         return;
@@ -303,7 +314,7 @@
                     genreList.innerHTML = ''; // Clear previous genres
                     data.top_genres.forEach(genre => {
                         const li = document.createElement('li');
-                        li.textContent = `${genre[0]}: ${genre[2].toFixed(2)}%`;
+                        li.textContent = `${genre[0]}: ${genre[1]} (${genre[2].toFixed(2)}%)`;
                         genreList.appendChild(li);
                     });
                     modal.style.display = 'block'; // Show the modal
@@ -323,6 +334,7 @@
             }
         });
     });
+
 
 </script>
 </html>

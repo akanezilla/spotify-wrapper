@@ -1,15 +1,17 @@
+{% load i18n %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rainbow Mode Top 5 Artists</title>
+    <title>{% trans "Dark Mode Top 5 Artists" %}</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <style>
         html, body {
             margin: 0;
             padding: 0;
-            overflow: hidden; /* Prevent scrolling */
+            overflow-x: hidden; /* Prevent scrolling */
             font-family: 'Poppins', Arial, sans-serif;
         }
 
@@ -25,10 +27,11 @@
             top: 0;
             left: 0;
             background-size: 400% 400%;
-            background: linear-gradient(40deg, #3B2496, #24114C, #3A1F7A, #5F2A98, #9516FC,#A673E1);
+            background: linear-gradient(40deg, #3B2496, #180e54, #3A1F7A, #5F2A98, #9516FC, #A673E1);
             animation: gradient-shift 15s ease infinite;
             z-index: 1;
         }
+
         @keyframes gradient-shift {
             0% {
                 background-position: 0% 50%;
@@ -69,6 +72,7 @@
             left: 0;
             pointer-events: none;
         }
+
         .g1, .g2, .g3, .g4, .g5, .g6 {
             position: absolute;
             border-radius: 50%;
@@ -77,7 +81,7 @@
         }
 
         .g1 {
-            background: radial-gradient(circle at center, rgba(59,36, 150, 0.8) 0, rgba(0, 121, 242, 0) 50%);
+            background: radial-gradient(circle at center, rgba(59, 36, 150, 0.8) 0, rgba(0, 121, 242, 0) 50%);
             width: 80%;
             height: 80%;
             top: calc(50% - 40%);
@@ -95,7 +99,7 @@
         }
 
         .g3 {
-            background: radial-gradient(circle at center, rgba(103, 34, 142, 0.8)0, rgba(229, 77, 212, 0) 50%);
+            background: radial-gradient(circle at center, rgba(103, 34, 142, 0.8) 0, rgba(229, 77, 212, 0) 50%);
             width: 90%;
             height: 90%;
             top: calc(50% - 45%);
@@ -120,6 +124,7 @@
             left: calc(50% - 60%);
             animation: moveInCircle 30s ease infinite;
         }
+
         .g6 {
             background: radial-gradient(circle at center, rgba(115, 166, 225, 0.8) 0, rgba(255, 206, 51, 0) 50%);
             width: 120%;
@@ -128,7 +133,6 @@
             left: calc(50% - 60%);
             animation: moveInCircle 30s ease infinite;
         }
-        
 
         @keyframes moveVertical {
             0% {
@@ -209,9 +213,10 @@
             width: 250px; /* Increased card size */
             height: 350px;
             margin-left: 20px;
-            margin-right: 20px ;
+            margin-right: 20px;
             perspective: 1000px;
             display: inline-block;
+
         }
 
         .flip-card-inner {
@@ -236,19 +241,44 @@
             justify-content: center;
             align-items: center;
             padding: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
         .flip-card-back {
+            background-image: url('/static/images/dmcard.png'); /* Set the background image */
+            background-size: contain; /* Ensure the entire image is visible */
             transform: rotateY(180deg);
             color: white;
             text-align: center;
+            background-repeat: no-repeat;
+            background-position: center;
+
+            display: flex;
+            flex-direction: column; /* Stack content vertically */
+            justify-content: center; /* Center the content vertically */
+            align-items: center; /* Center the content horizontally */
+            padding: 20px;
         }
 
         .flip-card img {
             max-width: 100%;
             max-height: 100%;
             border-radius: 10px;
+        }
+
+        .artist-name {
+            font-size: 25px;
+            font-weight: 600; /* Bold artist name */
+            margin-bottom: 10px; /* Space between name and genres */
+            text-shadow: 0 0 10px #ffffff; /* Glow effect */
+        }
+
+        .genres {
+            font-size: 18px;
+            text-align: center;
+            font-weight: 300; /* Bold artist name */
+            margin-left: 20px;
+            margin-right: 20px;
+
         }
     </style>
 </head>
@@ -270,61 +300,30 @@
         <div class="g3"></div>
         <div class="g4"></div>
         <div class="g5"></div>
-        <div class="g6"></div>
-
     </div>
 </div>
+</style>
+</head>
+<body>
 <div class="content">
-    <h1>Your Top 5 Cosmic Influencers</h1>
-    <div class="flip-card">
-        <div class="flip-card-inner">
-            <div class="flip-card-front">
-                <img src="images/suncardFront.svg" alt="Card Front">
+    <h1>{% trans "Your Top 5 Cosmic Influencers" %}</h1>
+    <div class="card-container">
+        {% for artist in top_artists %}
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <img src="{% static 'images/moonfrontcard.svg/' %}{{ card_images|slice:forloop.counter0 }}"
+                             alt="Card Front"> <!-- Example card front -->
+                    </div>
+                    <div class="flip-card-back">
+                        <p class="artist-name">{{ artist.name }}</p> <!-- Display artist name -->
+                        <p class="genres"> {{ artist.genres }}</p> <!-- Optional genres display -->
+                    </div>
+                </div>
             </div>
-            <div class="flip-card-back">
-                <img id="song1-img" src="images/dmcard.png" alt="Song Cover">
-            </div>
-        </div>
-    </div>
-    <div class="flip-card">
-        <div class="flip-card-inner">
-            <div class="flip-card-front">
-                <img src="images/moonfrontcard.svg" alt="Card Front">
-            </div>
-            <div class="flip-card-back">
-                <img id="song2-img" src="images/dmcard.png" alt="Song Cover">
-            </div>
-        </div>
-    </div>
-    <div class="flip-card">
-        <div class="flip-card-inner">
-            <div class="flip-card-front">
-                <img src="images/starfrontcard.svg" alt="Card Front">
-            </div>
-            <div class="flip-card-back">
-                <img id="song3-img" src="images/dmcard.png" alt="Song Cover">
-            </div>
-        </div>
-    </div>
-    <div class="flip-card">
-        <div class="flip-card-inner">
-            <div class="flip-card-front">
-                <img src="images/heartfrontcard.svg" alt="Card Front">
-            </div>
-            <div class="flip-card-back">
-                <img id="song4-img" src="images/dmcard.png" alt="Song Cover">
-            </div>
-        </div>
-    </div>
-    <div class="flip-card">
-        <div class="flip-card-inner">
-            <div class="flip-card-front">
-                <img src="images/swordfrontcard.svg" alt="Card Front">
-            </div>
-            <div class="flip-card-back">
-                <img id="song5-img" src="images/dmcard.png" alt="Song Cover">
-            </div>
-        </div>
+        {% empty %}
+            <p>No artists available.</p>
+        {% endfor %}
     </div>
 </div>
 </body>

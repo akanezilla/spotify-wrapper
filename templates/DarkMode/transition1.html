@@ -1,9 +1,11 @@
+{% load i18n %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rainbow Mode Generating Wrapped</title>
+    <title>Dark Mode Generating Wrapped</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <style>
         html, body {
@@ -11,9 +13,13 @@
             padding: 0;
             overflow: hidden; /* Prevent scrolling */
             font-family: 'Poppins', Arial, sans-serif;
+            height: 100%;
         }
 
         body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
             height: 100vh;
             position: relative;
         }
@@ -25,7 +31,7 @@
             top: 0;
             left: 0;
             background-size: 400% 400%;
-            background: linear-gradient(40deg, #3B2496, #24114C, #3A1F7A, #5F2A98, #9516FC,#A673E1);
+            background: linear-gradient(40deg, #3B2496, #180e54, #3A1F7A, #5F2A98, #9516FC,#A673E1);
             animation: gradient-shift 15s ease infinite;
             z-index: 1;
         }
@@ -51,6 +57,7 @@
             text-align: center;
             color: white;
             width: 100%; /* Ensures text and child elements are responsive */
+            padding: 0 10px;
         }
 
 
@@ -162,7 +169,7 @@
         }
 
         h1 {
-            font-size: 100px;
+            font-size: 5vw;
             text-shadow: 0 0 20px rgba(255, 255, 255, 0.7);
             position: absolute;
             margin-top: 200px;
@@ -209,7 +216,7 @@
             }
         }
 
-        button {
+        .next-button {
             position: absolute;
             top: 70%;
             left: 50%;
@@ -226,16 +233,47 @@
             transition: opacity 0.5s ease, transform 0.5s ease;
         }
 
-        button.hidden {
+        .next-button.hidden {
             display: none;
         }
 
-        button.visible {
+        .next-button.visible {
             display: block;
             opacity: 1;
             pointer-events: all;
             margin-top: 350px;
             transform: translateX(-50%) translateY(0);
+        }
+
+        /* Media Queries for Responsiveness */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 8vw; /* Scale the heading for smaller screens */
+            }
+
+            .progress-bar {
+                width: 90%; /* Ensure progress bar is wider on mobile */
+            }
+
+            .next-button {
+                font-size: 18px; /* Adjust the button size */
+                padding: 8px 15px; /* Adjust padding for better fit */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .content {
+                padding: 0 5px; /* Add more padding on small screens */
+            }
+
+            .next-button {
+                font-size: 16px; /* Smaller font size for smaller devices */
+                padding: 6px 12px;
+            }
+
+            h1 {
+                white-space: wrap;
+            }
         }
 
     </style>
@@ -258,8 +296,6 @@
         <div class="g3"></div>
         <div class="g4"></div>
         <div class="g5"></div>
-        <div class="g6"></div>
-
     </div>
 </div>
 <div class="content">
@@ -267,7 +303,7 @@
     <div class="progress-bar">
         <div class="progress"></div>
     </div>
-    <button id="next-button" class="hidden">→</button>
+    <a id="next-button" href="{% url 'transition2RB' %}" class="next-button hidden">→</a>
 </div>
 </body>
 <script>
@@ -277,9 +313,9 @@
         const nextButton = document.getElementById('next-button');
 
         const messages = [
-            "Analyzing your data...",
-            "Generating your wrap...",
-            "Complete!"
+            "{% trans 'Analyzing your data...' %}",
+            "{% trans 'Generating your wrap...' %}",
+            "{% trans 'Complete!' %}"
         ];
 
         let currentMessageIndex = 0;
@@ -315,10 +351,6 @@
         // Animate progress bar
         progressBar.querySelector('.progress').style.animationPlayState = 'running';
 
-        // Show button click effect
-        nextButton.addEventListener('click', () => {
-            alert('Next action triggered!');
-        });
     });
 
 </script>

@@ -5,23 +5,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2b7ffd8d-02b9-4b57-9ee5-3fba1fa5c456" name="Changes" comment="light mode images">
-      <change afterPath="$PROJECT_DIR$/static/images/lmSunCardFront.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/navigation/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/navigation/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/navigation/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/navigation/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/images/lmCardBack.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/images/lmCardFront.svg" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/lmCardBlank.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/LightMode/memorable_moment.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/LightMode/memorable_moment.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/LightMode/slideShowRB.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/LightMode/slideShowLM.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/LightMode/top_5_songs.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/LightMode/top_5_songs.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/LightMode/top_artists.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/LightMode/top_artists.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/LightMode/top_genre.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/LightMode/top_genre.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/LightMode/top_song.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/LightMode/top_song.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/LightMode/transition1.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/LightMode/transition1.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/LightMode/transition2.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/LightMode/transition2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/LightMode/type_of_listener.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/LightMode/type_of_listener.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/RainbowMode/memorable_moment.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/RainbowMode/memorable_moment.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/DarkMode/images/crystalball.svg" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/crystalball.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/DarkMode/images/darkmodebackground.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/darkmodebackground.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/DarkMode/images/dmcard.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/dmcard.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/DarkMode/images/dmperson.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/dmperson.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/DarkMode/images/dmscroll.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/dmscroll.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/DarkMode/images/heartfrontcard.svg" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/heartfrontcard.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/DarkMode/images/moonfrontcard.svg" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/moonfrontcard.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/DarkMode/images/starfrontcard.svg" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/starfrontcard.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/DarkMode/images/suncardFront.svg" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/suncardFront.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/DarkMode/images/swordfrontcard.svg" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/swordfrontcard.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/DarkMode/images/timeglass.svg" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/timeglass.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/DarkMode/listening_minutes.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/DarkMode/listening_minutes.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/DarkMode/memorable_moment.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/DarkMode/memorable_moment.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/DarkMode/slideShowDM.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/DarkMode/slideShowDM.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/DarkMode/top_5_songs.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/DarkMode/top_5_songs.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/DarkMode/top_artist.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/DarkMode/top_artist.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/DarkMode/top_genre.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/DarkMode/top_genre.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/DarkMode/top_song.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/DarkMode/top_song.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/DarkMode/transition1.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/DarkMode/transition1.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/DarkMode/transition2.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/DarkMode/transition2.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/DarkMode/type_of_listener.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/DarkMode/type_of_listener.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/RainbowMode/top_5_songs.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/RainbowMode/top_5_songs.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/RainbowMode/transition2.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/RainbowMode/transition2.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,6 +93,7 @@
       <recent name="$PROJECT_DIR$/templates" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/static/images" />
       <recent name="$PROJECT_DIR$/static" />
       <recent name="$PROJECT_DIR$/templates/DarkMode/images" />
       <recent name="$PROJECT_DIR$/templates/RainbowMode/images" />
@@ -388,7 +398,23 @@
       <option name="project" value="LOCAL" />
       <updated>1733118308487</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="light mode">
+      <option name="closed" value="true" />
+      <created>1733122010584</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1733122010584</updated>
+    </task>
+    <task id="LOCAL-00029" summary="light mode images">
+      <option name="closed" value="true" />
+      <created>1733122018368</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1733122018368</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -412,6 +438,7 @@
     <MESSAGE value="top song" />
     <MESSAGE value="top song animation" />
     <MESSAGE value="moblie adjustments" />
+    <MESSAGE value="light mode" />
     <MESSAGE value="light mode images" />
     <option name="LAST_COMMIT_MESSAGE" value="light mode images" />
   </component>

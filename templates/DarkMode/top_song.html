@@ -1,9 +1,11 @@
+{% load i18n %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rainbow Mode Top Song</title>
+    <title>Dark Mode Top Song</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <style>
         html, body {
@@ -25,7 +27,7 @@
             top: 0;
             left: 0;
             background-size: 400% 400%;
-            background: linear-gradient(40deg, #3B2496, #24114C, #3A1F7A, #5F2A98, #9516FC,#A673E1);
+            background: linear-gradient(40deg, #3B2496, #180e54, #3A1F7A, #5F2A98, #9516FC,#A673E1);
             animation: gradient-shift 15s ease infinite;
             z-index: 1;
         }
@@ -53,6 +55,7 @@
             font-size: 50px;
             text-shadow: 0 0 20px rgba(255, 255, 255, 0.7);
             margin-top: 20px;
+            margin-bottom: 20px;
         }
 
         img {
@@ -130,6 +133,7 @@
             left: calc(50% - 60%);
             animation: moveInCircle 30s ease infinite;
         }
+
         @keyframes moveVertical {
             0% {
                 transform: translateY(-50%);
@@ -168,17 +172,27 @@
 
         .scroll-container {
             position: relative;
-            width: 300px; /* Adjust to your image width */
-            margin-top: 300px;
-            margin-left: 475px;
+            width: 300px;
+            max-width: 90%; /* Prevents overflow on small screens */
+            margin: 100px auto 20px;
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .scroll-container {
+            width: 90vw;
+            max-width: 300px;
         }
 
         .scroll-top, .scroll-bottom {
             position: absolute;
             width: 100%;
-            z-index: 1;
-            transition: transform 1.5s ease-in-out; /* Smooth movement during animation */
+            right: 60%;
+            transform: translateX(-50%);
+            z-index: 2;
+            transition: transform 1.5s ease-in-out;
         }
 
         .scroll-top {
@@ -193,25 +207,55 @@
 
         .scroll-mask {
             overflow: hidden; /* Reveal scroll body */
-            width: 100%;
+            width: 135%;
             height: 0; /* Initially hidden */
             transition: height 1.5s ease-in-out; /* Smooth unrolling animation */
             position: relative;
-            z-index: 0;
+            z-index: 1;
         }
 
         #scroll-image {
             width: 100%; /* Ensure the scroll body scales properly */
+            height: auto;
+            display: block;
         }
 
         #scroll-content {
+            position: absolute;
+            top: 70%; /* Move to the vertical center */
+            left: 50%; /* Move to the horizontal center */
+            transform: translate(-50%, -50%);
+            text-align: center;
             margin-top: 10px;
-            opacity: 0; /* Hidden initially */
-            transition: opacity 1s ease-in-out 1.5s; /* Fade-in after unrolling */
+            opacity: 0;
+            transition: opacity 1s ease-in-out 1.5s;
+            height: 0;
+            z-index: 2; /* Ensure it is above the scroll body */
+            pointer-events: none;
+            overflow: hidden;
         }
 
         #scroll-content.visible {
             opacity: 1;
+            height: 100%;
+            padding: 10px; /* Add some padding for spacing */
+            max-width: 90%; /* Fit smaller devices */
+            box-sizing: border-box;
+        }
+
+        /* Responsive adjustments for smaller screens */
+        @media (max-width: 768px) {
+            .scroll-container {
+                width: 90%;
+                margin: 80px auto; /* Adjust margin for smaller screens */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .scroll-container {
+                width: 95%;
+                margin: 60px auto;
+            }
         }
 
         @keyframes bounce {
@@ -219,7 +263,7 @@
                 transform: translateY(0);
             }
             80% {
-                transform: translateY(-10px);
+                transform: translateY(-8px);
             }
         }
 
@@ -242,10 +286,26 @@
         #song-title {
             font-size: 24px;
             margin-bottom: 5px;
+            color: white;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
         }
 
         #song-artist {
             font-size: 18px;
+            color: white;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+        }
+
+        @media (max-width: 768px) {
+            .scroll-container {
+                width: 95vw;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .scroll-container {
+                width: 98vw;
+            }
         }
 
     </style>
@@ -267,26 +327,30 @@
         <div class="g3"></div>
         <div class="g4"></div>
         <div class="g5"></div>
-        <div class="g6"></div>
-
     </div>
 </div>
 <div class="content">
-    <h1>Your Musical Prophecy</h1>
+    <h1>{% trans "Your Musical Prophecy" %}</h1>
     <div class="scroll-container">
         <div class="scroll-top">
-            <img src="images/dmscroll.png" alt="Scroll Top">
+            <img src="/static/images/topScrollDM.svg" alt="Scroll Top">
+        </div>
+        <div class="scroll-mask">
+            <img id="scroll-image" src="/static/images/scrollBodyDM.svg" alt="Scroll Body">
         </div>
         <div id="scroll-content" class="hidden">
             <img id="song-cover" src="" alt="Album Cover">
             <h2 id="song-title"></h2>
             <p id="song-artist"></p>
         </div>
+        <div class="scroll-bottom">
+            <img src="/static/images/topScrollDM.svg" alt="Scroll Bottom">
+        </div>
     </div>
 </div>
 </body>
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
+    function initializeScroll() {
         const scrollTop = document.querySelector('.scroll-top');
         const scrollBottom = document.querySelector('.scroll-bottom');
         const scrollMask = document.querySelector('.scroll-mask');
@@ -296,21 +360,18 @@
         const songArtist = document.getElementById('song-artist');
 
         function unrollScroll() {
-            // Move the top and bottom scroll parts
-            scrollTop.style.transform = 'translateY(-50px)'; // Adjust based on design
-            scrollBottom.style.transform = 'translateY(50px)'; // Adjust based on design
+            const scrollHeight = scrollMask.scrollHeight;
+            scrollTop.style.transform = `translateY(-${scrollHeight / 8}px)`;
+            scrollBottom.style.transform = `translateY(${scrollHeight / 10}px)`;
+            scrollMask.style.height = `${scrollHeight}px`;
 
-            // Animate the mask height to reveal the scroll body
-            scrollMask.style.height = '400px'; // Adjust to the full height of your scroll body
-
-            // Reveal content after animation completes
             setTimeout(() => {
                 scrollContent.classList.add('visible');
-            }, 1500); // Matches the CSS transition duration
+            }, 1000);
         }
 
         function fetchTopSong() {
-            fetch('/spotify/top-song/')
+            fetch('/top-song/')
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Failed to fetch top song data');
@@ -319,22 +380,32 @@
                 })
                 .then(data => {
                     if (data.top_song) {
+                        unrollScroll();
                         songCover.src = data.top_song.cover_url || 'default_cover.png';
                         songTitle.textContent = data.top_song.name || 'Unknown Title';
                         songArtist.textContent = data.top_song.artist || 'Unknown Artist';
-                        unrollScroll();
                     } else {
-                        alert('No top song data available. Please try again later.');
+                        throw new Error('No top song data available');
                     }
                 })
                 .catch(error => {
+                    unrollScroll();
                     console.error('Error fetching top song:', error);
-                    alert('Could not fetch your top song. Please try again.');
+                    scrollContent.textContent = 'Could not fetch your top song. Please try again.';
                 });
         }
 
-        document.querySelector('.scroll-container').addEventListener('click', fetchTopSong);
-    });
+        fetchTopSong();
+    }
 
+    if (window.parent !== window) {
+        window.addEventListener('message', function (event) {
+            if (event.data === 'slideActive') {
+                initializeScroll();
+            }
+        });
+    } else {
+        document.addEventListener('DOMContentLoaded', initializeScroll);
+    }
 </script>
 </html>
