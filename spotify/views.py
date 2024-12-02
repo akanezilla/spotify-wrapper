@@ -285,26 +285,22 @@ def listener_type_view(request):
     try:
         spotify_profile = request.user.spotifyprofile
 
-        if spotify_profile.token_expires <= timezone.now():
+        # Refresh token if expired
+        if spotify_profile.token_expires <= now():
             spotify_profile.refresh_spotify_token()
 
         sp = spotipy.Spotify(auth=spotify_profile.spotify_token)
 
-        # Get top tracks and artists for the long term (approximately last year)
+        # Fetch top tracks and artists
         top_tracks = sp.current_user_top_tracks(limit=50, time_range='long_term')
         top_artists = sp.current_user_top_artists(limit=50, time_range='long_term')
 
-        # Count unique artists from top tracks
+        # Collect unique artists
         track_artists = [track['artists'][0]['id'] for track in top_tracks['items']]
-
-        # Add artists from top artists
         artist_ids = [artist['id'] for artist in top_artists['items']]
-
-        # Combine and count unique artists
         all_artists = track_artists + artist_ids
-        unique_artists = len(set(all_artists))
 
-        # Count repetitions
+        unique_artists = len(set(all_artists))
         artist_counts = Counter(all_artists)
         repeat_listens = sum(count for count in artist_counts.values() if count > 1)
 
@@ -316,24 +312,24 @@ def listener_type_view(request):
         else:
             listener_type = "Focused"
 
-        # Additional context
+        # Calculate diversity score
         total_artists = len(all_artists)
-        diversity_score = (unique_artists / total_artists) * 100
+        diversity_score = (unique_artists / total_artists) * 100 if total_artists > 0 else 0
 
-        context = {
+        # Return JSON response
+        response_data = {
             'listener_type': listener_type,
             'unique_artists': unique_artists,
-            'total_artists': total_artists,
             'diversity_score': round(diversity_score, 2),
-            'repeat_listens': repeat_listens
         }
-        return render(request, 'RainbowMode/type_of_listener.html', context)
+        return JsonResponse(response_data, status=200)
+
     except SpotifyProfile.DoesNotExist:
-        messages.warning(request, "Please connect your Spotify account first.")
-        return redirect('spotify:spotify_connect')
+        return JsonResponse({'error': 'Spotify account not connected.'}, status=400)
     except SpotifyException as e:
-        messages.error(request, f"Spotify API error: {str(e)}")
-        return redirect('home')
+        return JsonResponse({'error': f"Spotify API error: {str(e)}"}, status=500)
+    except Exception as e:
+        return JsonResponse({'error': f"Unexpected error: {str(e)}"}, status=500)
 
 
 @login_required
