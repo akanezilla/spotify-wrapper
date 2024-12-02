@@ -1,6 +1,7 @@
 from django.urls import path
 from . import views
 from django.views.generic.base import RedirectView
+from spotify.views import home_view
 
 urlpatterns = [
     path('RainbowMode/transition1/', views.transition1_rb, name='transition1RB'),

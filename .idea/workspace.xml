@@ -4,29 +4,41 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2b7ffd8d-02b9-4b57-9ee5-3fba1fa5c456" name="Changes" comment="dark mode images">
+    <list default="true" id="2b7ffd8d-02b9-4b57-9ee5-3fba1fa5c456" name="Changes" comment="">
+    <list default="true" id="2b7ffd8d-02b9-4b57-9ee5-3fba1fa5c456" name="Changes" comment="light mode images">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/navigation/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/navigation/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/navigation/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/navigation/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/DarkMode/images/crystalball.svg" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/crystalball.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/DarkMode/images/darkmodebackground.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/darkmodebackground.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/DarkMode/images/dmcard.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/dmcard.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/DarkMode/images/dmperson.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/dmperson.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/DarkMode/images/dmscroll.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/dmscroll.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/DarkMode/images/heartfrontcard.svg" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/heartfrontcard.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/DarkMode/images/moonfrontcard.svg" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/moonfrontcard.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/DarkMode/images/starfrontcard.svg" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/starfrontcard.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/DarkMode/images/suncardFront.svg" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/suncardFront.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/DarkMode/images/swordfrontcard.svg" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/swordfrontcard.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/DarkMode/images/timeglass.svg" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/timeglass.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/DarkMode/listening_minutes.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/DarkMode/listening_minutes.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/DarkMode/memorable_moment.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/DarkMode/memorable_moment.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/DarkMode/slideShowDM.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/DarkMode/slideShowDM.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/DarkMode/top_5_songs.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/DarkMode/top_5_songs.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/DarkMode/top_artist.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/DarkMode/top_artist.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/DarkMode/top_genre.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/DarkMode/top_genre.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/DarkMode/top_song.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/DarkMode/top_song.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/DarkMode/transition1.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/DarkMode/transition1.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/DarkMode/transition2.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/DarkMode/transition2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/LightMode/transition1.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/LightMode/transition1.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/LightMode/transition2.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/LightMode/transition2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/RainbowMode/memorable_moment.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/RainbowMode/memorable_moment.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/DarkMode/type_of_listener.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/DarkMode/type_of_listener.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/RainbowMode/top_5_songs.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/RainbowMode/top_5_songs.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/RainbowMode/transition2.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/RainbowMode/transition2.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
-    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
-  </component>
   <component name="Git.Settings">
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="christy" />
-      </map>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -35,15 +47,12 @@
     &quot;assignee&quot;: &quot;akanezilla&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/akanezilla/spotify-wrapper.git&quot;,
-    &quot;accountId&quot;: &quot;496ef92e-f482-4601-852a-c7e0067486de&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/akanezilla/spotify-wrapper.git",
+    "accountId": "47cb483b-53ac-4a73-be2d-b4fbe119d4a2"
   }
-}</component>
-  <component name="ProblemsViewState">
-    <option name="selectedTabId" value="QODANA_PROBLEMS_VIEW_TAB" />
-  </component>
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
 }</component>
@@ -52,36 +61,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Django Server.spotify-wrapper.executor": "Run",
-    "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "norah2",
-    "last_opened_file_path": "/Users/norahli/CS2340/spotify-wrapper/templates",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.keymap",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenDjangoStructureViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;akané&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/templates" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/static/images" />
-      <recent name="$PROJECT_DIR$/static" />
-      <recent name="$PROJECT_DIR$/templates/DarkMode/images" />
-      <recent name="$PROJECT_DIR$/templates/RainbowMode/images" />
+      <recent name="$PROJECT_DIR$/static/css" />
+      <recent name="$PROJECT_DIR$/templates/LightMode/images" />
     </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="Python.DjangoServer" factoryName="Django server">
+    <configuration name="spotify-wrapper" type="Python.DjangoServer" factoryName="Django server">
       <module name="spotify-wrapper" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -90,32 +91,6 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="SDK_NAME" value="Python 3.12 (mysite)" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="launchJavascriptDebuger" value="false" />
-      <option name="port" value="8000" />
-      <option name="host" value="localhost" />
-      <option name="additionalOptions" value="" />
-      <option name="browserUrl" value="" />
-      <option name="runTestServer" value="false" />
-      <option name="runNoReload" value="false" />
-      <option name="useCustomRunCommand" value="false" />
-      <option name="customRunCommand" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="spotify_wrapped" type="Python.DjangoServer" factoryName="Django server">
-      <module name="spotify-wrapper" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="SDK_NAME" value="Python 3.12 (AtlantaFoodFinder)" />
       <option name="WORKING_DIRECTORY" value="" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -135,8 +110,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-e768b9ed790e-JavaScript-PY-243.21565.199" />
-        <option value="bundled-python-sdk-cab1f2013843-4ae2d6a61b08-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-243.21565.199" />
+        <option value="bundled-js-predefined-d6986cc7102b-7c0b70fcd90d-JavaScript-PY-242.21829.153" />
+        <option value="bundled-python-sdk-464836ebc622-b74155a9e76b-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-242.21829.153" />
       </set>
     </attachedChunks>
   </component>
@@ -154,6 +129,7 @@
       <workItem from="1730400913351" duration="325000" />
       <workItem from="1730401456676" duration="1248000" />
       <workItem from="1730758578671" duration="37000" />
+      <workItem from="1733082816849" duration="17920000" />
       <workItem from="1732044164076" duration="703000" />
       <workItem from="1732045422888" duration="246000" />
       <workItem from="1732205009963" duration="249000" />
@@ -395,23 +371,7 @@
       <option name="project" value="LOCAL" />
       <updated>1733122018368</updated>
     </task>
-    <task id="LOCAL-00030" summary="dark mode">
-      <option name="closed" value="true" />
-      <created>1733124115989</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1733124115989</updated>
-    </task>
-    <task id="LOCAL-00031" summary="dark mode images">
-      <option name="closed" value="true" />
-      <created>1733124121795</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1733124121795</updated>
-    </task>
-    <option name="localTasksCounter" value="32" />
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -437,8 +397,6 @@
     <MESSAGE value="moblie adjustments" />
     <MESSAGE value="light mode" />
     <MESSAGE value="light mode images" />
-    <MESSAGE value="dark mode" />
-    <MESSAGE value="dark mode images" />
-    <option name="LAST_COMMIT_MESSAGE" value="dark mode images" />
+    <option name="LAST_COMMIT_MESSAGE" value="light mode images" />
   </component>
 </project>
