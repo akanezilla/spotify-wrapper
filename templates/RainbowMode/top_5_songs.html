@@ -186,15 +186,14 @@
                 transform: translateY(0px);
             }
         }
-        .card-container {
-            display: flex; /* Use flexbox for horizontal layout */
-            justify-content: center; /* Center align cards */
-            align-items: flex-start; /* Align items to the top */
-            flex-wrap: nowrap; /* Prevent wrapping to next line */
-            overflow-x: auto; /* Allow horizontal scrolling if necessary */
-            padding: 20px; /* Spacing around cards */
-        }
-
+        .cards-container {
+    display: flex;                  /* Use Flexbox to display cards side by side */
+    justify-content: space-evenly;   /* Distribute space evenly between cards */
+    align-items: center;             /* Align cards vertically at the center */
+    gap: 20px;                       /* Space between cards */
+    padding: 20px;                   /* Add some padding around the container */
+    overflow-x: auto;                /* Allow horizontal scrolling if the content overflows */
+}
          /* Alternating Floating Cards */
         .flip-card:nth-child(odd) {
             margin-top: 50px;
@@ -210,18 +209,19 @@
 
 
         .flip-card {
-            width: 250px; /* Card size */
-            height: 350px; /* Card size */
-            perspective: 1000px; /* Perspective for the flip effect */
-            margin-right: 10px; /* Space between cards */
-        }
+    width: 200px;                  /* Set a fixed width for each card */
+    height: 300px;                 /* Set a fixed height for each card */
+    perspective: 1000px;           /* Preserve 3D effect for flip effect */
+    margin-bottom: 50px;           /* Space between the cards vertically */
+}
         
         .flip-card-inner {
             position: relative;
-            width: 100%;
-            height: 100%;
-            transition: transform 0.8s; /* Smooth flip transition */
-            transform-style: preserve-3d; /* Preserve the card's dimensions */
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
         }
 
         .flip-card:hover .flip-card-inner {
@@ -230,9 +230,9 @@
 
         .flip-card-front, .flip-card-back {
             position: absolute;
-            width: 100%;
-            height: 100%;
-            backface-visibility: hidden; /* Hide the back side when not flipped */
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
             border-radius: 10px; /* Rounded corners */
         }
 
@@ -267,8 +267,7 @@
             background-size: contain; /* Ensure the entire image is visible */
             background-repeat: no-repeat; /* Prevent repeating */
             background-position: center; /* Center the image */
-
-            color: white; /* Text color for song details */
+color: white; /* Text color for song details */
         }
 
 
@@ -321,12 +320,13 @@
 </div>
 <div class="content">
     <h1>{% trans "Your Chords of Destiny" %}</h1>
-    <div class="card-container">
+    <div class="cards-container">
         {% for track in top_tracks %}
         <div class="flip-card">
             <div class="flip-card-inner">
                 <div class="flip-card-front">
-                    <img src="{% static 'images/card_images/' %}{{ card_images|slice:forloop.counter0 }}" alt="Card Front">                </div>
+                    <img src="{% static 'images/card_images/SunCardRB.svg' %}" alt="Card Front">
+                </div>
                 <div class="flip-card-back">
                     <img src="{{ track.cover_url }}" alt="Album cover for {{ track.name }}" class="album-cover">
                     <div class="song-details">
@@ -336,9 +336,7 @@
                 </div>
             </div>
         </div>
-        {% empty %}
-          <p>No tracks available.</p>
-      {% endfor %}
+        {% endfor %}
     </div>
 </body>
 </html>

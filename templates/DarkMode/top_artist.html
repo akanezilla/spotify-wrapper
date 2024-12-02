@@ -275,56 +275,23 @@
     </div>
 </div>
 <div class="content">
-    <h1>Your Top 5 Cosmic Influencers</h1>
-    <div class="flip-card">
-        <div class="flip-card-inner">
-            <div class="flip-card-front">
-                <img src="images/suncardFront.svg" alt="Card Front">
-            </div>
-            <div class="flip-card-back">
-                <img id="song1-img" src="images/dmcard.png" alt="Song Cover">
-            </div>
-        </div>
-    </div>
-    <div class="flip-card">
-        <div class="flip-card-inner">
-            <div class="flip-card-front">
-                <img src="images/moonfrontcard.svg" alt="Card Front">
-            </div>
-            <div class="flip-card-back">
-                <img id="song2-img" src="images/dmcard.png" alt="Song Cover">
+    <h1>{% trans "Your Top 5 Cosmic Influencers" %}</h1>
+    <div class="card-container">
+        {% for artist in top_artists %}
+        <div class="flip-card">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <img src="{% static 'images/dmcard_images/suncardFront.svg' %}" alt="Card Front">
+                </div>
+                <div class="flip-card-back">
+                    <p class="artist-name">{{ artist.name }}</p> <!-- Display artist name -->
+                    <p class="genres"> {{ artist.genres }}</p> <!-- Optional genres display -->
+                </div>
             </div>
         </div>
-    </div>
-    <div class="flip-card">
-        <div class="flip-card-inner">
-            <div class="flip-card-front">
-                <img src="images/starfrontcard.svg" alt="Card Front">
-            </div>
-            <div class="flip-card-back">
-                <img id="song3-img" src="images/dmcard.png" alt="Song Cover">
-            </div>
-        </div>
-    </div>
-    <div class="flip-card">
-        <div class="flip-card-inner">
-            <div class="flip-card-front">
-                <img src="images/heartfrontcard.svg" alt="Card Front">
-            </div>
-            <div class="flip-card-back">
-                <img id="song4-img" src="images/dmcard.png" alt="Song Cover">
-            </div>
-        </div>
-    </div>
-    <div class="flip-card">
-        <div class="flip-card-inner">
-            <div class="flip-card-front">
-                <img src="images/swordfrontcard.svg" alt="Card Front">
-            </div>
-            <div class="flip-card-back">
-                <img id="song5-img" src="images/dmcard.png" alt="Song Cover">
-            </div>
-        </div>
+        {% empty %}
+          <p>No artists available.</p>
+      {% endfor %}
     </div>
 </div>
 </body>

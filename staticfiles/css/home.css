@@ -1,0 +1,63 @@
+/* Background styling */
+body {
+    background-image: url('/static/images/pixel_game_background.jpg');
+    background-size: cover;
+    font-family: Arial, sans-serif;
+    color: white;
+    text-align: center;
+}
+
+/* Navbar styling */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.navbar-left {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.navbar-right a {
+    margin-left: 1rem;
+    text-decoration: none;
+    color: white;
+}
+
+.navbar-right a:hover {
+    text-decoration: underline;
+}
+
+/* Content styling */
+.content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.content h1 {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+}
+
+.content p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.generate-wrap-btn {
+    padding: 1rem 2rem;
+    background-color: #1DB954;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.generate-wrap-btn:hover {
+    background-color: #14843d;
+}

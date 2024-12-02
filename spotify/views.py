@@ -14,7 +14,16 @@ from django.utils.translation import gettext as _
 from django.utils.timezone import now
 import logging
 from collections import Counter
-from spotipy import Spotify
+from django.shortcuts import render, redirect
+from django.http import JsonResponse
+from .models import SavedWrap
+from django.contrib.auth.decorators import login_required
+from .models import SavedWrap  # Import the correct model
+from .models import WrappedData  # Import the correct model
+import json
+
+
+
 
 
 
@@ -277,62 +286,6 @@ def top_genre_view(request):
         return JsonResponse({'error': 'Please connect your Spotify account first.'}, status=400)
     except SpotifyException as e:
         return JsonResponse({'error': f'Spotify API error: {str(e)}'}, status=500)
-
-
-@login_required
-def listener_type_view(request):
-    try:
-        spotify_profile = request.user.spotifyprofile
-
-        if spotify_profile.token_expires <= timezone.now():
-            spotify_profile.refresh_spotify_token()
-
-        sp = spotipy.Spotify(auth=spotify_profile.spotify_token)
-
-        # Get top tracks and artists for the long term (approximately last year)
-        top_tracks = sp.current_user_top_tracks(limit=50, time_range='long_term')
-        top_artists = sp.current_user_top_artists(limit=50, time_range='long_term')
-
-        # Count unique artists from top tracks
-        track_artists = [track['artists'][0]['id'] for track in top_tracks['items']]
-
-        # Add artists from top artists
-        artist_ids = [artist['id'] for artist in top_artists['items']]
-
-        # Combine and count unique artists
-        all_artists = track_artists + artist_ids
-        unique_artists = len(set(all_artists))
-
-        # Count repetitions
-        artist_counts = Counter(all_artists)
-        repeat_listens = sum(count for count in artist_counts.values() if count > 1)
-
-        # Determine listener type
-        if unique_artists > 40:
-            listener_type = "Explorer"
-        elif unique_artists > 25:
-            listener_type = "Diverse"
-        else:
-            listener_type = "Focused"
-
-        # Additional context
-        total_artists = len(all_artists)
-        diversity_score = (unique_artists / total_artists) * 100
-
-        context = {
-            'listener_type': listener_type,
-            'unique_artists': unique_artists,
-            'total_artists': total_artists,
-            'diversity_score': round(diversity_score, 2),
-            'repeat_listens': repeat_listens
-        }
-        return render(request, 'RainbowMode/type_of_listener.html', context)
-    except SpotifyProfile.DoesNotExist:
-        messages.warning(request, "Please connect your Spotify account first.")
-        return redirect('spotify:spotify_connect')
-    except SpotifyException as e:
-        messages.error(request, f"Spotify API error: {str(e)}")
-        return redirect('home')
 
 
 @login_required
@@ -705,3 +658,126 @@ def top_5_songs_rb(request):
     except SpotifyException as e:
         messages.error(request, f"Spotify API error: {str(e)}")
         return redirect('home')
+def get_user_spotify_wrapped_data(user):
+    # Placeholder function to simulate getting wrapped data.
+    # Replace this with an actual call to the Spotify API or your data source.
+    wrapped_data = {
+        'user_name': user.username,
+        'top_tracks': ['Track 1', 'Track 2', 'Track 3'],
+        'top_artists': ['Artist 1', 'Artist 2'],
+        'total_minutes_watched': 1200,
+        'total_songs': 300
+    }
+    
+    # Format the wrapped data as a string (you can customize this based on what you want to show)
+    return f"Spotify Wrapped for {wrapped_data['user_name']}:\n" \
+           f"Top Tracks: {', '.join(wrapped_data['top_tracks'])}\n" \
+           f"Top Artists: {', '.join(wrapped_data['top_artists'])}\n" \
+           f"Total Minutes: {wrapped_data['total_minutes_watched']} minutes\n" \
+           f"Total Songs: {wrapped_data['total_songs']} songs"
+@login_required
+def type_of_listenerRB(request):
+    try:
+        spotify_profile = request.user.spotifyprofile
+
+        if spotify_profile.token_expires <= timezone.now():
+            spotify_profile.refresh_spotify_token()
+
+        sp = spotipy.Spotify(auth=spotify_profile.spotify_token)
+
+        # Get top tracks and artists for the long term (approximately last year)
+        top_tracks = sp.current_user_top_tracks(limit=50, time_range='long_term')
+        top_artists = sp.current_user_top_artists(limit=50, time_range='long_term')
+
+        # Count unique artists from top tracks
+        track_artists = [track['artists'][0]['id'] for track in top_tracks['items']]
+
+        # Add artists from top artists
+        artist_ids = [artist['id'] for artist in top_artists['items']]
+
+        # Combine and count unique artists
+        all_artists = track_artists + artist_ids
+        unique_artists = len(set(all_artists))
+
+        # Count repetitions
+        artist_counts = Counter(all_artists)
+        repeat_listens = sum(count for count in artist_counts.values() if count > 1)
+
+        # Determine listener type
+        if unique_artists > 40:
+            listener_type = "Explorer"
+        elif unique_artists > 25:
+            listener_type = "Diverse"
+        else:
+            listener_type = "Focused"
+
+        # Additional context
+        total_artists = len(all_artists)
+        diversity_score = (unique_artists / total_artists) * 100
+
+        context = {
+            'listener_type': listener_type,
+            'unique_artists': unique_artists,
+            'total_artists': total_artists,
+            'diversity_score': round(diversity_score, 2),
+            'repeat_listens': repeat_listens
+        }
+        return render(request, 'RainbowMode/type_of_listener.html', context)
+    except SpotifyProfile.DoesNotExist:
+        messages.warning(request, "Please connect your Spotify account first.")
+        return redirect('spotify:spotify_connect')
+    except SpotifyException as e:
+        messages.error(request, f"Spotify API error: {str(e)}")
+        return redirect('home')
+    
+def spotify_wrapped_view(request):
+    if request.method == "POST":
+        # Assuming you have some function to get the wrapped data
+        wrapped_data = get_user_spotify_wrapped_data(request.user)
+        
+        # Save the data to the database
+        WrappedData.objects.create(
+            user=request.user,
+            data=wrapped_data
+        )
+        
+        messages.success(request, "Your Spotify wrap has been saved successfully!")
+        return redirect('spotify:spotify_data')  # Redirect to a page where users can see saved data
+    
+    return render(request, 'spotify/save_wrapped.html')
+from django.shortcuts import render
+from .models import SavedWrap
+
+def get_user_spotify_data(user):
+    # Here you would actually interact with Spotify's API to get the data for the user
+    # For example, getting listening minutes, top songs, etc.
+    return {
+        "listening_minutes": 1000,  # Replace with actual data from Spotify API
+        "memorable_moments": "Great year!",
+        "top_5_songs": "Song1, Song2, Song3",
+        "top_5_artists": "Artist1, Artist2, Artist3",
+        "top_5_genres": "Pop, Rock, Jazz",
+        "top_song": "Song1",
+        "type_of_listener": "Casual"
+    }
+from django.shortcuts import render, redirect
+from .models import SavedWrap
+from .forms import WrapForm
+
+def save_wrap(request):
+    # Handle form submission
+    if request.method == "POST":
+        form = WrapForm(request.POST)
+        if form.is_valid():
+            form.save()  # Save the form to the database
+            return redirect('saved_wraps')  # Redirect to the saved wraps page after saving
+    else:
+        form = WrapForm()  # If it's a GET request, just show the form
+    
+    return render(request, 'save_wrap.html', {'form': form})
+
+def saved_wraps(request):
+    # Query all saved wraps from the database
+    wraps = SavedWrap.objects.all()  # Get all Wrap objects from the database
+    return render(request, 'saved_wraps.html', {'wraps': wraps})
+

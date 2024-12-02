@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saved Wraps</title>
+</head>
+<body>
+    <h1>Saved Wraps</h1>
+    <ul>
+        {% for wrap in wraps %}
+        <li>
+            <h2>Wrap ID: {{ wrap.id }}</h2>
+            <p><strong>Listening Minutes:</strong> {{ wrap.listening_minutes }}</p>
+            <p><strong>Memorable Moments:</strong> {{ wrap.memorable_moments }}</p>
+            <p><strong>Top 5 Songs:</strong> {{ wrap.top_5_songs }}</p>
+            <p><strong>Top 5 Artists:</strong> {{ wrap.top_5_artists }}</p>
+            <p><strong>Top 5 Genres:</strong> {{ wrap.top_5_genres }}</p>
+            <p><strong>Top Song:</strong> {{ wrap.top_song }}</p>
+            <p><strong>Type of Listener:</strong> {{ wrap.type_of_listener }}</p>
+        </li>
+        {% empty %}
+        <li>No wraps have been saved yet.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
