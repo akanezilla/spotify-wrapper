@@ -730,36 +730,6 @@ def type_of_listenerRB(request):
         messages.error(request, f"Spotify API error: {str(e)}")
         return redirect('home')
     
-def spotify_wrapped_view(request):
-    if request.method == "POST":
-        # Assuming you have some function to get the wrapped data
-        wrapped_data = get_user_spotify_wrapped_data(request.user)
-        
-        # Save the data to the database
-        WrappedData.objects.create(
-            user=request.user,
-            data=wrapped_data
-        )
-        
-        messages.success(request, "Your Spotify wrap has been saved successfully!")
-        return redirect('spotify:spotify_data')  # Redirect to a page where users can see saved data
-    
-    return render(request, 'spotify/save_wrapped.html')
-from django.shortcuts import render
-from .models import SavedWrap
-
-def get_user_spotify_data(user):
-    # Here you would actually interact with Spotify's API to get the data for the user
-    # For example, getting listening minutes, top songs, etc.
-    return {
-        "listening_minutes": 1000,  # Replace with actual data from Spotify API
-        "memorable_moments": "Great year!",
-        "top_5_songs": "Song1, Song2, Song3",
-        "top_5_artists": "Artist1, Artist2, Artist3",
-        "top_5_genres": "Pop, Rock, Jazz",
-        "top_song": "Song1",
-        "type_of_listener": "Casual"
-    }
 from django.shortcuts import render, redirect
 from .models import SavedWrap
 from .forms import WrapForm
@@ -770,14 +740,14 @@ def save_wrap(request):
         form = WrapForm(request.POST)
         if form.is_valid():
             form.save()  # Save the form to the database
-            return redirect('saved_wraps')  # Redirect to the saved wraps page after saving
+            return redirect('spotify/saved_wraps')  # Redirect to the saved wraps page after saving
     else:
         form = WrapForm()  # If it's a GET request, just show the form
     
-    return render(request, 'save_wrap.html', {'form': form})
+    return render(request, 'spotify/save_wrap.html', {'form': form})
 
 def saved_wraps(request):
     # Query all saved wraps from the database
     wraps = SavedWrap.objects.all()  # Get all Wrap objects from the database
-    return render(request, 'saved_wraps.html', {'wraps': wraps})
+    return render(request, 'spotify/saved_wraps.html', {'wraps': wraps})
 

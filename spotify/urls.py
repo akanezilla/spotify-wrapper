@@ -15,11 +15,11 @@ urlpatterns = [
     path('RainbowMode/top_5_songs/', views.top_5_songs_rb, name='top_5_songsRB'),  
     path('RainbowMode/top_artists/', views.top_artists_rb, name='top_artistsRB'),  
     path('RainbowMode/type_of_listener/', views.type_of_listenerRB, name='listener_typeRB'),  
-    path('save-wrapped/', views.spotify_wrapped_view, name='save-wrapped'),
     path('', views.home_view, name='home'),
     path('top-genres/', views.top_genre_view, name='top_genres'),
     path('save/', views.save_wrap, name='save_wrap'),  # URL for saving a wrap
-    path('saved/', views.saved_wraps, name='saved_wraps'),  # URL for displaying saved wraps
+    path('saved-wraps/', views.saved_wraps, name='saved_wraps'),
+
 
 
 

@@ -138,8 +138,11 @@
                <li><a href="{% url 'spotify:total_listening_time' %}">{% trans "View Total Listening Time" %}</a></li>
                <li><a href="{% url 'spotify:top_song' %}">{% trans "View Top Song" %}</a></li>
                <li><a href="{% url 'spotify:memorable_moment' %}">{% trans "View Memorable Moment" %}</a></li>
-               <a href="{% url 'spotify:saved_wraps' %}">saved wraps</a>
-           </ul>
+               <li><a href="{% url 'spotify:saved_wraps' %}">Saved Wraps</a></li>
+               
+
+
+            </ul>
        {% else %}
            <p>{% trans "Connect your Spotify account to generate a wrap." %}</p>
        {% endif %}
