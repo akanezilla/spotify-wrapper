@@ -9,7 +9,8 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
-
+from dotenv import load_dotenv
+import os
 from pathlib import Path
 import os
 from dotenv import load_dotenv
@@ -29,8 +30,7 @@ SECRET_KEY = 'django-insecure-coum^q0#xjk^$on(70hug*p78)hq-ndy=4*_uw^$+$8+at)-zb
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
-
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -45,7 +45,6 @@ INSTALLED_APPS = [
     'accounts',
     'home',
     'spotify',
-    'navigation',
 ]
 
 MIDDLEWARE = [
@@ -159,4 +158,4 @@ SPOTIFY_CLIENT_ID = os.getenv("SPOTIFY_CLIENT_ID")
 SPOTIFY_CLIENT_SECRET = os.getenv("SPOTIFY_CLIENT_SECRET")
 SPOTIFY_REDIRECT_URI = os.getenv("SPOTIFY_REDIRECT_URI")
 
-X_FRAME_OPTIONS = 'SAMEORIGIN'
+GEMINI_API_KEY = 'AIzaSyDuX_qM5w2MW4Is-5oSo-W0dWBnGb9sCyE'

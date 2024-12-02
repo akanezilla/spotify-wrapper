@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Light Mode Background</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            background: linear-gradient(45deg, #3B2496, #24114C, #3A1F7A,#5F2A98,#9516FC,#A673E1);
+            background-size: 400% 400%;
+            animation: gradient-shift 15s ease infinite;
+            color: rgb(166, 115, 225);
+            font-family: 'Poppins', Arial, sans-serif;
+        }
+
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 0;
+            padding-top: 20px;
+            font-size: 40px;
+            text-shadow:
+                0 0 10px rgba(166, 115, 225, 0.7), /* Soft outer glow */
+                0 0 30px rgba(166, 115, 225, 0.3); /* Even wider glow */
+        }
+
+        .content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: nowrap;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        img {
+            max-width: 25%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Your Cosmic Clock</h1>
+    <div class="content">
+        <img src="images/lmtimeglass.png" alt="Light Mode Time Glass" id="img1">
+    </div>
+</body>
+</html>

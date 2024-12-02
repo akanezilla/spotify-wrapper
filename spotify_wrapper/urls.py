@@ -14,6 +14,6 @@ urlpatterns += i18n_patterns(
     path('', include('spotify.urls')),
     path('', include('navigation.urls')),
     path('en/RainbowMode/', include('spotify.urls')), 
-        path('spotify/', include('spotify.urls')),
+    path('spotify/', include('spotify.urls')),
 
 )
