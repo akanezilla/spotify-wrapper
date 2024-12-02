@@ -4,37 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2b7ffd8d-02b9-4b57-9ee5-3fba1fa5c456" name="Changes" comment="add dark mode updates">
-      <change afterPath="$PROJECT_DIR$/navigation/urls.py" afterDir="false" />
+    <list default="true" id="2b7ffd8d-02b9-4b57-9ee5-3fba1fa5c456" name="Changes" comment="top song animation">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/home/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/home/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/home/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/home/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spotify/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/spotify/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spotify_wrapper/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/spotify_wrapper/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spotify_wrapper/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/spotify_wrapper/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/RainbowMode/images/CardFrontRB.svg" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/CardFrontRB.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/RainbowMode/images/StarCardRB.svg" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/StarCardRB.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/RainbowMode/images/SunCardRB.svg" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/SunCardRB.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/RainbowMode/images/closedScrollRB.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/closedScrollRB.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/RainbowMode/images/crystalBallRB.svg" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/crystalBallRB.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/RainbowMode/images/heartCardRB.svg" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/heartCardRB.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/RainbowMode/images/hourglass_rainbow.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/hourglass_rainbow.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/RainbowMode/images/moonCardRB.svg" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/moonCardRB.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/RainbowMode/images/personRB.svg" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/personRB.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/RainbowMode/images/scrollRB.svg" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/scrollRB.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/RainbowMode/images/swordCardRB.svg" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/swordCardRB.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/RainbowMode/images/topscrollRB.svg" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/topscrollRB.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/RainbowMode/listening_minutes.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/RainbowMode/listening_minutes.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/RainbowMode/memorable_moment.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/RainbowMode/memorable_moment.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/RainbowMode/slideShowRB.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/RainbowMode/slideShowRB.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/RainbowMode/top_5_songs.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/RainbowMode/top_5_songs.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/RainbowMode/top_artist.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/RainbowMode/top_artist.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/RainbowMode/top_genre.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/RainbowMode/top_genre.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/RainbowMode/top_song.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/RainbowMode/top_song.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/RainbowMode/transition1.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/RainbowMode/transition1.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/RainbowMode/transition2.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/RainbowMode/transition2.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/RainbowMode/type_of_listener.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/RainbowMode/type_of_listener.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/home/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/home.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -179,7 +154,11 @@
       <workItem from="1732044164076" duration="703000" />
       <workItem from="1732045422888" duration="246000" />
       <workItem from="1732205009963" duration="249000" />
-      <workItem from="1732400322212" duration="53845000" />
+      <workItem from="1732400322212" duration="65188000" />
+      <workItem from="1732954110675" duration="1069000" />
+      <workItem from="1732955374832" duration="1217000" />
+      <workItem from="1732956596551" duration="75000" />
+      <workItem from="1732956680482" duration="19897000" />
     </task>
     <task id="LOCAL-00001" summary="add new code">
       <option name="closed" value="true" />
@@ -301,7 +280,87 @@
       <option name="project" value="LOCAL" />
       <updated>1732747221005</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="connect slides to api">
+      <option name="closed" value="true" />
+      <created>1732918057312</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1732918057312</updated>
+    </task>
+    <task id="LOCAL-00017" summary="connect navgiation app to navigate">
+      <option name="closed" value="true" />
+      <created>1732918084258</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1732918084258</updated>
+    </task>
+    <task id="LOCAL-00018" summary="connect memorable moment">
+      <option name="closed" value="true" />
+      <created>1732950388586</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1732950388588</updated>
+    </task>
+    <task id="LOCAL-00019" summary="connect memorable moment">
+      <option name="closed" value="true" />
+      <created>1732958144702</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1732958144702</updated>
+    </task>
+    <task id="LOCAL-00020" summary="connect memorable moment">
+      <option name="closed" value="true" />
+      <created>1732958935298</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1732958935298</updated>
+    </task>
+    <task id="LOCAL-00021" summary="christy pull">
+      <option name="closed" value="true" />
+      <created>1732959241002</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1732959241002</updated>
+    </task>
+    <task id="LOCAL-00022" summary="top genre">
+      <option name="closed" value="true" />
+      <created>1733030601335</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1733030601335</updated>
+    </task>
+    <task id="LOCAL-00023" summary="top song">
+      <option name="closed" value="true" />
+      <created>1733091083488</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1733091083488</updated>
+    </task>
+    <task id="LOCAL-00024" summary="top song">
+      <option name="closed" value="true" />
+      <created>1733091086540</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1733091086540</updated>
+    </task>
+    <task id="LOCAL-00025" summary="top song animation">
+      <option name="closed" value="true" />
+      <created>1733096051040</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1733096051040</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -317,6 +376,13 @@
     <MESSAGE value="add rainbow mode images" />
     <MESSAGE value="add rainbow mode slide show" />
     <MESSAGE value="add dark mode updates" />
-    <option name="LAST_COMMIT_MESSAGE" value="add dark mode updates" />
+    <MESSAGE value="connect slides to api" />
+    <MESSAGE value="connect navgiation app to navigate" />
+    <MESSAGE value="connect memorable moment" />
+    <MESSAGE value="christy pull" />
+    <MESSAGE value="top genre" />
+    <MESSAGE value="top song" />
+    <MESSAGE value="top song animation" />
+    <option name="LAST_COMMIT_MESSAGE" value="top song animation" />
   </component>
 </project>
