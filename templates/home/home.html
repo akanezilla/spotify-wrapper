@@ -111,7 +111,8 @@
              {% if is_connected %}
                 <span>{% trans "Spotify Connected" %}</span>
              {% else %}
-                <a href="{% url 'spotify:spotify_connect' %}">{% trans "Connect with Spotify" %}</a>
+             <a href="{% url 'spotify:spotify_connect' %}">{% trans "Connect with Spotify" %}</a>
+
              {% endif %}
              <a href="#">{% trans "Stories" %}</a>
              <a href="#">{% trans "Profile" %}</a>
@@ -183,7 +184,7 @@
           <nav role="navigation" class="nav-links-container w-nav-menu">
             <div class="nav-sub-container">
               <div class="nav-links-wrapper"></div>
-              <a href="https://puginarug.com/" class="nav-link nav_link--logout">Connect to Spotify</a>
+              <a href="{% url 'spotify:spotify_connect' %}" class="nav-link nav_link--logout">{% trans "Connect with Spotify" %}</a>
               <a href="{% url 'about' %}" class="nav-link nav_link--logout">About</a>
               <a href="{% url 'contact' %}" class="nav-link nav_link--logout">Contact Us</a>
               <a href="{% url 'login' %}" class="nav-link nav_link--logout">Log out</a>
@@ -213,8 +214,8 @@
   <section class="section-3">
   </section>
   <div class="w-layout-blockcontainer container-3 w-container">
-    <a href="{% url 'new_wrapped' %}" class="link-block w-inline-block">
-      <div class="new-fortunes">
+    <a href="{% url 'transition1RB' %}" class="link-block w-inline-block">
+    <div class="new-fortunes">
         <div id="new-wrap" class="div">
           <div class="sun-center">
             <div class="ray3"></div>

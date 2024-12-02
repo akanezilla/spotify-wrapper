@@ -142,18 +142,6 @@
     </div>
 </div>
 
-<form action="{% url 'spotify:saved_wraps' %}" method="post" id="saveWrapForm">
-    {% csrf_token %}
-    <input type="hidden" name="listening_minutes" value="1234">
-    <input type="hidden" name="memorable_moments" value="Your memorable moments...">
-    <input type="hidden" name="top_5_songs" value="Song1,Song2,Song3,Song4,Song5">
-    <input type="hidden" name="top_5_artists" value="Artist1,Artist2,Artist3,Artist4,Artist5">
-    <input type="hidden" name="top_5_genres" value="Genre1,Genre2,Genre3,Genre4,Genre5">
-    <input type="hidden" name="top_song" value="Your Top Song">
-    <input type="hidden" name="type_of_listener" value="Dedicated Listener">
-    <button type="submit" id="saveWrapButton">Save Wrapped</button>
-</form>
-
 <script>
     document.getElementById("save-wrap-button").addEventListener("click", async function () {
         const form = document.getElementById("saveWrapForm");
