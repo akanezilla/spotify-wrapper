@@ -15,9 +15,6 @@ from django.http import JsonResponse
 from .models import SavedWrap
 from django.contrib.auth.decorators import login_required
 
-import json
-
-
 
 
 

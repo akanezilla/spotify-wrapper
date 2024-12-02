@@ -15,7 +15,7 @@ urlpatterns = [
     path('RainbowMode/top_5_songs/', views.top_tracks_view, name='top_5_songsRB'),  
     path('RainbowMode/top_artists/', views.top_artists_view, name='top_artistsRB'),  
     path('RainbowMode/type_of_listener/', views.listener_type_view, name='listener_typeRB'),  
-    path('', views.home_view, name='home'),
+    # path('', views.home_view, name='home'),
     path('top-genres/', views.top_genre_view, name='top_genres'),
     path('home/', views.home_view, name='home'),
 ]

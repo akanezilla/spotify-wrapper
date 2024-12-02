@@ -167,6 +167,52 @@ msgstr "¡Has escuchado %s minutos de música!"  # Example translation for Spani
 msgid "We couldn't fetch your listening time. Please try again."
 msgstr "No pudimos obtener tu tiempo de escucha. Por favor, intenta de nuevo."  # Example translation for Spanish
 
+#: .\templates\home\home.html:211
+msgid "New Wrap"
+msgstr "Nuevo Envase"
+
+#:.\templates\home\home.html:225
+msgid "Past Wraps"
+msgstr "Envoltorios Pasados"
+
+#: .\templates\home\home.html:241
+msgid "Account"
+msgstr "Cuenta"
+
+#: .\templates\home\home.html:162
+msgid "About"
+msgstr "Acerca de"
+
+#:.\templates\home\home.html:163
+msgid "Contact Us"
+msgstr "Contáctenos"
+
+
+
+#: .\templates\home\contact.html:66
+msgid "Name"
+msgstr "Nombre"
+
+#: .\templates\home\contact.html:69
+msgid "Email Address"
+msgstr "Dirección de correo electrónico"
+
+#: .\templates\home\contact.html:72
+msgid "Message"
+msgstr "Mensaje"
+
+#: .\templates\home\contact.html:70
+msgid "Enter your email"
+msgstr "Ingresa tu correo electrónico"
+
+#: .\templates\home\contact.html:73
+msgid "Enter your message"
+msgstr "Ingresa tu mensaje "
+
+#: .\templates\home\contact.html:61
+msgid "We appreciate your feedback!"
+msgstr "¡Agradecemos tus comentarios!"
+
 
 
 
