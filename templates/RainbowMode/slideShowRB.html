@@ -1,9 +1,11 @@
+{% load i18n %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Slideshow Rainbow</title>
+    <title>Rainbow Slideshow</title>
     <style>
         body {
             margin: 0;
@@ -17,7 +19,7 @@
             width: 100vw;
             height: 100vh;
             background: black;
-            overflow: hidden
+            overflow: hidden;
         }
 
         .iframe-slide {
@@ -49,8 +51,13 @@
             z-index: 1000;
         }
 
-        .prev { left: 20px; }
-        .next { right: 20px; }
+        .prev {
+            left: 20px;
+        }
+
+        .next {
+            right: 20px;
+        }
 
         .progress-bar-background {
             position: absolute;
@@ -89,9 +96,7 @@
             justify-content: center;
             align-items: center;
             z-index: 2000;
-            box-shadow:
-                0 0 10px rgba(255, 255, 255, 0.5),
-                0 0 20px rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.3);
         }
 
         .close-button:hover {
@@ -111,9 +116,7 @@
             padding: 10px 20px;
             cursor: pointer;
             z-index: 2000;
-            box-shadow:
-                0 0 10px rgba(255, 255, 255, 0.5),
-                0 0 20px rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.3);
         }
 
         #save-wrap-button:hover {
@@ -124,10 +127,10 @@
 </head>
 <body>
 <div class="slideshow-container">
-    <button class="close-button" onclick="window.location.href='{% url '/home/' %}'">X</button>
-        <button class="nav-button prev" onclick="prevSlide()">&#10094;</button>
-    <button class="nav-button next" onclick="nextSlide()">&#10095;</button>
-    <button id="save-wrap-button" onclick="saveWrap()">Save Wrap</button>
+    <button class="close-button" onclick="window.location.href='{% url 'home' %}'">X</button>
+    <button id="save-wrap-button">Save Wrap</button>
+    <button class="nav-button prev">❮</button>
+    <button class="nav-button next">❯</button>
 
     <iframe src="{% url 'top_5_songsRB' %}" class="iframe-slide active"></iframe>
     <iframe src="{% url 'top_songRB' %}" class="iframe-slide"></iframe>
@@ -143,68 +146,45 @@
 </div>
 
 <script>
-    document.getElementById("save-wrap-button").addEventListener("click", async function () {
-        const form = document.getElementById("saveWrapForm");
-        const formData = new FormData(form);
+    document.addEventListener('DOMContentLoaded', function () {
+        const slides = document.querySelectorAll('.iframe-slide');
+        const prevButton = document.querySelector('.prev');
+        const nextButton = document.querySelector('.next');
+        const progressBar = document.querySelector('.progress-bar');
+        let currentSlide = 0;
 
-        try {
-            const response = await fetch(form.action, {
-                method: "POST",
-                body: formData,
-                headers: {
-                    "X-CSRFToken": form.querySelector("[name=csrfmiddlewaretoken]").value,
-                },
+        function updateSlide() {
+            slides.forEach((slide, index) => {
+                slide.classList.toggle('active', index === currentSlide);
+                if (index === currentSlide) {
+                    slide.contentWindow.postMessage('slideActive', '*');
+                }
             });
-
-            if (response.ok) {
-                const button = document.getElementById("save-wrap-button");
-                button.textContent = "Wrap Saved";
-                button.disabled = true;
-            } else {
-                alert("Something went wrong. Please try again.");
-            }
-        } catch (error) {
-            console.error("Error submitting form:", error);
+            window.dispatchEvent(new CustomEvent('slideChanged', {detail: {slideIndex: currentSlide}}));
+            progressBar.style.width = ((currentSlide + 1) / slides.length) * 100 + '%';
         }
-    });
 
-    const slides = document.querySelectorAll(".iframe-slide");
-    const progressBar = document.querySelector(".progress-bar");
-    let currentSlide = 0;
-
-    function updateSlide() {
-        slides.forEach((slide, index) => {
-            slide.classList.remove("active");
-            if (index === currentSlide) {
-                slide.classList.add("active");
-            }
+        prevButton.addEventListener('click', () => {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            updateSlide();
         });
 
-        progressBar.style.width = ((currentSlide + 1) / slides.length) * 100 + '%';
-    }
+        nextButton.addEventListener('click', () => {
+            currentSlide = (currentSlide + 1) % slides.length;
+            updateSlide();
+        });
 
-    function nextSlide() {
-        if (currentSlide < slides.length - 1) {
-            currentSlide++;
-            updateSlide();
-        } else {
-            currentSlide = 0;
-            updateSlide();
-        }
-    }
+        document.getElementById('save-wrap-button').addEventListener('click', () => {
+            alert('Wrap Saved!'); // Placeholder for actual save logic
+        });
 
-    function prevSlide() {
-        if (currentSlide > 0) {
-            currentSlide--;
+        setInterval(() => {
+            currentSlide = (currentSlide + 1) % slides.length;
             updateSlide();
-        } else {
-            currentSlide = slides.length - 1;
-            updateSlide();
-        }
-    }
+        }, 15000);
 
-    setInterval(nextSlide, 10000);
-    updateSlide();
+        updateSlide();
+    });
 </script>
 </body>
 </html>
