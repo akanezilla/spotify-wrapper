@@ -14,6 +14,7 @@ from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from .models import SavedWrap
 from django.contrib.auth.decorators import login_required
+from collections import Counter
 
 
 
@@ -171,24 +172,28 @@ def spotify_data_view(request):
 def top_tracks_view(request):
     try:
         spotify_profile = request.user.spotifyprofile
-        
+
         if spotify_profile.token_expires <= timezone.now():
             spotify_profile.refresh_spotify_token()
-        
+
         sp = spotipy.Spotify(auth=spotify_profile.spotify_token)
 
-        # Change time_range to 'long_term' for approximately the last year
+        # Fetch user's top tracks
         top_tracks = sp.current_user_top_tracks(limit=5, time_range='long_term')
 
         # Extract relevant information including cover photo URL
-        tracks_info = [{
-            'name': track['name'],
-            'artist': track['artists'][0]['name'],
-            'cover_url': track['album']['images'][0]['url'] if track['album']['images'] else None
-        } for track in top_tracks['items']]
+        tracks_info = []
+        for track in top_tracks['items']:
+            cover_url = track['album']['images'][0]['url'] if track['album']['images'] else '/static/images/default_cover.jpg'
+            tracks_info.append({
+                'name': track['name'],
+                'artist': track['artists'][0]['name'],
+                'cover_url': cover_url,
+                'id': track['id']  # Store the track ID if needed
+            })
 
         context = {
-            'top_tracks': top_tracks['items']
+            'top_tracks': tracks_info
         }
         return render(request, 'RainbowMode/top_5_songs.html', context)
 
@@ -234,10 +239,10 @@ def top_artists_view(request):
 def top_genre_view(request):
     try:
         spotify_profile = request.user.spotifyprofile
-        
+
         if spotify_profile.token_expires <= timezone.now():
             spotify_profile.refresh_spotify_token()
-        
+
         sp = spotipy.Spotify(auth=spotify_profile.spotify_token)
 
         top_artists = sp.current_user_top_artists(limit=50, time_range="medium_term")
@@ -268,7 +273,7 @@ def listener_type_view(request):
         spotify_profile = request.user.spotifyprofile
 
         # Refresh token if expired
-        if spotify_profile.token_expires <= now():
+        if spotify_profile.token_expires <= timezone.now():
             spotify_profile.refresh_spotify_token()
         
         sp = spotipy.Spotify(auth=spotify_profile.spotify_token)
@@ -350,29 +355,36 @@ def random_songs_view(request):
 @login_required
 def total_listening_time_view(request):
     try:
+        # Ensure the user has a Spotify profile
         spotify_profile = request.user.spotifyprofile
-        
+
+        # Refresh token if expired
         if spotify_profile.token_expires <= timezone.now():
             spotify_profile.refresh_spotify_token()
-        
+
+        # Connect to Spotify API
         sp = spotipy.Spotify(auth=spotify_profile.spotify_token)
-        
-        # Get recently played tracks
-        recent_tracks = sp.current_user_recently_played(limit=50)
-        
-        total_duration = sum(track['track']['duration_ms'] for track in recent_tracks['items'])
-        total_duration_minutes = total_duration / (1000 * 60)  # Convert to minutes
-        
-        context = {
-            'total_duration': total_duration_minutes
-        }
-        return render(request, 'spotify/total_listening_time.html', context)
+
+        # Fetch top tracks and calculate total listening time
+        top_tracks = sp.current_user_top_tracks(limit=50, time_range='long_term')
+        total_duration = sum(track['duration_ms'] for track in top_tracks['items'])
+        total_duration_minutes = round(total_duration / (1000 * 60))  # Convert ms to minutes
+
+        # Estimate yearly listening time
+        estimated_yearly_minutes = total_duration_minutes * 20  # Adjust multiplier as needed
+
+        # Return JSON response
+        return JsonResponse({'listening_minutes': estimated_yearly_minutes})
+
     except SpotifyProfile.DoesNotExist:
-        messages.warning(request, "Please connect your Spotify account first.")
-        return redirect('spotify:spotify_connect')
+        return JsonResponse({'error': 'Spotify account not connected'}, status=400)
+
     except SpotifyException as e:
-        messages.error(request, f"Spotify API error: {str(e)}")
-        return redirect('home')
+        return JsonResponse({'error': f'Spotify API error: {str(e)}'}, status=500)
+
+    except Exception as e:
+        return JsonResponse({'error': f'Unexpected error: {str(e)}'}, status=500)
+
 @login_required
 def top_song_view(request):
     try:
@@ -495,17 +507,22 @@ def memorable_moment_view(request):
         track_info = sp.track(memorable_track['id'])
         artist_info = sp.artist(track_info['artists'][0]['id'])
 
-        context = {
-            'track': track_info,
-            'artist': artist_info,
+        data = {
+            'track_name': track_info['name'],
+            'artist_name': artist_info['name'],
+            'track_image': track_info['album']['images'][0]['url'],
             'moment_description': generate_moment_description(track_info, artist_info)
         }
-        return render(request, 'spotify/memorable_moment.html', context)
-    except SpotifyProfile.DoesNotExist:
-        messages.warning(request, "Please connect your Spotify account first.")
-        return redirect('spotify:spotify_connect')
-    except SpotifyException as e:
-        messages.error(request, f"Spotify API error: {str(e)}")
+
+        if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+            return JsonResponse(data)
+
+        return render(request, 'spotify/memorable_moment.html', {'initial_data': json.dumps(data)})
+
+    except Exception as e:
+        if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+            return JsonResponse({'error': str(e)}, status=400)
+        messages.error(request, str(e))
         return redirect('home')
 
 

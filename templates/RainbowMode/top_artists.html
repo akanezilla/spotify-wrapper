@@ -1,3 +1,4 @@
+
 {% load i18n %}
 {% load static %}
 <!DOCTYPE html>
@@ -303,7 +304,7 @@
             <div class="flip-card">
                 <div class="flip-card-inner">
                     <div class="flip-card-front">
-                        <img src="{% static 'images/card_images/heartCardRB.svg' %}" alt="Card Front">
+                        <img src="{% static 'images/card_images/heartCardRB.svg' %}{{ card_images|slice:forloop.counter0 }}" alt="Card Front"> <!-- Example card front -->
                     </div>
                     <div class="flip-card-back">
                         <p class="artist-name">{{ artist.name }}</p> <!-- Display artist name -->

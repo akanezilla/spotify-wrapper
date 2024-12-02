@@ -1,3 +1,4 @@
+
 {% load i18n %}
 {% load static %}
 
@@ -212,19 +213,18 @@
 
 
         .flip-card {
-    width: 200px;                  /* Set a fixed width for each card */
-    height: 300px;                 /* Set a fixed height for each card */
-    perspective: 1000px;           /* Preserve 3D effect for flip effect */
-    margin-bottom: 50px;           /* Space between the cards vertically */
-}
-        
+            width: 250px; /* Card size */
+            height: 350px; /* Card size */
+            perspective: 1000px; /* Perspective for the flip effect */
+            margin-right: 10px; /* Space between cards */
+        }
+
         .flip-card-inner {
             position: relative;
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    transition: transform 0.6s;
-    transform-style: preserve-3d;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.8s; /* Smooth flip transition */
+            transform-style: preserve-3d; /* Preserve the card's dimensions */
         }
 
         .flip-card:hover .flip-card-inner {
@@ -233,9 +233,9 @@
 
         .flip-card-front, .flip-card-back {
             position: absolute;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden; /* Hide the back side when not flipped */
             border-radius: 10px; /* Rounded corners */
         }
 
@@ -272,7 +272,8 @@
             background-size: contain; /* Ensure the entire image is visible */
             background-repeat: no-repeat; /* Prevent repeating */
             background-position: center; /* Center the image */
-color: white; /* Text color for song details */
+
+            color: white; /* Text color for song details */
         }
 
 
@@ -300,33 +301,32 @@ color: white; /* Text color for song details */
             opacity: 0.8; /* Slightly transparent for artist name */
             text-shadow: 0 0 5px rgba(255, 255, 255, 0.5); /* Soft white glow */
         }
-
         /* Responsive Adjustments */
-        @media (min-width: 768px) {
-            .flip-card {
-                width: 200px; /* Slightly larger on tablets and up */
-                height: 300px;
-            }
+@media (min-width: 768px) {
+    .flip-card {
+        width: 200px; /* Slightly larger on tablets and up */
+        height: 300px;
+    }
 
-            .song-title {
-                font-size: 16px; /* Larger font for bigger screens */
-            }
+    .song-title {
+        font-size: 16px; /* Larger font for bigger screens */
+    }
 
-            .song-artist {
-                font-size: 14px;
-            }
-        }
+    .song-artist {
+        font-size: 14px;
+    }
+}
 
-        @media (min-width: 1200px) {
-            .card-container {
-                justify-content: center; /* Keep cards centered on larger screens */
-            }
+@media (min-width: 1200px) {
+    .card-container {
+        justify-content: center; /* Keep cards centered on larger screens */
+    }
 
-            .flip-card {
-                width: 250px; /* Full size on larger screens */
-                height: 350px;
-            }
-        }
+    .flip-card {
+        width: 250px; /* Full size on larger screens */
+        height: 350px;
+    }
+}
     </style>
 </head>
 <body>
@@ -351,12 +351,12 @@ color: white; /* Text color for song details */
 </div>
 <div class="content">
     <h1>{% trans "Your Chords of Destiny" %}</h1>
-    <div class="cards-container">
+    <div class="card-container">
         {% for track in top_tracks %}
             <div class="flip-card">
                 <div class="flip-card-inner">
                     <div class="flip-card-front">
-                        <img src="{% static '/images/heartCardRB.svg/' %}{{ card_images|slice:forloop.counter0 }}"
+                        <img src="{% static '/images/card_images/heartCardRB.svg' %}{{ card_images|slice:forloop.counter0 }}"
                              alt="Card Front"></div>
                     <div class="flip-card-back">
                         <img src="{{ track.cover_url }}" alt="Album cover for {{ track.name }}" class="album-cover">

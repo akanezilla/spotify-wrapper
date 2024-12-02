@@ -17,7 +17,7 @@ urlpatterns = [
 
     path('LightMode/transition1/', views.transition1_lm, name='transition1LM'),
     path('LightMode/transition2/', views.transition2_lm, name='transition2LM'),
-    path('LightMode/slideShowRB/', views.slideshow_lm, name='slideShowLM'),
+    path('LightMode/slideShowLM/', views.slideshow_lm, name='slideShowLM'),
     path('LightMode/top_5_songs/', views.top_5_songs_lm, name='top_5_songsLM'),
     path('LightMode/top_song/', views.top_song_lm, name='top_songLM'),
     path('LightMode/top_artists/', views.top_artist_lm, name='top_artistsLM'),
@@ -28,7 +28,7 @@ urlpatterns = [
 
     path('DarkMode/transition1/', views.transition1_dm, name='transition1DM'),
     path('DarkMode/transition2/', views.transition2_dm, name='transition2DM'),
-    path('DarkMode/slideShowRB/', views.slideshow_dm, name='slideShowDM'),
+    path('DarkMode/slideShowDM/', views.slideshow_dm, name='slideShowDM'),
     path('DarkMode/top_5_songs/', views.top_5_songs_dm, name='top_5_songsDM'),
     path('DarkMode/top_song/', views.top_song_dm, name='top_songDM'),
     path('DarkMode/top_artists/', views.top_artist_dm, name='top_artistDM'),

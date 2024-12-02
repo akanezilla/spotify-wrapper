@@ -237,12 +237,12 @@
         }
 
         .sand-container.top .sand {
-            animation: sand-fall-top 1.5s linear forwards;
+            animation: sand-fall-top 3s linear forwards;
         }
 
         .sand-container.bottom .sand {
             transform: translateY(100%);
-            animation: sand-fall-bottom 3s linear forwards;
+            animation: sand-fall-bottom 5s linear forwards;
         }
 
         @keyframes sand-fall-top {
@@ -382,7 +382,7 @@
     }
 
     // Include the CSRF token in the fetch request:
-    fetch('/spotify/total-listening-time/', {
+    fetch('/total-listening-time/', {
         method: 'GET',
         headers: {
             'X-Requested-With': 'XMLHttpRequest',
