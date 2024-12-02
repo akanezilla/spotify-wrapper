@@ -28,36 +28,33 @@
       <div class="hero-text-wrapper">
         <div class="hero-top-wrapper">
           <div class="hero-heading-wrapper">
-            <div data-w-id="206cfd6a-49fd-5ed6-2e3d-dad029470d44" class="hero-heading">Tarotify Wrapped</div>
+            <div data-w-id="206cfd6a-49fd-5ed6-2e3d-dad029470d44" style="-webkit-transform:translate3d(0, 40px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 40px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 40px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 40px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0" class="hero-heading">Tarotify Wrapped</div>
           </div>
           <div class="hero-description-wrapper">
-            <h1 class="hero-description">All your Tarotify Wraps. In one place.</h1>
+            <h1 data-w-id="206cfd6a-49fd-5ed6-2e3d-dad029470d48" style="-webkit-transform:translate3d(0, 40px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 40px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 40px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 40px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0" class="hero-description">All your Tarotify Wraps. In one place.</h1>
           </div>
         </div>
-        <div class="hero-contact-info-wrapper"></div>
+        <div data-w-id="f1279437-eaea-55bb-9e67-e948d1ccc646" style="-webkit-transform:translate3d(0, 40px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 40px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 40px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 40px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0" class="hero-contact-info-wrapper"></div>
       </div>
     </div>
     <a href="#login" class="w-inline-block">
-        <img src="{% static 'images/arrow.svg' %}" loading="lazy" width="70" height="100" alt="Arrow" class="image-2"> 
-    </a>
+        <img src="{% static 'images/arrow.svg' %}" loading="lazy" width="70" height="100" alt="Arrow" class="image-2"> </a>
   </section>
   <section id="login" data-w-id="5ed9a231-cbe9-6bf4-a4b2-c99d7e1fa166" class="section section-hero">
     <div class="w-layout-blockcontainer container container-hero w-container">
       <div class="form-block-2 w-form">
-        <form id="login-form" name="login-form" method="POST" action="{% url 'login' %}" class="form-2" data-wf-page-id="67232149875170c31d5eb8ce" data-wf-element-id="b9e544d1-a7e9-ac83-f770-5cee4900379a">
+        <form id="email-form" name="email-form" data-name="Email Form" method="post" class="form-2" action="{% url 'login' %}">
           {% csrf_token %}
           <div class="div-block">
             <h1 class="heading">Log in to Tarotify</h1>
-            <label for="username" class="field-label-2">Username</label>
-            <input class="text-field-3 w-input" maxlength="256" name="username" id="username" placeholder="Enter your username" type="text" required>
-            
-            <label for="password" class="field-label-3">Password</label>
-            <input class="text-field-4 w-input" maxlength="256" name="password" id="password" placeholder="Enter your password" type="password" required>
-            
-            <input type="submit" class="submit-button w-button" value="Sign-in">
+            <label for="id_username" class="field-label-2">Email</label>
+            <input class="text-field-3 w-input" maxlength="256" name="username" data-name="Username" placeholder="" type="text" id="id_username" required>
+            <label for="id_password" class="field-label-3">Password</label>
+            <input class="text-field-4 w-input" maxlength="256" name="password" data-name="Password" placeholder="" type="password" id="id_password" required>
+            <input type="submit" data-wait="Please wait..." class="submit-button w-button" value="Sign-in">
           </div>
           <div class="div-block-2">
-            <div class="text-block-2">Don&#x27;t have an account?</div>
+            <div class="text-block-2">Don't have an account?</div>
             <a href="{% url 'signup' %}" class="link">Sign Up!</a>
           </div>
         </form>
@@ -74,7 +71,7 @@
   <div data-animation="default" class="nav-bar-signin w-nav" data-easing2="ease" fs-scrolldisable-element="smart-nav" data-easing="ease" data-collapse="medium" data-w-id="a6df697b-31f9-f69f-2475-dc6873284823" role="banner" data-duration="300">
     <div class="container navigation-container">
       <div class="nav-wrapper">
-        <a href="{% url 'login' %}" aria-current="page" class="nav-logo w-inline-block w--current">Login</a>
+        <a href="{% url 'login' %}" aria-current="page" class="nav-logo w-inline-block w--current">
         <img sizes="32.7890625px"
             srcset="{% static 'images/Screenshot-2024-10-31-at-1.35.39-AM-p-500.png' %} 500w,
                  {% static 'images/tarotifylogo.png' %} 751w" alt="Tarotify Logo" src="{% static 'images/tarotifylogo.png' %}"
@@ -129,22 +126,8 @@
 	/* Apply Theme Styles */
 	body {
   	  color: var(--text-color);
-  	  transition: background-color 0.3s ease, colo
-      r 0.3s ease;
+  	  transition: background-color 0.3s ease, color 0.3s ease;
 	}
-  .nav-logo-image {
-    width: 100px; /* Adjust the width of the logo to make it smaller */
-    height: auto;
-    position: absolute; /* Position the logo absolutely */
-    top: 10px; /* Position from the top */
-    left: 10px; /* Position from the left */
-  }
-  
-  .nav-wrapper {
-    display: flex;
-    justify-content: flex-start; /* Align content to the left */
-    align-items: center;
-  }
 	@keyframes gradient-shift {
   	  0% {
       background-position: 0% 50%;

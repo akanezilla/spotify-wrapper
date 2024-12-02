@@ -16,6 +16,10 @@
         body {
             height: 100vh;
             position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
         }
 
         .gradient-bg {
@@ -160,8 +164,8 @@
         }
 
         .crystal-ball-container {
-            width: 80vw; /* 80% of the viewport width */
-            height: 80vw; /* Maintain aspect ratio */
+            width: 100vw; /* 80% of the viewport width */
+            height: 100vw; /* Maintain aspect ratio */
             max-width: 500px; /* Set maximum size */
             max-height: 500px;
             position: relative;
@@ -182,8 +186,8 @@
 
         #img1 {
             width: 100%;
-            height: auto;
-            position: absolute;
+            height: 100%;
+            position: relative;
             top: 0;
             left: 0;
             z-index: 2; /* Ensure it's above the swirling effect */
@@ -258,14 +262,9 @@
             }
         }
 
-        @media (max-width: 768px) {
-            .crystal-ball-container {
-                width: 90vw;
-                height: 90vw;
-            }
-
+       @media (max-width: 768px) {
             h1 {
-                font-size: 6vw;
+                font-size: 7vw;
             }
 
             .listener-type, .listener-details {
@@ -274,21 +273,14 @@
         }
 
         @media (max-width: 480px) {
-            .crystal-ball-container {
-                width: 95vw;
-                height: 95vw;
-            }
-
             h1 {
                 font-size: 7vw;
             }
 
             .listener-type, .listener-details {
-                font-size: 5vw;
+                font-size: 3vw;
             }
         }
-
-
     </style>
 </head>
 <body>

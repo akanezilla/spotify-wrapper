@@ -1,36 +1,357 @@
+{% load i18n %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Light Mode Background</title>
+    <title>Light Mode Generating Wrapped</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body {
+        html, body {
             margin: 0;
-            height: 100vh;
-            background-image: url('images/lmgradient.png');
-            background-size: cover;
-            background-position: center;
-            color: rgb(166, 115, 225);
+            padding: 0;
+            overflow: hidden; /* Prevent scrolling */
             font-family: 'Poppins', Arial, sans-serif;
+            height: 100%;
+        }
+
+        body {
             display: flex;
             justify-content: center;
             align-items: center;
+            height: 100vh;
+            position: relative;
         }
-        h1 {
+
+        :root {
+            --rebecca-purple: #732894ff;
+            --hunyadi-yellow: #F1B44Aff;
+            --purpureus: #9B35BAff;
+            --mulberry: #C05EA1ff;
+            --lavender-floral: #CA85DFff;
+        }
+
+        .gradient-bg {
+            width: 100vw;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-size: 400% 400%;
+            background: linear-gradient(40deg, var(--rebecca-purple), var(--purpureus), var(--hunyadi-yellow), var(--mulberry), var(--lavender-floral));
+            animation: gradient-shift 15s ease infinite;
+            z-index: 1;
+        }
+
+        @keyframes gradient-shift {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .content {
+            z-index: 1000;
+            position: absolute;
+            top: 30%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             text-align: center;
-            font-size: 60px;
-            color: rgb(166, 115, 225); /* Text color */
-            text-shadow:
-                0 0 10px rgba(166, 115, 225, 0.7), /* Soft outer glow */
-                0 0 30px rgba(166, 115, 225, 0.3); /* Even wider glow */
+            color: white;
+            width: 100%; /* Ensures text and child elements are responsive */
+            padding: 0 10px;
         }
+
+
+        /* Floating Effects */
+        .gradients-container {
+            filter: url(#goo) blur(40px);
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        .g1, .g2, .g3, .g4, .g5 {
+            position: absolute;
+            border-radius: 50%;
+            mix-blend-mode: hard-light;
+            opacity: 1;
+        }
+
+        .g1 {
+            background: radial-gradient(circle at center, var(--rebecca-purple) 0, transparent 50%);
+            width: 80%;
+            height: 80%;
+            top: calc(50% - 40%);
+            left: calc(50% - 40%);
+            animation: moveVertical 30s ease infinite;
+        }
+
+        .g2 {
+            background: radial-gradient(circle at center, var(--hunyadi-yellow) 0, transparent 50%);
+            width: 60%;
+            height: 60%;
+            top: calc(50% - 30%);
+            left: calc(50% - 30%);
+            animation: moveInCircle 20s reverse infinite;
+        }
+
+        .g3 {
+            background: radial-gradient(circle at center, var(--mulberry) 0, transparent 50%);
+            width: 90%;
+            height: 90%;
+            top: calc(50% - 45%);
+            left: calc(50% - 45%);
+            animation: moveInCircle 40s linear infinite;
+        }
+
+        .g4 {
+            background: radial-gradient(circle at center, var(--lavender-floral) 0, transparent 50%);
+            width: 70%;
+            height: 70%;
+            top: calc(50% - 35%);
+            left: calc(50% - 35%);
+            animation: moveHorizontal 40s ease infinite;
+        }
+
+        .g5 {
+            background: radial-gradient(circle at center, var(--purpureus) 0, transparent 50%);
+            width: 120%;
+            height: 120%;
+            top: calc(50% - 60%);
+            left: calc(50% - 60%);
+            animation: moveInCircle 30s ease infinite;
+        }
+
+        @keyframes moveVertical {
+            0% {
+                transform: translateY(-50%);
+            }
+            50% {
+                transform: translateY(50%);
+            }
+            100% {
+                transform: translateY(-50%);
+            }
+        }
+
+        @keyframes moveHorizontal {
+            0% {
+                transform: translateX(-50%) translateY(-10%);
+            }
+            50% {
+                transform: translateX(50%) translateY(10%);
+            }
+            100% {
+                transform: translateX(-50%) translateY(-10%);
+            }
+        }
+
+        @keyframes moveInCircle {
+            0% {
+                transform: rotate(0deg);
+            }
+            50% {
+                transform: rotate(180deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        h1 {
+            font-size: 5vw;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.7);
+            position: absolute;
+            margin-top: 200px;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 2px solid white;
+            animation: blink-cursor 0.5s step-end infinite;
+        }
+
+        @keyframes blink-cursor {
+            from {
+                border-right-color: white;
+            }
+            to {
+                border-right-color: transparent;
+            }
+        }
+
+        .progress-bar {
+            width: 70%;
+            height: 10px;
+            background-color: rgba(255, 255, 255, 0.2);
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            overflow: hidden;
+            border-radius: 2px;
+        }
+
+        .progress {
+            width: 0;
+            height: 100%;
+            background-color: white;
+            animation: progress-animation 6s linear forwards;
+        }
+
+        @keyframes progress-animation {
+            to {
+                width: 100%;
+            }
+        }
+
+        .next-button {
+            position: absolute;
+            top: 70%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 24px;
+            background: none;
+            border: 2px solid white;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .next-button.hidden {
+            display: none;
+        }
+
+        .next-button.visible {
+            display: block;
+            opacity: 1;
+            pointer-events: all;
+            margin-top: 350px;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* Media Queries for Responsiveness */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 8vw; /* Scale the heading for smaller screens */
+            }
+
+            .progress-bar {
+                width: 90%; /* Ensure progress bar is wider on mobile */
+            }
+
+            .next-button {
+                font-size: 18px; /* Adjust the button size */
+                padding: 8px 15px; /* Adjust padding for better fit */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .content {
+                padding: 0 5px; /* Add more padding on small screens */
+            }
+
+            .next-button {
+                font-size: 16px; /* Smaller font size for smaller devices */
+                padding: 6px 12px;
+            }
+
+            h1 {
+                white-space: wrap;
+            }
+        }
+
     </style>
 </head>
 <body>
-    <h1>Analyzing your data...<br>
-        Generating your wrap...<br>
-        Complete!</h1>
+<div class="gradient-bg">
+    <svg xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <filter id="goo">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur"/>
+                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8"
+                               result="goo"/>
+                <feBlend in="SourceGraphic" in2="goo"/>
+            </filter>
+        </defs>
+    </svg>
+    <div class="gradients-container">
+        <div class="g1"></div>
+        <div class="g2"></div>
+        <div class="g3"></div>
+        <div class="g4"></div>
+        <div class="g5"></div>
+    </div>
+</div>
+<div class="content">
+    <h1 id="text-display"></h1>
+    <div class="progress-bar">
+        <div class="progress"></div>
+    </div>
+    <a id="next-button" href="{% url 'transition2RB' %}" class="next-button hidden">→</a>
+</div>
 </body>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const textDisplay = document.getElementById('text-display');
+        const progressBar = document.querySelector('.progress-bar');
+        const nextButton = document.getElementById('next-button');
+
+        const messages = [
+            "{% trans 'Analyzing your data...' %}",
+            "{% trans 'Generating your wrap...' %}",
+            "{% trans 'Complete!' %}"
+        ];
+
+        let currentMessageIndex = 0;
+
+        function typeText(message, callback) {
+            let i = 0;
+            const interval = setInterval(() => {
+                textDisplay.textContent += message[i];
+                i++;
+                if (i === message.length) {
+                    clearInterval(interval);
+                    setTimeout(callback, 1000); // Pause before moving to the next text
+                }
+            }, 100); // Typing speed
+        }
+
+        function showMessage() {
+            if (currentMessageIndex < messages.length) {
+                textDisplay.textContent = ''; // Clear the text display
+                typeText(messages[currentMessageIndex], () => {
+                    currentMessageIndex++;
+                    showMessage();
+                });
+            } else {
+                // Show the button when all messages are complete
+                nextButton.classList.add('visible');
+            }
+        }
+
+        // Start the text animation and progress bar
+        showMessage();
+
+        // Animate progress bar
+        progressBar.querySelector('.progress').style.animationPlayState = 'running';
+
+    });
+
+</script>
 </html>

@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dark Mode Background</title>
+    <title>Rainbow Mode Transition 2</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <style>
         html, body {
@@ -13,9 +13,13 @@
             padding: 0;
             overflow: hidden; /* Prevent scrolling */
             font-family: 'Poppins', Arial, sans-serif;
+            height: 100%;
         }
 
         body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
             height: 100vh;
             position: relative;
         }
@@ -47,6 +51,9 @@
         img {
             position: relative;
             z-index: 1001;
+            max-width: 100%; /* Ensures responsiveness */
+    height: auto; /* Maintains aspect ratio */
+    display: block; /* Ensures no extra space below images */
         }
 
         /* Floating Effects */
@@ -155,10 +162,11 @@
             color: white;
             top: 40%;
             transform: translateY(-50%);
+            padding: 0 10px;
         }
 
         h1 {
-            font-size: 70px;
+            font-size: 5vw;
             text-shadow: 0 0 20px rgba(255, 255, 255, 0.7);
             opacity: 100; /* Initially invisible */
             margin-bottom: 20px;
@@ -217,52 +225,52 @@
 </body>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-    const textContainer = document.getElementById('text-container');
-    const arrowBtn = document.getElementById('arrow-btn');
+        const textContainer = document.getElementById('text-container');
+        const arrowBtn = document.getElementById('arrow-btn');
 
-    // Array of text lines to display
-    const textLines = [
-    "{% trans 'The cards have been drawn,' %}",
-    "{% trans 'the stars aligned,' %}",
-    "{% trans 'and now the universe reveals' %}",
-    "{% trans 'your auditory divination!' %}"
-];
+        // Array of text lines to display
+        const textLines = [
+            "{% trans 'The cards have been drawn,' %}",
+            "{% trans 'the stars aligned,' %}",
+            "{% trans 'and now the universe reveals' %}",
+            "{% trans 'your auditory divination!' %}"
+        ];
 
-    let currentLine = 0;
+        let currentLine = 0;
 
-    function fadeInText() {
-        if (currentLine < textLines.length) {
-            // Create a new line element
-            const line = document.createElement('div');
-            line.textContent = textLines[currentLine];
+        function fadeInText() {
+            if (currentLine < textLines.length) {
+                // Create a new line element
+                const line = document.createElement('div');
+                line.textContent = textLines[currentLine];
 
-            // Apply styles to the new line
-            line.style.opacity = "0"; // Initially invisible
-            line.style.transition = "opacity 1.5s ease"; // Smooth fade-in
-            line.style.fontSize = "70px"; // Match parent style
-            line.style.textShadow = "0 0 20px rgba(255, 255, 255, 0.7)";
-            line.style.marginBottom = "10px"; // Spacing between lines
+                // Apply styles to the new line
+                line.style.opacity = "0"; // Initially invisible
+                line.style.transition = "opacity 1.5s ease"; // Smooth fade-in
+                line.style.fontSize = "70px"; // Match parent style
+                line.style.textShadow = "0 0 20px rgba(255, 255, 255, 0.7)";
+                line.style.marginBottom = "10px"; // Spacing between lines
 
-            // Append line and trigger fade-in
-            textContainer.appendChild(line);
-            setTimeout(() => line.style.opacity = "1", 50);
+                // Append line and trigger fade-in
+                textContainer.appendChild(line);
+                setTimeout(() => line.style.opacity = "1", 50);
 
-            currentLine++;
+                currentLine++;
 
-            // Schedule the next line
-            setTimeout(fadeInText, 2000); // Adjust timing as needed
-        } else {
-            // Show arrow button after all lines appear
-            setTimeout(() => {
-                arrowBtn.style.display = "inline-block";
-                arrowBtn.style.opacity = "0";
-                arrowBtn.style.transition = "opacity 1.5s ease";
-                setTimeout(() => arrowBtn.style.opacity = "1", 50);
-            }, 1000); // Delay before showing the button
+                // Schedule the next line
+                setTimeout(fadeInText, 2000); // Adjust timing as needed
+            } else {
+                // Show arrow button after all lines appear
+                setTimeout(() => {
+                    arrowBtn.style.display = "inline-block";
+                    arrowBtn.style.opacity = "0";
+                    arrowBtn.style.transition = "opacity 1.5s ease";
+                    setTimeout(() => arrowBtn.style.opacity = "1", 50);
+                }, 1000); // Delay before showing the button
+            }
         }
-    }
 
-    fadeInText(); // Start the animation
-});
+        fadeInText(); // Start the animation
+    });
 </script>
 </html>

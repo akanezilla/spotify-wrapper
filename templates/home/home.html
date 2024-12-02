@@ -73,17 +73,27 @@
             margin-bottom: 10px;
         }
         .language-switcher {
-            position: absolute;
-            top: 10px;
-            right: 10px;
+            position: relative;
+            top: 100px;
+            margin-right: 100%;
         }
         .language-switcher select {
             padding: 5px;
             border-radius: 5px;
             background-color: #191414;
-            color: #fff;
+            color: #ffffffa2;
             border: 1px solid #1DB954;
         }
+        .navbar {
+         background-color: #0000003b; /* Replace with your color */
+         box-shadow: 0 0 30px rgba(0, 0, 0, 0.381);
+         position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;  /* Ensure it spans the full width */
+    z-index: 1000;  /* Ensures the navbar is above other content */
+        }
+        
     </style>
 </head>
 <body data-theme="light" class="body-9">
@@ -108,19 +118,18 @@
            <span>{% trans "Welcome," %} {{ username }}</span>
         </div>
         <div class="navbar-right">
-             {% if is_connected %}
-                <span>{% trans "Spotify Connected" %}</span>
-             {% else %}
-             <a href="{% url 'spotify:spotify_connect' %}">{% trans "Connect with Spotify" %}</a>
-
-             {% endif %}
-             <a href="#">{% trans "Stories" %}</a>
-             <a href="#">{% trans "Profile" %}</a>
-             <form method="post" action="{% url 'logout' %}">
-                 {% csrf_token %}
-                 <button type="submit">{% trans "Logout" %}</button>
-                 <a href="{% url 'delete_account' %}">{% trans "Delete Account" %}</a>
-             </form>
+            {% if is_connected %}
+            <span>{% trans "Spotify Connected" %}</span>
+        {% else %}
+            <a href="{% url 'spotify:spotify_connect' %}">{% trans "Connect with Spotify" %}</a>
+        {% endif %}
+        <a href="#">{% trans "Stories" %}</a>
+        <a href="#">{% trans "Profile" %}</a>
+        <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit">{% trans "Logout" %}</button>
+            <a href="{% url 'delete_account' %}">{% trans "Delete Account" %}</a>
+        </form>
          </div>
      </nav>
 
@@ -346,6 +355,7 @@
   	  color: var(--text-color);
   	  transition: background-color 0.3s ease, color 0.3s ease;
 	}
+    
 	@keyframes gradient-shift {
   	  0% {
       background-position: 0% 50%;

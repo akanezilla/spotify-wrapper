@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dark Mode Background</title>
+    <title>Rainbow Mode Top Genre</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <style>
         html, body {
@@ -49,6 +49,11 @@
             position: relative;
             text-align: center;
             color: white;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%; /* Full height of the viewport */
+            padding: 0 20px; /* Add padding for smaller screens */
         }
 
         h1 {
@@ -61,6 +66,9 @@
             margin-top: 70px;
             position: relative;
             z-index: 1001;
+            max-width: 80%; /* Ensure the image scales on smaller screens */
+            height: auto; /* Maintain aspect ratio */
+            cursor: pointer;
         }
 
         /* Floating Effects */

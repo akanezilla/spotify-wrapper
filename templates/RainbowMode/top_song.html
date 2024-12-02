@@ -230,6 +230,24 @@
         #scroll-content.visible {
             opacity: 1;
             height: 100%;
+            padding: 10px; /* Add some padding for spacing */
+            max-width: 90%; /* Fit smaller devices */
+            box-sizing: border-box;
+        }
+
+        /* Responsive adjustments for smaller screens */
+        @media (max-width: 768px) {
+            .scroll-container {
+                width: 90%;
+                margin: 80px auto; /* Adjust margin for smaller screens */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .scroll-container {
+                width: 95%;
+                margin: 60px auto;
+            }
         }
 
         @keyframes bounce {

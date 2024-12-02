@@ -1,48 +1,381 @@
+{% load i18n %}
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Light Mode Background</title>
+    <title> Light Mode Listener Type</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body {
+        html, body {
             margin: 0;
-            height: 100vh;
-            background-image: url('images/lmgradient.png');
-            background-size: cover;
-            background-position: center;
-            color: rgb(166, 115, 225);
+            padding: 0;
+            overflow: hidden; /* Prevent scrolling */
             font-family: 'Poppins', Arial, sans-serif;
         }
-        h1 {
-            text-align: center;
-            margin-top: 0;
-            padding-top: 20px;
-            font-size: 50px;
-            text-shadow:
-                0 0 10px rgba(166, 115, 225, 0.7), /* Soft outer glow */
-                0 0 30px rgba(166, 115, 225, 0.3); /* Even wider glow */
-        }
-        .content {
+
+        body {
+            height: 100vh;
+            position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
-            flex-wrap: nowrap;
-            gap: 20px;
-            padding: 20px;
+            text-align: center;
         }
-        img {
-             max-width: 30%;
-              height: auto;
-              filter: drop-shadow(0 0 50px rgba(166, 115, 225, 0.7));
+
+        :root {
+            --rebecca-purple: #732894ff;
+            --hunyadi-yellow: #F1B44Aff;
+            --purpureus: #9B35BAff;
+            --mulberry: #C05EA1ff;
+            --lavender-floral: #CA85DFff;
+        }
+
+        .gradient-bg {
+            width: 100vw;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-size: 400% 400%;
+            background: linear-gradient(40deg, var(--rebecca-purple), var(--purpureus), var(--hunyadi-yellow), var(--mulberry), var(--lavender-floral));
+            animation: gradient-shift 15s ease infinite;
+            z-index: 1;
+        }
+
+        @keyframes gradient-shift {
+            0% {
+                background-position: 0% 50%;
             }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .content {
+            z-index: 1000;
+            text-align: center;
+            position: relative;
+            color: white;
+        }
+
+        h1 {
+            font-size: 50px;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.7);
+            margin-top: 20px;
+        }
+
+        img {
+            position: relative;
+            z-index: 1001;
+        }
+
+        /* Floating Effects */
+        .gradients-container {
+            filter: url(#goo) blur(40px);
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        .g1, .g2, .g3, .g4, .g5 {
+            position: absolute;
+            border-radius: 50%;
+            mix-blend-mode: hard-light;
+            opacity: 1;
+        }
+
+        .g1 {
+            background: radial-gradient(circle at center, var(--rebecca-purple) 0, transparent 50%);
+            width: 80%;
+            height: 80%;
+            top: calc(50% - 40%);
+            left: calc(50% - 40%);
+            animation: moveVertical 30s ease infinite;
+        }
+
+        .g2 {
+            background: radial-gradient(circle at center, var(--hunyadi-yellow) 0, transparent 50%);
+            width: 60%;
+            height: 60%;
+            top: calc(50% - 30%);
+            left: calc(50% - 30%);
+            animation: moveInCircle 20s reverse infinite;
+        }
+
+        .g3 {
+            background: radial-gradient(circle at center, var(--mulberry) 0, transparent 50%);
+            width: 90%;
+            height: 90%;
+            top: calc(50% - 45%);
+            left: calc(50% - 45%);
+            animation: moveInCircle 40s linear infinite;
+        }
+
+        .g4 {
+            background: radial-gradient(circle at center, var(--lavender-floral) 0, transparent 50%);
+            width: 70%;
+            height: 70%;
+            top: calc(50% - 35%);
+            left: calc(50% - 35%);
+            animation: moveHorizontal 40s ease infinite;
+        }
+
+        .g5 {
+            background: radial-gradient(circle at center, var(--purpureus) 0, transparent 50%);
+            width: 120%;
+            height: 120%;
+            top: calc(50% - 60%);
+            left: calc(50% - 60%);
+            animation: moveInCircle 30s ease infinite;
+        }
+
+        @keyframes moveVertical {
+            0% {
+                transform: translateY(-50%);
+            }
+            50% {
+                transform: translateY(50%);
+            }
+            100% {
+                transform: translateY(-50%);
+            }
+        }
+
+        @keyframes moveHorizontal {
+            0% {
+                transform: translateX(-50%) translateY(-10%);
+            }
+            50% {
+                transform: translateX(50%) translateY(10%);
+            }
+            100% {
+                transform: translateX(-50%) translateY(-10%);
+            }
+        }
+
+        @keyframes moveInCircle {
+            0% {
+                transform: rotate(0deg);
+            }
+            50% {
+                transform: rotate(180deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .crystal-ball-container {
+            width: 100vw; /* 80% of the viewport width */
+            height: 100vw; /* Maintain aspect ratio */
+            max-width: 500px; /* Set maximum size */
+            max-height: 500px;
+            position: relative;
+            margin: 0 auto; /* Center horizontally */
+        }
+
+        .circle-shadow-container {
+            width: 76%; /* Keep it proportional */
+            height: 76%;
+            margin: auto;
+            border-radius: 50%;
+            box-shadow: 0 0 30px 10px rgba(255, 255, 255, 0.5);
+            overflow: hidden;
+            position: absolute;
+            top: 0.75%; /* Centering adjustment */
+            left: 12%;
+        }
+
+        #img1 {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            top: 0;
+            left: 0;
+            z-index: 2; /* Ensure it's above the swirling effect */
+            cursor: pointer;
+        }
+
+        #img1:hover {
+            transform: scale(1.05);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .listener-type, .listener-details {
+            font-size: 3vw; /* Scale dynamically */
+            max-font-size: 1.5rem;
+        }
+
+        .swirl-effect {
+            position: absolute;
+            top: 5px;
+            left: 62px;
+            width: 75%;
+            height: 75%;
+            border-radius: 100%;
+            background: conic-gradient(
+                    rgba(255, 206, 51, 0.8),
+                    rgba(255, 158, 48, 0.8),
+                    rgba(229, 77, 212, 0.8),
+                    rgba(137, 68, 177, 0.8),
+                    rgba(0, 121, 242, 0.8),
+                    rgba(255, 206, 51, 0.8)
+            );
+            z-index: 1; /* Behind the crystal ball image */
+            animation: swirlRainbow 2s linear infinite; /* Faster swirling for emphasis */
+            mix-blend-mode: lighten;
+        }
+
+        @keyframes swirlRainbow {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+
+        .listener-type, .listener-details {
+            position: absolute;
+            top: 35%; /* Center vertically */
+            left: 50%; /* Center horizontally */
+            transform: translate(-50%, -50%); /* Adjust for true centering */
+            font-size: 1.2rem; /* Adjust font size to fit inside the ball */
+            color: white;
+            text-align: center;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+            z-index: 3; /* Ensure it's above the swirl effect */
+            display: none; /* Initially hidden */
+            opacity: 0; /* For fade-in effect */
+        }
+
+        .listener-details {
+            margin-top: 40px; /* Space between type and details */
+            font-size: 1rem; /* Slightly smaller font for details */
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+       @media (max-width: 768px) {
+            h1 {
+                font-size: 7vw;
+            }
+
+            .listener-type, .listener-details {
+                font-size: 4vw;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 7vw;
+            }
+
+            .listener-type, .listener-details {
+                font-size: 3vw;
+            }
+        }
     </style>
 </head>
 <body>
-    <h1>Aura</h1>
-    <div class="content">
-        <img src="images/lmcrystalball.png" alt="Crystal Ball" id="img1">
+<div class="gradient-bg">
+    <svg xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <filter id="goo">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur"/>
+                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8"
+                               result="goo"/>
+                <feBlend in="SourceGraphic" in2="goo"/>
+            </filter>
+        </defs>
+    </svg>
+    <div class="gradients-container">
+        <div class="g1"></div>
+        <div class="g2"></div>
+        <div class="g3"></div>
+        <div class="g4"></div>
+        <div class="g5"></div>
     </div>
+</div>
+<div class="content">
+    <h1>{% trans "Aura" %}</h1>
+    <div class="crystal-ball-container">
+        <div class="circle-shadow-container"></div>
+        <img src="/static/images/lmcrystalBall.svg" alt="Crystal Ball" id="img1">
+        <div class="swirl-effect" id="swirlEffect"></div>
+        <!-- Move listener text inside the crystal ball container -->
+        <div class="listener-type" id="listenerType"></div>
+        <div class="listener-details" id="listenerDetails"></div>
+    </div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const crystalBall = document.getElementById('img1');
+        const swirlEffect = document.getElementById('swirlEffect');
+        const listenerType = document.getElementById('listenerType');
+        const listenerDetails = document.getElementById('listenerDetails');
+
+        crystalBall.addEventListener('click', function () {
+            swirlEffect.style.display = 'block';
+            swirlEffect.style.animationPlayState = 'running';
+
+            setTimeout(() => {
+                fetch('/listener-type/') // Ensure this matches your Django URL
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        if (data.error) {
+                            throw new Error(data.error);
+                        }
+
+                        // Update the listener type message
+                        listenerType.textContent = `You are a ${data.listener_type} Listener`;
+                        listenerType.style.display = 'block';
+
+                        // Optional: Add more details
+                        listenerDetails.innerHTML = `
+                Unique Artists: ${data.unique_artists}<br>
+                Diversity Score: ${data.diversity_score}%
+            `;
+                        listenerDetails.style.display = 'block';
+
+                        // Fade-in effect
+                        listenerType.style.animation = 'fadeIn 1.5s ease forwards';
+                        listenerDetails.style.animation = 'fadeIn 1.5s ease forwards';
+                        swirlEffect.style.animationPlayState = 'paused';
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        listenerType.textContent = 'Error: ' + error.message;
+                        listenerType.style.display = 'block';
+                        listenerType.style.animation = 'fadeIn 1.5s ease forwards';
+                        swirlEffect.style.animationPlayState = 'paused';
+                    });
+            }, 2000);
+
+        });
+    });
+</script>
 </body>
 </html>

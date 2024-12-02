@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Rainbow Mode Memorable</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <style>
@@ -47,6 +47,10 @@
             position: relative;
             text-align: center;
             color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
 
         h1 {
@@ -61,6 +65,10 @@
         img {
             position: relative;
             z-index: 1001;
+            max-width: 100%; /* Ensures the image does not exceed container width */
+            height: auto; /* Maintains aspect ratio */
+            display: block; /* Prevents extra space under the image */
+            margin: 0 auto; /* Centers the image horizontally */
         }
 
         /* Floating Effects */
@@ -360,9 +368,9 @@
 
         .card-container {
             perspective: 1000px; /* Keep the perspective for 3D effect */
-            width: 500px !important; /* Increase width */
-            height: 600px !important; /* Increase height */
-            margin: 50px auto;
+            width: 400px !important; /* Increase width */
+            height: 500px !important; /* Increase height */
+            margin: 40px auto;
         }
 
         .card {
@@ -449,6 +457,22 @@
         #moment-details {
             font-size: 1.2em;
         }
+
+
+        @media (max-width: 768px) {
+            .card-container {
+                width: 80%;
+                height: auto;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .card-container {
+                width: 90%;
+            }
+        }
+
+
     </style>
 </head>
 <body>
@@ -477,7 +501,7 @@
         <div class="card">
             <!-- Card Back (Decorated) -->
             <div class="card-back">
-                <img src="/static/images/SunCardRB.svg" alt="Card Back">
+                <img src="/static/images/heartCardRB.svg" alt="Card Back">
             </div>
 
             <!-- Card Front (With Content) -->

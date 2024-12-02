@@ -1,48 +1,340 @@
+{% load i18n %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Light Mode Background</title>
+    <title>Light Mode Top Genre</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body {
+        html, body {
             margin: 0;
-            height: 100vh;
-            background-image: url('images/lmgradient.png');
-            background-size: cover;
-            background-position: center;
-            color: rgb(166, 115, 225);
+            padding: 0;
+            overflow: hidden; /* Prevent scrolling */
             font-family: 'Poppins', Arial, sans-serif;
         }
-        h1 {
-            text-align: center;
-            margin-top: 0;
-            padding-top: 20px;
-            font-size: 50px;
-            text-shadow:
-                0 0 10px rgba(166, 115, 225, 0.7), /* Soft outer glow */
-                0 0 30px rgba(166, 115, 225, 0.3); /* Even wider glow */
+
+        body {
+            height: 100vh;
+            position: relative;
         }
+
+        :root {
+            --rebecca-purple: #732894ff;
+            --hunyadi-yellow: #F1B44Aff;
+            --purpureus: #9B35BAff;
+            --mulberry: #C05EA1ff;
+            --lavender-floral: #CA85DFff;
+        }
+
+        .gradient-bg {
+            width: 100vw;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-size: 400% 400%;
+            background: linear-gradient(40deg, var(--rebecca-purple), var(--purpureus), var(--hunyadi-yellow), var(--mulberry), var(--lavender-floral));
+            animation: gradient-shift 15s ease infinite;
+            z-index: 1;
+        }
+
+        @keyframes gradient-shift {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
         .content {
-            display: flex;
+            z-index: 1000;
+            position: relative;
+            text-align: center;
+            color: white;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            flex-wrap: nowrap;
-            gap: 10px;
-            padding: 10px;
+            height: 100%; /* Full height of the viewport */
+            padding: 0 20px; /* Add padding for smaller screens */
         }
+
+        h1 {
+            font-size: 50px;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.7);
+            margin-top: 20px;
+        }
+
         img {
-            max-width: 30%;
-            height: auto;
-            filter: drop-shadow(0 0 50px rgba(166, 115, 225, 0.7));
+            margin-top: 70px;
+            position: relative;
+            z-index: 1001;
+            max-width: 80%; /* Ensure the image scales on smaller screens */
+            height: auto; /* Maintain aspect ratio */
+            cursor: pointer;
+        }
+
+        /* Floating Effects */
+        .gradients-container {
+            filter: url(#goo) blur(40px);
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        .g1, .g2, .g3, .g4, .g5 {
+            position: absolute;
+            border-radius: 50%;
+            mix-blend-mode: hard-light;
+            opacity: 1;
+        }
+
+        .g1 {
+            background: radial-gradient(circle at center, var(--rebecca-purple) 0, transparent 50%);
+            width: 80%;
+            height: 80%;
+            top: calc(50% - 40%);
+            left: calc(50% - 40%);
+            animation: moveVertical 30s ease infinite;
+        }
+
+        .g2 {
+            background: radial-gradient(circle at center, var(--hunyadi-yellow) 0, transparent 50%);
+            width: 60%;
+            height: 60%;
+            top: calc(50% - 30%);
+            left: calc(50% - 30%);
+            animation: moveInCircle 20s reverse infinite;
+        }
+
+        .g3 {
+            background: radial-gradient(circle at center, var(--mulberry) 0, transparent 50%);
+            width: 90%;
+            height: 90%;
+            top: calc(50% - 45%);
+            left: calc(50% - 45%);
+            animation: moveInCircle 40s linear infinite;
+        }
+
+        .g4 {
+            background: radial-gradient(circle at center, var(--lavender-floral) 0, transparent 50%);
+            width: 70%;
+            height: 70%;
+            top: calc(50% - 35%);
+            left: calc(50% - 35%);
+            animation: moveHorizontal 40s ease infinite;
+        }
+
+        .g5 {
+            background: radial-gradient(circle at center, var(--purpureus) 0, transparent 50%);
+            width: 120%;
+            height: 120%;
+            top: calc(50% - 60%);
+            left: calc(50% - 60%);
+            animation: moveInCircle 30s ease infinite;
+        }
+
+        @keyframes moveVertical {
+            0% {
+                transform: translateY(-50%);
+            }
+            50% {
+                transform: translateY(50%);
+            }
+            100% {
+                transform: translateY(-50%);
+            }
+        }
+
+        @keyframes moveHorizontal {
+            0% {
+                transform: translateX(-50%) translateY(-10%);
+            }
+            50% {
+                transform: translateX(50%) translateY(10%);
+            }
+            100% {
+                transform: translateX(-50%) translateY(-10%);
+            }
+        }
+
+        @keyframes moveInCircle {
+            0% {
+                transform: rotate(0deg);
+            }
+            50% {
+                transform: rotate(180deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .clickable {
+            cursor: pointer;
+        }
+
+        /* Modal Overlay */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 2000; /* Above other content */
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black background */
+        }
+
+        /* Modal Content */
+        .modal-content {
+            background-color: #222;
+            margin: 15% auto; /* Center vertically and horizontally */
+            padding: 20px;
+            border-radius: 10px;
+            color: white;
+            max-width: 400px;
+            text-align: center;
+            animation: fadeIn 0.5s ease; /* Smooth appearance */
+        }
+
+        /* Close Button */
+        .close {
+            color: white;
+            float: right;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* Close Button Hover Effect */
+        .close:hover, .close:focus {
+            color: #ff0000;
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+
+        .genre-info {
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            max-width: 300px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .genre-info h2 {
+            margin-top: 0;
+        }
+
+        .genre-info ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .genre-info li {
+            margin-bottom: 10px;
         }
     </style>
-    <body>
-        <h1>Sound of Your Soul</h1>
-        <div class="content">
-            <img src="images/lmperson.png" alt="Mysterious Person" id="img1">
+<body>
+<div class="gradient-bg">
+    <svg xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <filter id="goo">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur"/>
+                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8"
+                               result="goo"/>
+                <feBlend in="SourceGraphic" in2="goo"/>
+            </filter>
+        </defs>
+    </svg>
+    <div class="gradients-container">
+        <div class="g1"></div>
+        <div class="g2"></div>
+        <div class="g3"></div>
+        <div class="g4"></div>
+        <div class="g5"></div>
+    </div>
+</div>
+<div class="content">
+    <h1>{% trans "Sound of Your Soul" %}</h1>
+    <img src="/static/images/lmperson.svg" alt="Mysterious Person" id="img1" class="clickable">
+    <!-- Modal for Top Genres -->
+    <div id="genreModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Your Top Genres</h2>
+            <ul id="genreList"></ul>
         </div>
-    </body>
-</head>
+    </div>
+</div>
+</body>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const img = document.getElementById('img1'); // Person image
+        const modal = document.getElementById('genreModal'); // Modal container
+        const closeModal = document.querySelector('.close'); // Close button
+        const genreList = document.getElementById('genreList'); // Genre list container
+
+        // Open the modal and fetch top genres
+        img.addEventListener('click', function () {
+            fetch('/top-genre/')  // Ensure this matches your URL configuration
+                .then(response => {
+                    if (!response.ok) {
+                        console.error('Network response was not ok');
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Fetched data:', data);  // Log the fetched data for debugging
+                    if (data.error) {
+                        alert(data.error);
+                        return;
+                    }
+                    genreList.innerHTML = ''; // Clear previous genres
+                    data.top_genres.forEach(genre => {
+                        const li = document.createElement('li');
+                        li.textContent = `${genre[0]}: ${genre[1]} (${genre[2].toFixed(2)}%)`;
+                        genreList.appendChild(li);
+                    });
+                    modal.style.display = 'block'; // Show the modal
+                })
+                .catch(error => console.error('Error:', error));
+        });
+
+        // Close the modal when clicking the close button
+        closeModal.addEventListener('click', function () {
+            modal.style.display = 'none';
+        });
+
+        // Close the modal when clicking outside of it
+        window.addEventListener('click', function (event) {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+    });
+
+
+</script>
 </html>

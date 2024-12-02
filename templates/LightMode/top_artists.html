@@ -1,12 +1,11 @@
 {% load i18n %}
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Light Mode Top 5 Songs</title>
+    <title>{% trans "Light Mode Top 5 Artists" %}</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <style>
         html, body {
@@ -14,7 +13,6 @@
             padding: 0;
             overflow-x: hidden; /* Prevent scrolling */
             font-family: 'Poppins', Arial, sans-serif;
-            height: 100%;
         }
 
         body {
@@ -196,15 +194,6 @@
             }
         }
 
-        .card-container {
-            display: flex; /* Use flexbox for horizontal layout */
-            justify-content: center; /* Center align cards */
-            align-items: flex-start; /* Align items to the top */
-            flex-wrap: wrap; /* Prevent wrapping to next line */
-            overflow-x: hidden; /* Allow horizontal scrolling if necessary */
-            padding: 20px; /* Spacing around cards */
-        }
-
         /* Alternating Floating Cards */
         .flip-card:nth-child(odd) {
             margin-top: 50px;
@@ -220,42 +209,53 @@
 
 
         .flip-card {
-            width: 250px; /* Card size */
-            height: 350px; /* Card size */
-            perspective: 1000px; /* Perspective for the flip effect */
-            margin-right: 10px; /* Space between cards */
+            width: 250px; /* Increased card size */
+            height: 350px;
+            margin-left: 20px;
+            margin-right: 20px;
+            perspective: 1000px;
+            display: inline-block;
+
         }
 
         .flip-card-inner {
             position: relative;
             width: 100%;
             height: 100%;
-            transition: transform 0.8s; /* Smooth flip transition */
-            transform-style: preserve-3d; /* Preserve the card's dimensions */
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
         }
 
         .flip-card:hover .flip-card-inner {
-            transform: rotateY(180deg); /* Flip effect on hover */
+            transform: rotateY(180deg);
         }
 
         .flip-card-front, .flip-card-back {
             position: absolute;
             width: 100%;
             height: 100%;
-            backface-visibility: hidden; /* Hide the back side when not flipped */
-            border-radius: 10px; /* Rounded corners */
+            backface-visibility: hidden;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
         }
 
         .flip-card-back {
+            background-image: url('/static/images/lmCardBlank.svg'); /* Set the background image */
+            background-size: contain; /* Ensure the entire image is visible */
             transform: rotateY(180deg);
             color: white;
             text-align: center;
-        }
+            background-repeat: no-repeat;
+            background-position: center;
 
-        .flip-card-front img {
-            max-width: 100%;
-            max-height: 100%;
-            border-radius: 10px; /* Optional rounded corners for front image */
+            display: flex;
+            flex-direction: column; /* Stack content vertically */
+            justify-content: center; /* Center the content vertically */
+            align-items: center; /* Center the content horizontally */
+            padding: 20px;
         }
 
         .flip-card img {
@@ -264,76 +264,20 @@
             border-radius: 10px;
         }
 
-        .song-title {
-            font-size: 16px;
-            font-weight: bold;
+        .artist-name {
+            font-size: 25px;
+            font-weight: 600; /* Bold artist name */
+            margin-bottom: 10px; /* Space between name and genres */
+            text-shadow: 0 0 10px #ffffff; /* Glow effect */
         }
 
-        .song-artist {
-            font-size: 14px;
-            opacity: 0.8;
-        }
+        .genres {
+            font-size: 18px;
+            text-align: center;
+            font-weight: 300; /* Bold artist name */
+            margin-left: 20px;
+            margin-right: 20px;
 
-        .flip-card-back {
-            background-image: url('/images/lmCardBlank.svg'); /* Set the background image */
-            background-size: contain; /* Ensure the entire image is visible */
-            background-repeat: no-repeat; /* Prevent repeating */
-            background-position: center; /* Center the image */
-
-            color: white; /* Text color for song details */
-        }
-
-
-        .album-cover {
-            width: 60%; /* Adjust width as needed */
-            height: auto; /* Maintain aspect ratio */
-            border-radius: 10px; /* Optional rounded corners for album cover */
-            margin-top: 35px; /* Adjust this value to move the cover lower */
-        }
-
-        .song-details {
-            text-align: center; /* Center align text details */
-            margin-top: 10px; /* Space above song details */
-            font-family: 'Poppins', sans-serif; /* Use Poppins font */
-        }
-
-        .song-title {
-            font-size: 16px; /* Font size for song title */
-            font-weight: bold;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), /* White glow */ 0 0 20px rgba(255, 255, 255, 0.6); /* Softer white glow */
-        }
-
-        .song-artist {
-            font-size: 14px; /* Font size for artist name */
-            opacity: 0.8; /* Slightly transparent for artist name */
-            text-shadow: 0 0 5px rgba(255, 255, 255, 0.5); /* Soft white glow */
-        }
-
-        /* Responsive Adjustments */
-        @media (min-width: 768px) {
-            .flip-card {
-                width: 200px; /* Slightly larger on tablets and up */
-                height: 300px;
-            }
-
-            .song-title {
-                font-size: 16px; /* Larger font for bigger screens */
-            }
-
-            .song-artist {
-                font-size: 14px;
-            }
-        }
-
-        @media (min-width: 1200px) {
-            .card-container {
-                justify-content: center; /* Keep cards centered on larger screens */
-            }
-
-            .flip-card {
-                width: 250px; /* Full size on larger screens */
-                height: 350px;
-            }
         }
     </style>
 </head>
@@ -357,27 +301,29 @@
         <div class="g5"></div>
     </div>
 </div>
+</style>
+</head>
+<body>
 <div class="content">
-    <h1>{% trans "Your Chords of Destiny" %}</h1>
+    <h1>{% trans "Your Top 5 Cosmic Influencers" %}</h1>
     <div class="card-container">
-        {% for track in top_tracks %}
+        {% for artist in top_artists %}
             <div class="flip-card">
                 <div class="flip-card-inner">
                     <div class="flip-card-front">
-                        <img src="{% static '/images/card_images/' %}{{ card_images|slice:forloop.counter0 }}"
-                             alt="Card Front"></div>
+                        <img src="{% static 'images/lmSunCardFront.svg/' %}{{ card_images|slice:forloop.counter0 }}"
+                             alt="Card Front"> <!-- Example card front -->
+                    </div>
                     <div class="flip-card-back">
-                        <img src="{{ track.cover_url }}" alt="Album cover for {{ track.name }}" class="album-cover">
-                        <div class="song-details">
-                            <p class="song-title">{{ track.name }}</p>
-                            <p class="song-artist">{{ track.artist }}</p>
-                        </div>
+                        <p class="artist-name">{{ artist.name }}</p> <!-- Display artist name -->
+                        <p class="genres"> {{ artist.genres }}</p> <!-- Optional genres display -->
                     </div>
                 </div>
             </div>
         {% empty %}
-            <p>No tracks available.</p>
+            <p>No artists available.</p>
         {% endfor %}
     </div>
+</div>
 </body>
 </html>

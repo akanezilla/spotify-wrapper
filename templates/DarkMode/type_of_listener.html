@@ -1,9 +1,12 @@
+{% load i18n %}
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Rainbow Mode Listener Type</title>
+    <title> Dark Mode Listener Type</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <style>
         html, body {
@@ -16,6 +19,10 @@
         body {
             height: 100vh;
             position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
         }
 
         .gradient-bg {
@@ -25,10 +32,11 @@
             top: 0;
             left: 0;
             background-size: 400% 400%;
-            background: linear-gradient(40deg, #3B2496, #24114C, #3A1F7A, #5F2A98, #9516FC,#A673E1);
+            background: linear-gradient(40deg, #3B2496, #180e54, #3A1F7A, #5F2A98, #9516FC,#A673E1);
             animation: gradient-shift 15s ease infinite;
             z-index: 1;
         }
+
         @keyframes gradient-shift {
             0% {
                 background-position: 0% 50%;
@@ -43,8 +51,8 @@
 
         .content {
             z-index: 1000;
-            position: relative;
             text-align: center;
+            position: relative;
             color: white;
         }
 
@@ -70,7 +78,6 @@
             pointer-events: none;
         }
 
-       
         .g1, .g2, .g3, .g4, .g5, .g6 {
             position: absolute;
             border-radius: 50%;
@@ -131,7 +138,6 @@
             animation: moveInCircle 30s ease infinite;
         }
 
-
         @keyframes moveVertical {
             0% {
                 transform: translateY(-50%);
@@ -169,28 +175,32 @@
         }
 
         .crystal-ball-container {
-            position: absolute;
-            margin-top: 100px;
-            margin-left: 550px;
-            width: 500px; /* Adjust based on your image size */
-            height: 500px;
+            width: 100vw; /* 80% of the viewport width */
+            height: 100vw; /* Maintain aspect ratio */
+            max-width: 500px; /* Set maximum size */
+            max-height: 500px;
+            position: relative;
+            margin: 0 auto; /* Center horizontally */
         }
 
         .circle-shadow-container {
-            width: 375px; /* Match the size of your image */
-            height: 375px; /* Match the size of your image */
-            margin-left: 59px;
-            border-radius: 50%; /* Makes the container circular */
-            box-shadow: 0 0 30px 10px rgba(255, 255, 255, 0.5); /* Add shadow only around the circle */
-            overflow: hidden; /* Ensures the shadow doesn't apply outside the circle */
-            position: absolute ; /* Needed to position the image inside properly */
-            z-index: 1;
+            width: 76%; /* Keep it proportional */
+            height: 76%;
+            margin: auto;
+            border-radius: 50%;
+            box-shadow: 0 0 30px 10px rgba(255, 255, 255, 0.5);
+            overflow: hidden;
+            position: absolute;
+            top: 0.75%; /* Centering adjustment */
+            left: 12%;
         }
 
-         #img1 {
+        #img1 {
             width: 100%;
-            height: auto;
+            height: 100%;
             position: relative;
+            top: 0;
+            left: 0;
             z-index: 2; /* Ensure it's above the swirling effect */
             cursor: pointer;
         }
@@ -200,6 +210,10 @@
             transition: transform 0.3s ease-in-out;
         }
 
+        .listener-type, .listener-details {
+            font-size: 3vw; /* Scale dynamically */
+            max-font-size: 1.5rem;
+        }
 
         .swirl-effect {
             position: absolute;
@@ -231,19 +245,23 @@
         }
 
 
-        .listener-type {
+        .listener-type, .listener-details {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 1.5rem;
+            top: 35%; /* Center vertically */
+            left: 50%; /* Center horizontally */
+            transform: translate(-50%, -50%); /* Adjust for true centering */
+            font-size: 1.2rem; /* Adjust font size to fit inside the ball */
             color: white;
-            text-shadow: 0 0 10px rgba(166, 115, 225, 0.7), 0 0 30px rgba(166, 115, 225, 0.3);
-            z-index: 3; /* Above everything else */
             text-align: center;
-            display: none; /* Hidden by default */
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+            z-index: 3; /* Ensure it's above the swirl effect */
+            display: none; /* Initially hidden */
             opacity: 0; /* For fade-in effect */
-            animation: fadeIn 1s ease forwards;
+        }
+
+        .listener-details {
+            margin-top: 40px; /* Space between type and details */
+            font-size: 1rem; /* Slightly smaller font for details */
         }
 
         @keyframes fadeIn {
@@ -255,6 +273,25 @@
             }
         }
 
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 7vw;
+            }
+
+            .listener-type, .listener-details {
+                font-size: 4vw;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 7vw;
+            }
+
+            .listener-type, .listener-details {
+                font-size: 3vw;
+            }
+        }
     </style>
 </head>
 <body>
@@ -275,34 +312,32 @@
         <div class="g3"></div>
         <div class="g4"></div>
         <div class="g5"></div>
-        <div class="g6"></div>
-
     </div>
 </div>
 <div class="content">
-    <h1>Aura</h1>
+    <h1>{% trans "Aura" %}</h1>
     <div class="crystal-ball-container">
         <div class="circle-shadow-container"></div>
-        <img src="images/crystalball.svg" alt="Crystal Ball" id="img1">
+        <img src="/static/images/crystalball.svg" alt="Crystal Ball" id="img1">
         <div class="swirl-effect" id="swirlEffect"></div>
-        <div class="listener-type" id="listenerType" style="display: none;">Listener Type</div>
+        <!-- Move listener text inside the crystal ball container -->
+        <div class="listener-type" id="listenerType"></div>
+        <div class="listener-details" id="listenerDetails"></div>
     </div>
 </div>
-</body>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const crystalBall = document.getElementById('img1');
         const swirlEffect = document.getElementById('swirlEffect');
         const listenerType = document.getElementById('listenerType');
+        const listenerDetails = document.getElementById('listenerDetails');
 
         crystalBall.addEventListener('click', function () {
-            // Show swirling effect
             swirlEffect.style.display = 'block';
-            swirlEffect.style.animationPlayState = 'running'; // Start the swirling effect
+            swirlEffect.style.animationPlayState = 'running';
 
-            // Simulate fetching data with a delay
             setTimeout(() => {
-                fetch('spotify/listener-type/') // Replace with your API endpoint
+                fetch('/listener-type/') // Ensure this matches your Django URL
                     .then(response => {
                         if (!response.ok) {
                             throw new Error('Network response was not ok');
@@ -311,27 +346,36 @@
                     })
                     .then(data => {
                         if (data.error) {
-                            alert(data.error);
-                            return;
+                            throw new Error(data.error);
                         }
 
-                        // Display the listener type
-                        listenerType.textContent = data.listener_type || 'Mystical Listener'; // Default if no data
+                        // Update the listener type message
+                        listenerType.textContent = `You are a ${data.listener_type} Listener`;
                         listenerType.style.display = 'block';
 
-                        // Fade-in listener type and stop swirling
+                        // Optional: Add more details
+                        listenerDetails.innerHTML = `
+                Unique Artists: ${data.unique_artists}<br>
+                Diversity Score: ${data.diversity_score}%
+            `;
+                        listenerDetails.style.display = 'block';
+
+                        // Fade-in effect
                         listenerType.style.animation = 'fadeIn 1.5s ease forwards';
-                        swirlEffect.style.animationPlayState = 'paused'; // Pause swirling
+                        listenerDetails.style.animation = 'fadeIn 1.5s ease forwards';
+                        swirlEffect.style.animationPlayState = 'paused';
                     })
                     .catch(error => {
                         console.error('Error:', error);
-                        listenerType.textContent = 'Error Fetching Type';
+                        listenerType.textContent = 'Error: ' + error.message;
                         listenerType.style.display = 'block';
                         listenerType.style.animation = 'fadeIn 1.5s ease forwards';
-                        swirlEffect.style.animationPlayState = 'paused'; // Pause swirling
+                        swirlEffect.style.animationPlayState = 'paused';
                     });
-            }, 2000); // Sync with the animation timing
+            }, 2000);
+
         });
     });
 </script>
+</body>
 </html>

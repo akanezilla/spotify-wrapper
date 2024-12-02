@@ -2,114 +2,589 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Light Mode Background</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Light Mode Memorable</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body {
+        html, body {
             margin: 0;
-            min-height: 100vh; /* Set minimum height to allow scrolling */
-            overflow-y: auto; /* Allow vertical scrolling */
-            background-image: url('images/lmgradient.png');
-            background-size: cover;
-            background-position: center;
-            color: rgb(166, 115, 225);
+            padding: 0;
+            overflow: hidden; /* Prevent scrolling */
             font-family: 'Poppins', Arial, sans-serif;
-            position: relative; /* Position relative for absolute children */
         }
-        h1 {
-            text-align: center;
-            margin-top: 0;
-            padding-top: 20px;
-            font-size: 50px;
-            text-shadow:
-                0 0 10px rgba(166, 115, 225, 0.7), /* Soft outer glow */
-                0 0 30px rgba(166, 115, 225, 0.3); /* Even wider glow */
+
+        body {
+            height: 100vh;
+            position: relative;
         }
+
+        :root {
+            --rebecca-purple: #732894ff;
+            --hunyadi-yellow: #F1B44Aff;
+            --purpureus: #9B35BAff;
+            --mulberry: #C05EA1ff;
+            --lavender-floral: #CA85DFff;
+        }
+
+        .gradient-bg {
+            width: 100vw;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-size: 400% 400%;
+            background: linear-gradient(40deg, var(--rebecca-purple), var(--purpureus), var(--hunyadi-yellow), var(--mulberry), var(--lavender-floral));
+            animation: gradient-shift 15s ease infinite;
+            z-index: 1;
+        }
+
+        @keyframes gradient-shift {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
         .content {
+            z-index: 1000;
+            position: relative;
+            text-align: center;
+            color: white;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            flex-wrap: nowrap;
-            gap: 20px;
-            padding: 20px;
         }
+
+        h1 {
+
+            font-size: 50px;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.7);
+            margin-top: 20px;
+            z-index: 1000; /* Ensure it stays above background layers */
+        }
+
+
         img {
-             max-width: 30%;
-             height: auto;
-             filter: drop-shadow(0 0 50px rgba(166, 115, 225, 0.7));
+            position: relative;
+            z-index: 1001;
+            max-width: 100%; /* Ensures the image does not exceed container width */
+            height: auto; /* Maintains aspect ratio */
+            display: block; /* Prevents extra space under the image */
+            margin: 0 auto; /* Centers the image horizontally */
+        }
+
+        /* Floating Effects */
+        .gradients-container {
+            filter: url(#goo) blur(40px);
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 1
+        }
+
+        .g1, .g2, .g3, .g4, .g5 {
+            position: absolute;
+            border-radius: 50%;
+            mix-blend-mode: hard-light;
+            opacity: 1;
+        }
+
+        .g1 {
+            background: radial-gradient(circle at center, var(--rebecca-purple) 0, transparent 50%);
+            width: 80%;
+            height: 80%;
+            top: calc(50% - 40%);
+            left: calc(50% - 40%);
+            animation: moveVertical 30s ease infinite;
+        }
+
+        .g2 {
+            background: radial-gradient(circle at center, var(--hunyadi-yellow) 0, transparent 50%);
+            width: 60%;
+            height: 60%;
+            top: calc(50% - 30%);
+            left: calc(50% - 30%);
+            animation: moveInCircle 20s reverse infinite;
+        }
+
+        .g3 {
+            background: radial-gradient(circle at center, var(--mulberry) 0, transparent 50%);
+            width: 90%;
+            height: 90%;
+            top: calc(50% - 45%);
+            left: calc(50% - 45%);
+            animation: moveInCircle 40s linear infinite;
+        }
+
+        .g4 {
+            background: radial-gradient(circle at center, var(--lavender-floral) 0, transparent 50%);
+            width: 70%;
+            height: 70%;
+            top: calc(50% - 35%);
+            left: calc(50% - 35%);
+            animation: moveHorizontal 40s ease infinite;
+        }
+
+        .g5 {
+            background: radial-gradient(circle at center, var(--purpureus) 0, transparent 50%);
+            width: 120%;
+            height: 120%;
+            top: calc(50% - 60%);
+            left: calc(50% - 60%);
+            animation: moveInCircle 30s ease infinite;
+        }
+
+
+        @keyframes moveVertical {
+            0% {
+                transform: translateY(-50%);
+            }
+            50% {
+                transform: translateY(50%);
+            }
+            100% {
+                transform: translateY(-50%);
+            }
+        }
+
+        @keyframes moveHorizontal {
+            0% {
+                transform: translateX(-50%) translateY(-10%);
+            }
+            50% {
+                transform: translateX(50%) translateY(10%);
+            }
+            100% {
+                transform: translateX(-50%) translateY(-10%);
+            }
+        }
+
+        @keyframes moveInCircle {
+            0% {
+                transform: rotate(0deg);
+            }
+            50% {
+                transform: rotate(180deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
         }
 
         /* Star styles */
         .star {
+            z-index: 999; /* Above the gradient background */
             position: absolute;
             background-color: white; /* Star color */
             clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
             animation: twinkle 1.5s infinite alternate; /* Twinkle animation */
         }
 
+
         @keyframes twinkle {
-            0% { opacity: 0.5; transform: scale(1); }
-            100% { opacity: 1; transform: scale(1.5); }
+            0% {
+                opacity: 0.5;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1.5);
+            }
         }
 
         /* Positioning stars in random locations with varying sizes */
-        .star:nth-child(1) { top: 10%; left: 20%; width: 10px; height: 10px; animation-delay: 0s; }
-        .star:nth-child(2) { top: 30%; left: 50%; width: 15px; height: 15px; animation-delay: 0.2s; }
-        .star:nth-child(3) { top: 60%; left: 70%; width: 12px; height: 12px; animation-delay: 0.4s; }
-        .star:nth-child(4) { top: 20%; left: 80%; width: 14px; height: 14px; animation-delay: 0.6s; }
-        .star:nth-child(5) { top: 40%; left: 30%; width: 8px; height: 8px; animation-delay: 0.8s; }
-        .star:nth-child(6) { top :70%; left :90%; width :10px;height :10px ;animation-delay :1s;}
+        .star:nth-child(1) {
+            top: 10%;
+            left: 20%;
+            width: 10px;
+            height: 10px;
+            animation-delay: 0s;
+        }
+
+        .star:nth-child(2) {
+            top: 30%;
+            left: 50%;
+            width: 15px;
+            height: 15px;
+            animation-delay: 0.2s;
+        }
+
+        .star:nth-child(3) {
+            top: 60%;
+            left: 70%;
+            width: 12px;
+            height: 12px;
+            animation-delay: 0.4s;
+        }
+
+        .star:nth-child(4) {
+            top: 20%;
+            left: 80%;
+            width: 14px;
+            height: 14px;
+            animation-delay: 0.6s;
+        }
+
+        .star:nth-child(5) {
+            top: 40%;
+            left: 30%;
+            width: 8px;
+            height: 8px;
+            animation-delay: 0.8s;
+        }
+
+        .star:nth-child(6) {
+            top: 70%;
+            left: 90%;
+            width: 10px;
+            height: 10px;
+            animation-delay: 1s;
+        }
 
         /* Larger stars */
-        .star:nth-child(7) { top :15%; left :10%; width :20px;height :20px ;animation-delay :0.3s;}
-        .star:nth-child(8) { top :25%; left :65%; width :25px;height :25px ;animation-delay :0.5s;}
-        .star:nth-child(9) { top :45%; left :85%; width :18px;height :18px ;animation-delay :0.7s;}
-        .star:nth-child(10) { top :75%; left :40%; width :22px;height :22px ;animation-delay :0.9s;}
+        .star:nth-child(7) {
+            top: 15%;
+            left: 10%;
+            width: 20px;
+            height: 20px;
+            animation-delay: 0.3s;
+        }
+
+        .star:nth-child(8) {
+            top: 25%;
+            left: 65%;
+            width: 25px;
+            height: 25px;
+            animation-delay: 0.5s;
+        }
+
+        .star:nth-child(9) {
+            top: 45%;
+            left: 85%;
+            width: 18px;
+            height: 18px;
+            animation-delay: 0.7s;
+        }
+
+        .star:nth-child(10) {
+            top: 75%;
+            left: 40%;
+            width: 22px;
+            height: 22px;
+            animation-delay: 0.9s;
+        }
 
         /* Extra small stars */
-        .star:nth-child(11) { top :55%; left :20%; width :5px;height :5px ;animation-delay :1.2s;}
-        .star:nth-child(12) { top :80%; left :30%; width :6px;height :6px ;animation-delay :1.4s;}
+        .star:nth-child(11) {
+            top: 55%;
+            left: 20%;
+            width: 5px;
+            height: 5px;
+            animation-delay: 1.2s;
+        }
+
+        .star:nth-child(12) {
+            top: 80%;
+            left: 30%;
+            width: 6px;
+            height: 6px;
+            animation-delay: 1.4s;
+        }
 
         /* Additional Stars */
-        .star:nth-child(13) { top :5%; left :90%; width :12px;height :12px ;animation-delay :1.6s;}
-        .star:nth-child(14) { top :85%; left :15%; width :14px;height :14px ;animation-delay :1.8s;}
-        .star:nth-child(15) { top :50%; left :5%; width :16px;height :16px ;animation-delay :2s;}
-        .star:nth-child(16) { top :65%; left :75%; width :9px;height :9px ;animation-delay :2.2s;}
-        .star:nth-child(17) { top :35%; left :40%; width :11px;height :11px ;animation-delay :2.4s;}
-        .star:nth-child(18) { top :90%; left :60%; width :13px;height :13px ;animation-delay :2.6s;}
-        .star:nth-child(19) { top :75%; left :25%; width :17px;height :17px ;animation-delay :2.8s;}
-        .star:nth-child(20) { top :10%; left :50%; width :19px;height :19px ;animation-delay :3s;}
+        .star:nth-child(13) {
+            top: 5%;
+            left: 90%;
+            width: 12px;
+            height: 12px;
+            animation-delay: 1.6s;
+        }
+
+        .star:nth-child(14) {
+            top: 85%;
+            left: 15%;
+            width: 14px;
+            height: 14px;
+            animation-delay: 1.8s;
+        }
+
+        .star:nth-child(15) {
+            top: 50%;
+            left: 5%;
+            width: 16px;
+            height: 16px;
+            animation-delay: 2s;
+        }
+
+        .star:nth-child(16) {
+            top: 65%;
+            left: 75%;
+            width: 9px;
+            height: 9px;
+            animation-delay: 2.2s;
+        }
+
+        .star:nth-child(17) {
+            top: 35%;
+            left: 40%;
+            width: 11px;
+            height: 11px;
+            animation-delay: 2.4s;
+        }
+
+        .star:nth-child(18) {
+            top: 90%;
+            left: 60%;
+            width: 13px;
+            height: 13px;
+            animation-delay: 2.6s;
+        }
+
+        .star:nth-child(19) {
+            top: 75%;
+            left: 25%;
+            width: 17px;
+            height: 17px;
+            animation-delay: 2.8s;
+        }
+
+        .star:nth-child(20) {
+            top: 10%;
+            left: 50%;
+            width: 19px;
+            height: 19px;
+            animation-delay: 3s;
+        }
+
+        .star:nth-child(odd) {
+            background-color: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+        }
+
+        .star:nth-child(even) {
+            background-color: rgba(255, 255, 255, 0.5);
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+        }
+
+        .card-container {
+            perspective: 1000px; /* Keep the perspective for 3D effect */
+            width: 400px !important; /* Increase width */
+            height: 500px !important; /* Increase height */
+            margin: 40px auto;
+        }
+
+        .card {
+            width: 100%; /* Ensure it fills the container */
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.8s ease;
+            cursor: pointer;
+        }
+
+
+        .card-back, .card-front {
+            position: absolute;
+            width: 100%; /* Match the new card size */
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .card-back img {
+            width: 100%; /* Set image to fill the card */
+            height: 100%; /* Maintain height */
+        }
+
+        .card-back {
+            transform: rotateY(0deg);
+            z-index: 1;
+        }
+
+        .card-front {
+            transform: rotateY(180deg);
+            position: relative; /* To allow absolute positioning of children */
+            width: 100%; /* Ensure it fills the card */
+            height: 100%; /* Maintain card height */
+            background: url('/images/lmCardBlank.svg') center/contain no-repeat; /* Set as background */
+            backface-visibility: hidden;
+        }
+
+        .card.flipped {
+            transform: rotateY(180deg);
+        }
+
+        /* Style for the memorable moment text */
+
+        .moment-info {
+            position: absolute;
+            color: white;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+            font-family: 'Poppins', Arial, sans-serif;
+            text-align: center;
+            width: 60%;
+            height: 70%;
+            font-size: 1.2em;
+            word-wrap: break-word; /* Allows long words to be broken and wrap */
+            overflow-wrap: break-word; /* Alternative property for word wrapping */
+            white-space: normal; /* Ensures text wraps */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            z-index: 3;
+        }
+
+        #album-image {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            margin-top: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        #moment-title {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+
+        #moment-details {
+            font-size: 1.2em;
+        }
+
+
+        @media (max-width: 768px) {
+            .card-container {
+                width: 80%;
+                height: auto;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .card-container {
+                width: 90%;
+            }
+        }
+
 
     </style>
 </head>
 <body>
+<div class="gradient-bg">
+    <svg xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <filter id="goo">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur"/>
+                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8"
+                               result="goo"/>
+                <feBlend in="SourceGraphic" in2="goo"/>
+            </filter>
+        </defs>
+    </svg>
+    <div class="gradients-container">
+        <div class="g1"></div>
+        <div class="g2"></div>
+        <div class="g3"></div>
+        <div class="g4"></div>
+        <div class="g5"></div>
+    </div>
+</div>
+<div class="content">
     <h1>Celestial Highlight</h1>
-    <div class="content">
-        <img src="images/lmcard.png" alt="Magic Card" id="img1">
+    <div class="card-container">
+        <div class="card">
+            <!-- Card Back (Decorated) -->
+            <div class="card-back">
+                <img src="/images/lmSunCardFront.svg" alt="Card Back">
+            </div>
+
+            <!-- Card Front (With Content) -->
+            <div class="card-front">
+                <div class="moment-info">
+                    <img src="" alt="Album Cover" id="album-image">
+                    <h2 id="moment-title">Memorable Moment</h2>
+                    <p id="moment-details">Fetching from Spotify...</p>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <!-- Adding more stars -->
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
+</div>
 
+<!-- Adding more stars -->
+<div class="star"></div>
+<div class="star"></div>
+<div class="star"></div>
+<div class="star"></div>
+<div class="star"></div>
+<div class="star"></div>
+<div class="star"></div>
+<div class="star"></div>
+<div class="star"></div>
+<div class="star"></div>
+<div class="star"></div>
+<div class="star"></div>
+<div class="star"></div>
+<div class="star"></div>
+<div class="star"></div>
+<div class="star"></div>
+<div class="star"></div>
+<div class="star"></div>
+<div class="star"></div>
+<div class="star"></div>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const card = document.querySelector(".card");
+        const momentTitle = document.getElementById("moment-title");
+        const momentDetails = document.getElementById("moment-details");
+
+        // Flip the card on click
+        card.addEventListener("click", () => {
+            card.classList.toggle("flipped");
+
+            // Fetch Spotify data when the card flips
+            if (card.classList.contains("flipped")) {
+                fetchSpotifyMemorableMoment();
+            }
+        });
+
+        async function fetchSpotifyMemorableMoment() {
+            try {
+                const response = await fetch("/memorable-moment/", {
+                    headers: {
+                        "X-Requested-With": "XMLHttpRequest",
+                    },
+                });
+                if (response.ok) {
+                    const data = await response.json();
+                    momentTitle.textContent = data.track_name;
+                    momentDetails.textContent = `Artist: ${data.artist_name}\n${data.moment_description}`;
+                    document.querySelector("#album-image").src = data.track_image;
+                } else {
+                    throw new Error('Failed to fetch memorable moment');
+                }
+            } catch (error) {
+                console.error("Fetch error:", error);
+                momentTitle.textContent = "Error!";
+                momentDetails.textContent = "An unexpected error occurred.";
+            }
+        }
+    });
+</script>
 </body>
 </html>
