@@ -43,3 +43,6 @@ def login_view(request):
 def signup_view(request):
     return render(request, 'registration/signup.html')
 
+from django.shortcuts import redirect
+
+
