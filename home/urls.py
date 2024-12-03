@@ -9,5 +9,5 @@ urlpatterns = [
     path('past-wraps/', views.past_wraps, name='past_wraps'),
     path('account/', views.account, name='account'),
     path('login/', views.login_view, name='login'),
-    path('signup/', views.signup_view, name='signup')
+    path('signup/', views.signup_view, name='signup'),
 ]
