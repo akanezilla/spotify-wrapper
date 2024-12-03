@@ -1,3 +1,4 @@
+
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
@@ -157,3 +158,51 @@ msgstr "Votre Prophétie Musicale"
 #: .\templates\RainbowMode\type_of_listener.html:267
 msgid "Aura"
 msgstr "Aura"
+
+#: home/home.html:211
+msgid "New Wrap"
+msgstr "Nouvel Emballage"
+
+#: home/home.html:225
+msgid "Past Wraps"
+msgstr "Embouts Précédents"
+
+#: home/home.html:241
+msgid "Account"
+msgstr "Compte"
+
+#: home/home.html:162
+msgid "About"
+msgstr "À propos"
+
+#: home/home.html:163
+msgid "Contact Us"
+msgstr "Nous contacter"
+
+#: home/contact.html:164
+msgid "Log out"
+msgstr "Se déconnecter"
+
+#: home/contact.html:66
+msgid "Name"
+msgstr "Nom"
+
+#: home/contact.html:69
+msgid "Email Address"
+msgstr "Adresse e-mail"
+
+#: home/contact.html:72
+msgid "Message"
+msgstr "Message"
+
+#: home/contact.html:70
+msgid "Enter your email"
+msgstr "Entrez votre e-mail"
+
+#: home/contact.html:73
+msgid "Enter your message"
+msgstr "Entrez votre message"
+
+#: home/contact.html:61
+msgid "We appreciate your feedback!"
+msgstr "Nous apprécions vos retours !"

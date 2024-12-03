@@ -12,38 +12,23 @@
     <h2>Create an Account</h2>
     <form method="post">
         {% csrf_token %}
-        {% if messages %}
-            <div class="messages">
-                {% for message in messages %}
-                    <div class="alert {{ message.tags }}">
-                        {{ message }}
-                    </div>
-                {% endfor %}
-            </div>
-        {% endif %}
-        <h1 class="heading">Sign Up for Tarotify</h1>
+        {{ form.non_field_errors }}
         <div class="input-group">
-            <label for="id_username">Username</label>
-            <input type="text" name="username" required id="id_username">
+            <label for="id_username">Username:</label>
+            <input type="text" name="username" id="id_username" placeholder="Enter username">
+            {{ form.username.errors }}
         </div>
         <div class="input-group">
-            <label for="id_password">Password</label>
-            <input type="password" name="password" required id="id_password">
+            <label for="id_password1">Password:</label>
+            <input type="password" name="password1" id="id_password1" placeholder="Enter password">
+            {{ form.password1.errors }}
         </div>
         <div class="input-group">
-            <label for="id_password2">Confirm Password</label>
-            <input name="password2" type="password" required id="id_password2">
+            <label for="id_password2">Confirm Password:</label>
+            <input type="password" name="password2" id="id_password2" placeholder="Re-enter password">
+            {{ form.password2.errors }}
         </div>
-        <button type="submit" class="btn">Sign Up</button>
-        {% if form.errors %}
-            <div class="form-errors">
-                <ul>
-                    {% for field, errors in form.errors.items %}
-                        <li><strong>{{ field }}:</strong> {{ errors|join:", " }}</li>
-                    {% endfor %}
-                </ul>
-            </div>
-        {% endif %}
+        <button type="submit">Sign Up</button>
     </form>
 </div>
 </body>

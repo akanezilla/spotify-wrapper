@@ -28,22 +28,21 @@ def delete_account(request):
         return redirect('home')
     return render(request, 'delete_account.html')
 
+
 logger = logging.getLogger(__name__)
 
-class SignUpView(CreateView):
-    form_class = UserCreationForm
-    success_url = reverse_lazy("login")
-    template_name = "registration/signup.html"
-
-    def post(self, request, *args, **kwargs):
-        form = self.get_form()
+def signup(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
         if form.is_valid():
-            self.object = form.save()
-            print("User created successfully. Redirecting to:", self.success_url)
-            return HttpResponseRedirect(self.success_url)
-        else:
-            print("Form invalid. Errors:", form.errors)
-            return self.form_invalid(form)
+            form.save()
+            messages.success(request, 'Your account has been created! You can now log in.')
+            return redirect('login')  # Redirect to login page
+    else:
+        form = UserCreationForm()
+    return render(request, 'registration/signup.html', {'form': form})
+
+
 
 class CustomLoginView(View):
     form_class = AuthenticationForm
@@ -84,6 +83,8 @@ def contact_view(request):
         email = request.POST.get('email')
         message = request.POST.get('message')
 
+        logger.info(f"Contact form submission: name={name}, email={email}, message={message}")
+
         # Compose the email
         subject = f"New Contact Form Submission from {name}"
         body = f"Name: {name}\nEmail: {email}\n\nMessage:\n{message}"
@@ -93,12 +94,15 @@ def contact_view(request):
             send_mail(
                 subject,
                 body,
-                email,  # From email (user's email)
-                ['jadelee1721l@gmail.com'],  # Replace with your receiving email
+                'jadelee1721@gmail.com',  # Replace with your from email
+                ['wrapped837@gmail.com'],  # Replace with your receiving email
                 fail_silently=False,
             )
+            logger.info("Email sent successfully.")
             return JsonResponse({'success': True, 'message': 'Email sent successfully!'})
         except Exception as e:
-            return JsonResponse({'success': False, 'message': str(e)})
+            logger.error(f"Email sending failed: {e}")  # Log the exact error
+            return JsonResponse({'success': False, 'message': 'Failed to send email. Please try again later.'})
 
-    return render(request, 'home/contact.html')  # Replace with your template name
+    logger.warning("Invalid request method received.")
+    return render(request, 'home/contact.html')
