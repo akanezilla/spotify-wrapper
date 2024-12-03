@@ -1,3 +1,4 @@
+
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
@@ -43,10 +44,15 @@ msgid "Profile"
 msgstr "Profil"
 
 #: .\templates\home\home.html:106
+#.\templates\about.html\home.html:43
+#: .\templates\contact.html\home.html:43
+#: .\templates\account.html\home.html:43
+#: home/contact.html:164
 msgid "Logout"
 msgstr "Déconnexion"
 
 #: .\templates\home\home.html:107
+#: .\templates\accounts.html:72
 msgid "Delete Account"
 msgstr "Supprimer le compte"
 
@@ -175,12 +181,13 @@ msgid "About"
 msgstr "À propos"
 
 #: home/home.html:163
+#.\templates\about.html\home.html:42
+#: .\templates\contact.html\home.html:42
+#: .\templates\account.html\home.html:42
 msgid "Contact Us"
 msgstr "Nous contacter"
 
-#: home/contact.html:164
-msgid "Log out"
-msgstr "Se déconnecter"
+
 
 #: home/contact.html:66
 msgid "Name"
@@ -206,62 +213,47 @@ msgstr "Entrez votre message"
 msgid "We appreciate your feedback!"
 msgstr "Nous apprécions vos retours !"
 
-#: .\templates\DarkMode\transition1.html:316
-msgid "Analyzing your data..."
-msgstr "Analyse de vos données..."
-
-#: .\templates\DarkMode\transition1.html:317
-msgid "Generating your wrap..."
-msgstr "Génération de votre Wrapped..."
-
-#: .\templates\DarkMode\transition1.html:318
-msgid "Complete!"
-msgstr "Terminé!"
-
-#: .\templates\DarkMode\transition2.html:240
-msgid "The cards have been drawn,"
-msgstr "Les cartes ont été tirées,"
-
-#: .\templates\DarkMode\transition2.html:241
-msgid "the stars aligned,"
-msgstr "les étoiles se sont alignées,"
-
-#: .\templates\DarkMode\transition2.html:242
-msgid "and now the universe reveals"
-msgstr "et maintenant l'univers révèle"
-
-#: .\templates\DarkMode\transition2.html:243
-msgid "your auditory divination!"
-msgstr "votre divination auditive!"
-
-#: .\templates\DarkMode\listening_minutes.html:304
-msgid "Your Cosmic Clock"
-msgstr "Votre Horloge Cosmique"
-
-#: .\templates\DarkMode\memorable_moment.html:507
-msgid "Celestial Highlight"
-msgstr "Fait Marquant Céleste"
-
-#: .\templates\DarkMode\top_5_songs.html:362
-msgid "Your Chords of Destiny"
-msgstr "Vos Accords du Destin"
-
-#: .\templates\DarkMode\top_artist.html:309
-msgid "Your Top 5 Cosmic Influencers"
-msgstr "Vos 5 Influences Cosmiques Principales"
-
-#: .\templates\DarkMode\top_genre.html:279
-msgid "Sound of Your Soul"
-msgstr "Le Son de Votre Âme"
-
-#: .\templates\DarkMode\top_song.html:333
-msgid "Your Musical Prophecy"
-msgstr "Votre Prophétie Musicale"
-
-#: .\templates\DarkMode\type_of_listener.html:267
-msgid "Aura"
-msgstr "Aura"
-
-
 msgid "Successfully connected to Spotify!"
 msgstr "Connexion à Spotify réussie !"
+
+
+#: .\templates\about.html:68
+msgid "About the team"
+msgstr "À propos de l'équipe"
+
+#: .\templates\about.html:73
+msgid "Christy is a 2nd year Computational Media student. She functioned as a fullstack developer and scrum master for this project."
+msgstr "Christy est une étudiante en deuxième année de médias computationnels. Elle a travaillé comme développeuse fullstack et scrum master pour ce projet."
+
+#: .\templates\about.html:84
+msgid "Evan is a 3rd year Computer Science student."
+msgstr "Evan est un étudiant en troisième année d'informatique."
+
+#: .\templates\about.html:85
+msgid "He functioned as a backend developer for this project."
+msgstr "Il a travaillé comme développeur backend pour ce projet."
+
+
+#: .\templates\about.html:92
+msgid "Norah is a 2nd year Computational Media student. She functioned as a fullstack developer for this project."
+msgstr "Norah est une étudiante en deuxième année de médias computationnels. Elle a travaillé comme développeuse fullstack pour ce projet."
+
+#: .\templates\about.html:108
+msgid "Akané is a 2nd year Computational Media student. She functioned as a frontend developer and product owner for this project."
+msgstr "Akané est une étudiante en deuxième année de médias computationnels. Elle a travaillé comme développeuse frontend et propriétaire du produit pour ce projet."
+
+#: templates/delete_account.html:4
+msgid "Are you sure you want to delete your account?"
+msgstr "Êtes-vous sûr de vouloir supprimer votre compte ?"
+
+#: templates/delete_account.html:5
+msgid "This action is irreversible and will permanently delete your account and all its data."
+msgstr "Cette action est irréversible et supprimera définitivement votre compte et toutes ses données."
+
+#: templates/delete_account.html:9
+msgid "Yes, delete my account"
+msgstr "Oui, supprimer mon compte"
+
+#: templates/delete_account.html:11
+msgid "Cancel"
+msgstr "Annuler"

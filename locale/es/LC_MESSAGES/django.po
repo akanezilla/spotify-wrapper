@@ -1,3 +1,4 @@
+
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
@@ -43,10 +44,14 @@ msgid "Profile"
 msgstr "Perfil"
 
 #: .\templates\home\home.html:106
+#.\templates\about.html\home.html:43
+#: .\templates\contact.html\home.html:43
+#: .\templates\account.html\home.html:43
 msgid "Logout"
 msgstr "Cerrar sesión"
 
 #: .\templates\home\home.html:107
+#: .\templates\accounts.html:72
 msgid "Delete Account"
 msgstr "Eliminar cuenta"
 
@@ -137,11 +142,11 @@ msgstr "Tu Reloj Cósmico"
 
 #: .\templates\RainbowMode\memorable_moment.html:442
 msgid "Celestial Highlight"
-msgstr "Destello Celestial" 
+msgstr "Destello Celestial"
 
 #: .\templates\RainbowMode\top_5_songs.html:285
 msgid "Your Chords of Destiny"
-msgstr "Tus Acordes del Destino" 
+msgstr "Tus Acordes del Destino"
 
 #: .\templates\RainbowMode\top_artist.html:270
 msgid "Your Top 5 Cosmic Influencers"
@@ -175,18 +180,24 @@ msgstr "Nuevo Envase"
 msgid "Past Wraps"
 msgstr "Envoltorios Pasados"
 
-#: .\templates\home\home.html:241
+
+#.\templates\home\home.html:241
 msgid "Account"
 msgstr "Cuenta"
 
 #: .\templates\home\home.html:162
+#: .\templates\about.html\home.html:41
+#: .\templates\contact.html\home.html:41
+#: .\templates\account.html\home.html:41
 msgid "About"
 msgstr "Acerca de"
 
 #:.\templates\home\home.html:163
+#.\templates\about.html\home.html:42
+#: .\templates\contact.html\home.html:42
+#: .\templates\account.html\home.html:42
 msgid "Contact Us"
 msgstr "Contáctenos"
-
 
 
 #: .\templates\home\contact.html:66
@@ -213,72 +224,49 @@ msgstr "Ingresa tu mensaje "
 msgid "We appreciate your feedback!"
 msgstr "¡Agradecemos tus comentarios!"
 
-
-#: .\templates\DarkMode\transition1.html:316
-msgid "Analyzing your data..."
-msgstr "Analizando tus datos..."
-
-#: .\templates\DarkMode\transition1.html:317
-msgid "Generating your wrap..."
-msgstr "Generando tu wrap..."
-
-#: .\templates\DarkMode\transition1.html:318
-msgid "Complete!"
-msgstr "¡Completado!"
-
-#: .\templates\DarkMode\transition2.html:240
-msgid "The cards have been drawn,"
-msgstr "Las cartas han sido repartidas,"
-
-#: .\templates\DarkMode\transition2.html:241
-msgid "the stars aligned,"
-msgstr "las estrellas se alinearon,"
-
-#: .\templates\DarkMode\transition2.html:242
-msgid "and now the universe reveals"
-msgstr "y ahora el universo revela"
-
-#: .\templates\DarkMode\transition2.html:243
-msgid "your auditory divination!"
-msgstr "¡tu adivinación auditiva!"
-
-#: .\templates\DarkMode\listening_minutes.html:304
-msgid "Your Cosmic Clock"
-msgstr "Tu Reloj Cósmico"
-
-#: .\templates\DarkMode\memorable_moment.html:507
-msgid "Celestial Highlight"
-msgstr "Destello Celestial" 
-
-#: .\templates\DarkMode\top_5_songs.html:362
-msgid "Your Chords of Destiny"
-msgstr "Tus Acordes del Destino" 
-
-#: .\templates\DarkMode\top_artist.html:309
-msgid "Your Top 5 Cosmic Influencers"
-msgstr "Tus 5 Principales Influencias Cósmicas"
-
-#: .\templates\DarkMode\top_genre.html:279
-msgid "Sound of Your Soul"
-msgstr "Sonido de Tu Alma"
-
-#: .\templates\DarkMode\top_song.html:333
-msgid "Your Musical Prophecy"
-msgstr "Tu Profecía Musical"
-
-#: .\templates\DarkMode\type_of_listener.html:267
-msgid "Aura"
-msgstr "Aura"
-
-#: .\templates\DarkMode\listening_minutes.html:314
-msgid "You've listened to %s minutes of music!"
-msgstr "¡Has escuchado %s minutos de música!"  # Example translation for Spanish
-
-msgid "We couldn't fetch your listening time. Please try again."
-msgstr "No pudimos obtener tu tiempo de escucha. Por favor, intenta de nuevo."  # Example translation for Spanish
-
 msgid "Successfully connected to Spotify!"
 msgstr "¡Conexión a Spotify exitosa!"
+
+
+#: .\templates\about.html:68
+msgid "About the team"
+msgstr "Acerca del equipo"
+
+#: .\templates\about.html:73
+msgid "Christy is a 2nd year Computational Media student. She functioned as a fullstack developer and scrum master for this project."
+msgstr "Christy es una estudiante de segundo año de Medios Computacionales. Actuó como desarrolladora fullstack y scrum master para este proyecto."
+
+#: .\templates\about.html:84
+msgid "Evan is a 3rd year Computer Science student."
+msgstr "Evan es un estudiante de tercer año de Ciencias de la Computación."
+
+#: .\templates\about.html:85
+msgid "He functioned as a backend developer for this project."
+msgstr "Actuó como desarrollador backend para este proyecto."
+
+#: .\templates\about.html:92
+msgid "Norah is a 2nd year Computational Media student. She functioned as a fullstack developer for this project."
+msgstr "Norah es una estudiante de segundo año de Medios Computacionales. Actuó como desarrolladora fullstack para este proyecto."
+
+#: .\templates\about.html:108
+msgid "Akané is a 2nd year Computational Media student. She functioned as a frontend developer and product owner for this project."
+msgstr "Akané es una estudiante de segundo año de Medios Computacionales. Actuó como desarrolladora frontend y propietaria del producto para este proyecto."
+
+#: templates/delete_account.html:4
+msgid "Are you sure you want to delete your account?"
+msgstr "¿Estás seguro de que quieres eliminar tu cuenta?"
+
+#: templates/delete_account.html:5
+msgid "This action is irreversible and will permanently delete your account and all its data."
+msgstr "Esta acción es irreversible y eliminará permanentemente tu cuenta y todos sus datos."
+
+#: templates/delete_account.html:9
+msgid "Yes, delete my account"
+msgstr "Sí, eliminar mi cuenta"
+
+#: templates/delete_account.html:11
+msgid "Cancel"
+msgstr "Cancelar"
 
 
 

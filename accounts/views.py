@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
 from django.contrib.auth import login, authenticate
@@ -11,7 +11,12 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.views import View
 from django.contrib.auth import logout
 from django.shortcuts import redirect
+import logging
+from django.core.mail import send_mail
+from django.http import JsonResponse
+from django.shortcuts import render
 from spotify.models import SpotifyProfile
+from django.utils.translation import gettext_lazy as _
 
 @login_required
 def delete_account(request):
@@ -23,10 +28,21 @@ def delete_account(request):
         return redirect('home')
     return render(request, 'delete_account.html')
 
-class SignUpView(CreateView):
-    form_class = UserCreationForm
-    success_url = reverse_lazy("login")
-    template_name = "registration/signup.html"
+
+logger = logging.getLogger(__name__)
+
+def signup(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Your account has been created! You can now log in.')
+            return redirect('login')  # Redirect to login page
+    else:
+        form = UserCreationForm()
+    return render(request, 'registration/signup.html', {'form': form})
+
+
 
 class CustomLoginView(View):
     form_class = AuthenticationForm
@@ -59,3 +75,34 @@ def logout_view(request):
 
     logout(request)
     return redirect('home')
+
+
+def contact_view(request):
+    if request.method == "POST":
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        message = request.POST.get('message')
+
+        logger.info(f"Contact form submission: name={name}, email={email}, message={message}")
+
+        # Compose the email
+        subject = f"New Contact Form Submission from {name}"
+        body = f"Name: {name}\nEmail: {email}\n\nMessage:\n{message}"
+
+        try:
+            # Send the email
+            send_mail(
+                subject,
+                body,
+                'jadelee1721@gmail.com',  # Replace with your from email
+                ['wrapped837@gmail.com'],  # Replace with your receiving email
+                fail_silently=False,
+            )
+            logger.info("Email sent successfully.")
+            return JsonResponse({'success': True, 'message': 'Email sent successfully!'})
+        except Exception as e:
+            logger.error(f"Email sending failed: {e}")  # Log the exact error
+            return JsonResponse({'success': False, 'message': 'Failed to send email. Please try again later.'})
+
+    logger.warning("Invalid request method received.")
+    return render(request, 'home/contact.html')

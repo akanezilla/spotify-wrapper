@@ -1,73 +1,29 @@
+
 {% load static %}
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">  <!-- Link to your CSS file -->
+    <link rel="stylesheet" href="{% static 'css/signup.css' %}">
 </head>
 <body>
-    <div class="container">
-        <h2>Login</h2>
-
-        {% if messages %}
-            <ul class="messages">
-                {% for message in messages %}
-                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
-
-        <form method="post" novalidate>
+    <div class="login-container">
+        <img src="{% static 'images/tarotifylogo.png' %}" alt="Logo" class="logo">
+        <form method="post">
             {% csrf_token %}
-            {{ form.non_field_errors }}
-            <div class="form-group">
-                <label for="{{ form.username.id_for_label }}">Username:</label>
-                {{ form.username }}
-                {{ form.username.errors }}
+            <div class="input-group">
+                <label for="id_username">Username</label>
+                <input type="text" name="username" required id="id_username">
             </div>
-            <div class="form-group">
-                <label for="{{ form.password.id_for_label }}">Password:</label>
-                {{ form.password }}
-                {{ form.password.errors }}
+            <div class="input-group">
+                <label for="id_password">Password</label>
+                <input type="password" name="password" required id="id_password">
             </div>
-            <button type="submit">Login</button>
+            <button type="submit" class="btn">Log in</button>
         </form>
-
-        <p>Don't have an account? <a href="{% url 'signup' %}">Sign up here</a></p>
+        <a href="{% url 'signup' %}" class="signup-link">Don't have an account? Sign up</a>
     </div>
-
-    <style>
-        /* Basic styling for the login page */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            width: 300px;
-            margin: 100px auto;
-            padding: 20px;
-            background: white;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        h2 {
-            text-align: center;
-        }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        .messages {
-            list-style-type: none;
-            padding: 0;
-        }
-        .messages li {
-            color: red; /* Change this to your preferred color */
-        }
-    </style>
-
 </body>
 </html>
