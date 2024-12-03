@@ -378,9 +378,10 @@
             <p>No tracks available.</p>
         {% endfor %}
     </div>
+<script>
     async function getTopTracks() {
     try {
-        const response = await fetch('/spotify/top-tracks/'); // Adjust the URL as necessary
+        const response = await fetch('/top-tracks/'); // Adjust the URL as necessary
         if (!response.ok) {
             throw new Error('Failed to fetch top tracks');
         }
@@ -400,32 +401,6 @@
     }
 }
 
-// Call the function when needed, e.g., on button click or page load
-getTopTracks();<script>
-    async function getTopTracks() {
-    try {
-        const response = await fetch('/spotify/top-tracks/'); // Adjust the URL as necessary
-        if (!response.ok) {
-            throw new Error('Failed to fetch top tracks');
-        }
-        const data = await response.json();
-        
-        // Process the received data
-        const tracks = data.topTracks.map(track => ({
-            name: track.name,
-            artist: track.artist,
-            coverUrl: track.cover_url,
-            id: track.id
-        }));
-
-        console.log(tracks); // You can render these on the page or use them as needed
-    } catch (error) {
-        console.error('Error fetching top tracks:', error);
-    }
-}
-
-// Call the function when needed, e.g., on button click or page load
-getTopTracks();
 </script>
 </body>
 </html>
