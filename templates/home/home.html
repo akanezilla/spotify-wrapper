@@ -91,11 +91,18 @@
          background-color: #0000003b; /* Replace with your color */
          box-shadow: 0 0 20px rgba(0, 0, 0, 0.381);
          position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;  /* Ensure it spans the full width */
-    z-index: 1000;  /* Ensures the navbar is above other content */
+         top: 0;
+         left: 0;
+         width: 100%;  /* Ensure it spans the full width */
+        z-index: 1000;  /* Ensures the navbar is above other content */
         }
+
+.message.success {
+    color: white;
+    margin-top: 40px;
+    font-size: 40px; /* Correct way to set font size */
+}
+
         
     </style>
 </head>
@@ -119,20 +126,7 @@
     <nav class="navbar">
         <div class="navbar-left">
            <span>{% trans "Welcome," %} {{ username }}</span>
-        </div>
-        <div class="navbar-right">
-            {% if is_connected %}
-            <span>{% trans "Spotify Connected" %}</span>
-        {% else %}
-            <a href="{% url 'spotify:spotify_connect' %}">{% trans "Connect with Spotify" %}</a>
-        {% endif %}
-        <a href="#">{% trans "Stories" %}</a>
-        <a href="#">{% trans "Profile" %}</a>
-        <form method="post" action="{% url 'logout' %}">
-            {% csrf_token %}
-            <button type="submit">{% trans "Logout" %}</button>
-            <a href="{% url 'delete_account' %}">{% trans "Delete Account" %}</a>
-        </form>
+        
          </div>
      </nav>
 

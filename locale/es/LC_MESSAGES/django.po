@@ -214,6 +214,72 @@ msgid "We appreciate your feedback!"
 msgstr "¡Agradecemos tus comentarios!"
 
 
+#: .\templates\DarkMode\transition1.html:316
+msgid "Analyzing your data..."
+msgstr "Analizando tus datos..."
+
+#: .\templates\DarkMode\transition1.html:317
+msgid "Generating your wrap..."
+msgstr "Generando tu wrap..."
+
+#: .\templates\DarkMode\transition1.html:318
+msgid "Complete!"
+msgstr "¡Completado!"
+
+#: .\templates\DarkMode\transition2.html:240
+msgid "The cards have been drawn,"
+msgstr "Las cartas han sido repartidas,"
+
+#: .\templates\DarkMode\transition2.html:241
+msgid "the stars aligned,"
+msgstr "las estrellas se alinearon,"
+
+#: .\templates\DarkMode\transition2.html:242
+msgid "and now the universe reveals"
+msgstr "y ahora el universo revela"
+
+#: .\templates\DarkMode\transition2.html:243
+msgid "your auditory divination!"
+msgstr "¡tu adivinación auditiva!"
+
+#: .\templates\DarkMode\listening_minutes.html:304
+msgid "Your Cosmic Clock"
+msgstr "Tu Reloj Cósmico"
+
+#: .\templates\DarkMode\memorable_moment.html:507
+msgid "Celestial Highlight"
+msgstr "Destello Celestial" 
+
+#: .\templates\DarkMode\top_5_songs.html:362
+msgid "Your Chords of Destiny"
+msgstr "Tus Acordes del Destino" 
+
+#: .\templates\DarkMode\top_artist.html:309
+msgid "Your Top 5 Cosmic Influencers"
+msgstr "Tus 5 Principales Influencias Cósmicas"
+
+#: .\templates\DarkMode\top_genre.html:279
+msgid "Sound of Your Soul"
+msgstr "Sonido de Tu Alma"
+
+#: .\templates\DarkMode\top_song.html:333
+msgid "Your Musical Prophecy"
+msgstr "Tu Profecía Musical"
+
+#: .\templates\DarkMode\type_of_listener.html:267
+msgid "Aura"
+msgstr "Aura"
+
+#: .\templates\DarkMode\listening_minutes.html:314
+msgid "You've listened to %s minutes of music!"
+msgstr "¡Has escuchado %s minutos de música!"  # Example translation for Spanish
+
+msgid "We couldn't fetch your listening time. Please try again."
+msgstr "No pudimos obtener tu tiempo de escucha. Por favor, intenta de nuevo."  # Example translation for Spanish
+
+msgid "Successfully connected to Spotify!"
+msgstr "¡Conexión a Spotify exitosa!"
+
 
 
 

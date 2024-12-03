@@ -401,4 +401,19 @@
         document.addEventListener('DOMContentLoaded', initializeScroll);
     }
 </script>
+<script>
+    async function getWrapData() {
+    try {
+        const response = await fetch('/spotify/top-song/');
+        if (!response.ok) {
+            throw new Error('Failed to fetch top song');
+        }
+        const data = await response.json();
+        return JSON.stringify(data.topSong);
+    } catch (error) {
+        console.error('Error fetching top song:', error);
+        return JSON.stringify({ error: 'Failed to fetch top song' });
+    }
+}
+</script>
 </html>

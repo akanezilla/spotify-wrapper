@@ -83,8 +83,7 @@ def spotify_callback(request):
                         'token_expires': timezone.now() + timezone.timedelta(seconds=expires_in)
                     }
                 )
-                
-                messages.success(request, "Successfully connected to Spotify!")
+                messages.success(request, _("Successfully connected to Spotify!"))
             else:
                 messages.error(request, "Failed to get token info from Spotify.")
         except Exception as e:
@@ -189,21 +188,18 @@ def top_tracks_view(request):
                 'name': track['name'],
                 'artist': track['artists'][0]['name'],
                 'cover_url': cover_url,
-                'id': track['id']  # Store the track ID if needed
+                'id': track['id']
             })
 
-        context = {
-            'top_tracks': tracks_info
-        }
-        return render(request, 'RainbowMode/top_5_songs.html', context)
+        return JsonResponse({'topTracks': tracks_info})
 
     except SpotifyProfile.DoesNotExist:
-        messages.warning(request, "Please connect your Spotify account first.")
-        return redirect('spotify:spotify_connect')
+        return JsonResponse({'error': 'Please connect your Spotify account first.'}, status=400)
     except SpotifyException as e:
-        messages.error(request, f"Spotify API error: {str(e)}")
-        return redirect('home')
+        return JsonResponse({'error': f'Spotify API error: {str(e)}'}, status=500)
 
+
+from django.http import JsonResponse
 
 def top_artists_view(request):
     try:
@@ -217,24 +213,20 @@ def top_artists_view(request):
         # Get top 5 artists from Spotify
         top_artists = sp.current_user_top_artists(limit=5, time_range='long_term')
 
-        # Prepare artist data for template
+        # Prepare artist data for JSON response
         artists_info = [{
             'name': artist['name'],
             'image_url': artist['images'][0]['url'] if artist['images'] else None,
             'genres': ', '.join(artist['genres'][:3])  # Limit to top 3 genres
         } for artist in top_artists['items']]
 
-        context = {
-            'top_artists': artists_info
-        }
-        return render(request, 'RainbowMode/top_artists.html', context)
+        return JsonResponse({'topArtists': artists_info})
 
     except SpotifyProfile.DoesNotExist:
-        messages.warning(request, "Please connect your Spotify account first.")
-        return redirect('spotify:spotify_connect')
+        return JsonResponse({'error': 'Please connect your Spotify account first.'}, status=400)
     except Exception as e:
-        messages.error(request, f"Spotify API error: {str(e)}")
-        return redirect('home')
+        return JsonResponse({'error': f'Spotify API error: {str(e)}'}, status=500)
+    
 
 def top_genre_view(request):
     try:
@@ -326,32 +318,6 @@ def listener_type_view(request):
         return JsonResponse({'error': f"Unexpected error: {str(e)}"}, status=500)
 
 
-@login_required
-def random_songs_view(request):
-    try:
-        spotify_profile = request.user.spotifyprofile
-        
-        if spotify_profile.token_expires <= timezone.now():
-            spotify_profile.refresh_spotify_token()
-        
-        sp = spotipy.Spotify(auth=spotify_profile.spotify_token)
-        
-        # Get top tracks
-        top_tracks = sp.current_user_top_tracks(limit=50, time_range='short_term')
-        
-        # Select 3 random tracks
-        random_tracks = random.sample(top_tracks['items'], min(3, len(top_tracks['items'])))
-        
-        context = {
-            'random_tracks': random_tracks
-        }
-        return render(request, 'spotify/random_songs.html', context)
-    except SpotifyProfile.DoesNotExist:
-        messages.warning(request, "Please connect your Spotify account first.")
-        return redirect('spotify:spotify_connect')
-    except SpotifyException as e:
-        messages.error(request, f"Spotify API error: {str(e)}")
-        return redirect('home')
 @login_required
 def total_listening_time_view(request):
     try:
@@ -536,3 +502,42 @@ def generate_moment_description(track, artist):
         f"That perfect moment when '{track['name']}' came on and everything felt right."
     ]
     return random.choice(moments)
+from django.http import JsonResponse
+from django.contrib.auth.decorators import login_required
+from .models import SavedWrap
+import json
+from django.views.decorators.csrf import csrf_exempt
+from django.urls import reverse
+
+@csrf_exempt
+@login_required
+def save_wrap(request):
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+            
+            # Create and save SavedWrap instance based on received data
+            saved_wrap = SavedWrap(
+                user=request.user,
+                listening_minutes=data.get('listening_minutes', None),
+                memorable_moments=data.get('memorable_moments', ''),
+                top_5_songs=json.dumps(data.get('top_5_songs', [])),
+                top_5_artists=json.dumps(data.get('top_5_artists', [])),
+                top_5_genres=json.dumps(data.get('top_5_genres', [])),
+                top_song=data.get('top_song', ''),
+                type_of_listener=data.get('type_of_listener', '')
+            )
+            saved_wrap.save()
+            
+            # Return success response with redirect URL
+            return JsonResponse({
+                'message': 'Wrap saved successfully!',
+                'redirect_url': reverse('spotify:my_wraps')
+            }, status=201)
+        
+        except json.JSONDecodeError:
+            return JsonResponse({'error': 'Invalid JSON data'}, status=400)
+        except Exception as e:
+            return JsonResponse({'error': str(e)}, status=500)
+
+    return JsonResponse({'error': 'Invalid request method'}, status=405)

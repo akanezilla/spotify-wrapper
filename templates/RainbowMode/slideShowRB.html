@@ -123,55 +123,103 @@
     </style>
 </head>
 <body>
-<div class="slideshow-container">
-    <!-- <button class="close-button" onclick="window.location.href='{% url 'home' %}'">X</button> -->
-    <button class="nav-button prev" onclick="prevSlide()">&#10094;</button>
-    <button class="nav-button next" onclick="nextSlide()">&#10095;</button>
-    <button id="save-wrap-button" onclick="saveWrap()">Save Wrap</button>
-
-    <iframe src="{% url 'top_5_songsRB' %}" class="iframe-slide active"></iframe>
-    <iframe src="{% url 'top_songRB' %}" class="iframe-slide"></iframe>
-    <iframe src="{% url 'top_genreRB' %}" class="iframe-slide"></iframe>
-    <iframe src="{% url 'spotify:top_artistsRB' %}" class="iframe-slide"></iframe>
-    <iframe src="{% url 'listening_minutesRB' %}" class="iframe-slide"></iframe>
-    <iframe src="{% url 'type_of_listenerRB' %}" class="iframe-slide"></iframe>
-    <iframe src="{% url 'memorable_momentRB' %}" class="iframe-slide"></iframe>
-
-    <div class="progress-bar-background">
-        <div class="progress-bar"></div>
+    <div class="slideshow-container">
+        <button class="nav-button prev" onclick="prevSlide()">&#10094;</button>
+        <button class="nav-button next" onclick="nextSlide()">&#10095;</button>
+        <button id="save-wrap-button">Save Wrap</button>
+    
+        <iframe src="{% url 'top_5_songsRB' %}" class="iframe-slide active"></iframe>
+        <iframe src="{% url 'top_songRB' %}" class="iframe-slide"></iframe>
+        <iframe src="{% url 'top_genreRB' %}" class="iframe-slide"></iframe>
+        <iframe src="{% url 'spotify:top_artistsRB' %}" class="iframe-slide"></iframe>
+        <iframe src="{% url 'listening_minutesRB' %}" class="iframe-slide"></iframe>
+        <iframe src="{% url 'type_of_listenerRB' %}" class="iframe-slide"></iframe>
+        <iframe src="{% url 'memorable_momentRB' %}" class="iframe-slide"></iframe>
+    
+        <div class="progress-bar-background">
+            <div class="progress-bar"></div>
+        </div>
     </div>
-</div>
-
-<script>
+    
+    <script>
+    // Function to gather data from iframes
+    async function gatherWrapData() {
+        // Assuming each iframe has a way to expose its data, you might need to implement this in each iframe's page.
+        const top5Songs = await fetchIframeData('top_5_songsRB');
+        const topSong = await fetchIframeData('top_songRB');
+        const topGenres = await fetchIframeData('top_genreRB');
+        const topArtists = await fetchIframeData('top_artistsRB');
+        const listeningMinutes = await fetchIframeData('listening_minutesRB');
+        const listenerType = await fetchIframeData('type_of_listenerRB');
+        const memorableMoment = await fetchIframeData('memorable_momentRB');
+    
+        return {
+            top_5_songs: top5Songs,
+            top_song: topSong,
+            top_5_genres: topGenres,
+            top_5_artists: topArtists,
+            listening_minutes: listeningMinutes,
+            type_of_listener: listenerType,
+            memorable_moments: memorableMoment,
+        };
+    }
+    
+    // Fetch data from an iframe (this function needs to be implemented in each iframe)
+    async function fetchIframeData(url) {
+        // This function should be implemented in each iframe's content
+        // For example, you might have a function in each iframe that returns the relevant data
+    }
+    
+    // Event listener for the save button
     document.getElementById("save-wrap-button").addEventListener("click", async function () {
-        const form = document.getElementById("saveWrapForm");
-        const formData = new FormData(form);
+    const wrapData = await gatherWrapData(); // Ensure this function gathers data correctly
 
-        try {
-            const response = await fetch(form.action, {
-                method: "POST",
-                body: formData,
-                headers: {
-                    "X-CSRFToken": form.querySelector("[name=csrfmiddlewaretoken]").value,
-                },
-            });
+    try {
+        const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value; // Get CSRF token
 
-            if (response.ok) {
-                const button = document.getElementById("save-wrap-button");
-                button.textContent = "Wrap Saved";
-                button.disabled = true;
-            } else {
-                alert("Something went wrong. Please try again.");
-            }
-        } catch (error) {
-            console.error("Error submitting form:", error);
+        const response = await fetch('/save-wrap/', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRFToken": csrfToken,
+            },
+            body: JSON.stringify(wrapData),
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            alert(data.message || 'Wrap saved successfully!');
+            window.location.href = '/my-wraps/'; // Redirect after saving
+        } else {
+            const errorData = await response.json();
+            alert(errorData.error || 'Something went wrong. Please try again.');
         }
-    });
-
+    } catch (error) {
+        console.error("Error submitting form:", error);
+        alert('An error occurred while saving. Please try again.');
+    }
+});
+    // Function to get CSRF token for AJAX requests
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+    
+    // Slideshow functionality remains unchanged
     const slides = document.querySelectorAll(".iframe-slide");
     const progressBar = document.querySelector(".progress-bar");
     let currentSlide = 0;
-
+    
     function updateSlide() {
         slides.forEach((slide, index) => {
             slide.classList.remove("active");
@@ -179,10 +227,10 @@
                 slide.classList.add("active");
             }
         });
-
+    
         progressBar.style.width = ((currentSlide + 1) / slides.length) * 100 + '%';
     }
-
+    
     function nextSlide() {
         if (currentSlide < slides.length - 1) {
             currentSlide++;
@@ -192,7 +240,7 @@
             updateSlide();
         }
     }
-
+    
     function prevSlide() {
         if (currentSlide > 0) {
             currentSlide--;
@@ -202,9 +250,7 @@
             updateSlide();
         }
     }
-
+    
     setInterval(nextSlide, 10000);
     updateSlide();
-</script>
-</body>
-</html>
+    </script>

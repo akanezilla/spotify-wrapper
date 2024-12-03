@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Wraps</title>
+</head>
+<body>
+<h1>My Spotify Wraps</h1>
+
+<ul>
+    {% for wrap in wraps %}
+        <li>{{ wrap.created_at }}: {{ wrap.top_song }} by {{ wrap.top_5_artists }}</li>
+    {% empty %}
+        <li>No wraps saved yet.</li>
+    {% endfor %}
+</ul>
+
+<a href="{% url 'spotify:save_wrap' %}">Save a new wrap</a>
+</body>
+</html>
