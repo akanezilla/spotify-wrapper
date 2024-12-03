@@ -8,10 +8,10 @@
     <title>Light Mode Minutes</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        html, body {
+           html, body {
             margin: 0;
             padding: 0;
-            overflow: hidden; /* Prevent scrolling */
+            overflow: hidden;
             font-family: 'Poppins', Arial, sans-serif;
         }
 
@@ -33,8 +33,8 @@
         }
 
         .gradient-bg {
-            width: 100vw;
-            height: 100vh;
+            width: 100%;
+            height: 100%;
             position: fixed;
             top: 0;
             left: 0;
@@ -69,7 +69,7 @@
         }
 
         h1 {
-            font-size: 50px;
+            font-size: 4rem;  /* Use rem instead of px */
             text-shadow: 0 0 20px rgba(255, 255, 255, 0.7);
             margin-top: 20px;
         }
@@ -77,6 +77,8 @@
         img {
             position: relative;
             z-index: 1001;
+            max-width: 100%;  /* Ensure it doesn't overflow */
+            height: auto;
         }
 
         /* Floating Effects */
@@ -142,7 +144,6 @@
             animation: moveInCircle 30s ease infinite;
         }
 
-
         @keyframes moveVertical {
             0% {
                 transform: translateY(-50%);
@@ -180,69 +181,66 @@
         }
 
         .gradient-bg {
-            background-size: 200% 200%; /* Adjust for smaller screens */
+            background-size: 200% 200%;
         }
 
         @media (max-width: 768px) {
             .gradient-bg {
-                background-size: 300% 300%; /* Smaller adjustments for mobile */
+                background-size: 300% 300%;
             }
 
             h1 {
-                font-size: 30px; /* Reduce size for smaller screens */
+                font-size: 2.5rem; /* Adjusted for smaller screens */
             }
 
             .hourglass-container {
-                width: 80%; /* Make the hourglass smaller for mobile */
+                width: 80%;
+                max-width: 400px; /* Limit width on mobile */
             }
 
             #hourglass {
-                max-width: 300px; /* Limit the size for smaller devices */
+                width: 100%;
+                height: auto;
             }
         }
 
-
         .hourglass-container {
             position: relative;
-            width: 400px; /* Increase width */
-            height: 600px; /* Increase height */
+            width: 50vw;  /* Use viewport width for responsive sizing */
+            height: 60vh;  /* Use viewport height for responsive sizing */
             margin: 0 auto;
             max-width: 400px;
         }
 
         #hourglass {
-            width: 100%; /* Make sure it fills the container */
-            height: auto; /* Maintain aspect ratio */
-            position: relative;
-            z-index: 2;
-            max-width: 400px;
+            width: 100%;
+            height: auto;
         }
 
         .sand-container {
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
-            width: 60%; /* Adjust based on your hourglass image */
+            width: 60%;
             overflow: hidden;
         }
 
-
         .sand-container.top {
-            top: 10%; /* Adjust based on your hourglass image */
-            height: 35%; /* Adjust based on your hourglass image */
-            clip-path: polygon(0% 0%, 100% 0%, 50% 100%); /* Triangle shape */
+            top: 10%;
+            height: 35%;
+            clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
         }
 
         .sand-container.bottom {
-            top: 50%; /* Starts where the top ends */
-            height: 30%; /* Adjust based on your hourglass image */
-            clip-path: polygon(0% 100%, 100% 100%, 50% 0%); /* Inverted triangle shape */
+            top: 50%;
+            height: 30%;
+            clip-path: polygon(0% 100%, 100% 100%, 50% 0%);
         }
 
         .sand {
             width: 100%;
             height: 100%;
-            background: #FFD700; /* Sand color */
+            background: #FFD700;
         }
 
         .sand-container.top .sand {
@@ -273,7 +271,7 @@
         }
 
         #listening-time {
-            font-size: 30px;
+            font-size: 1.5rem;
             margin-top: 5px;
             opacity: 0;
             transition: opacity 1s ease-in-out;

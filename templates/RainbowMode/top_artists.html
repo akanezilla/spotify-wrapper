@@ -317,5 +317,20 @@
           {% endfor %}
         </div>
     </div>
+    <script>
+       async function getWrapData() {
+    try {
+        const response = await fetch('/spotify/RainbowMode/top_artists/');
+        if (!response.ok) {
+            throw new Error('Failed to fetch top artists');
+        }
+        const data = await response.json();
+        return JSON.stringify(data.topArtists);
+    } catch (error) {
+        console.error('Error fetching top artists:', error);
+        return JSON.stringify({ error: 'Failed to fetch top artists' });
+    }
+}
+    </script>
     </body>
     </html>

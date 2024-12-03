@@ -28,18 +28,37 @@
 
         .language-switcher {
             position: relative;
+            border-color: white;
             top: 100px;
+            font-size: larger;
             margin-right: 100%;
+            margin-left: 10px;
         }
 
         .language-switcher select {
             padding: 5px;
-            border-radius: 5px;
-            background-color: #191414;
-            color: #ffffffa2;
-            border: 1px solid #1DB954;
+            border-radius: 90px;
+            background-color: #ffffff00;
+            color: #000000;
+            font-weight: 500;
+        }
+        .navbar {
+         background-color: #0000003b; /* Replace with your color */
+         box-shadow: 0 0 20px rgba(0, 0, 0, 0.381);
+         position: fixed;
+         top: 0;
+         left: 0;
+         width: 100%;  /* Ensure it spans the full width */
+        z-index: 1000;  /* Ensures the navbar is above other content */
         }
 
+.message.success {
+    color: white;
+    margin-top: 40px;
+    font-size: 40px; /* Correct way to set font size */
+}
+
+        
     </style>
 </head>
 <body data-theme="light" class="body-9">
@@ -57,8 +76,17 @@
             {% endfor %}
         </select>
     </form>
-<!-- Messages -->
-{% if messages %}
+    
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar-left">
+           <span>{% trans "Welcome," %} {{ username }}</span>
+        
+         </div>
+     </nav>
+
+    <!-- Messages -->
+    {% if messages %}
     <div class="messages">
         {% for message in messages %}
             <div class="message {% if message.tags %}{{ message.tags }}{% endif %}">
@@ -125,56 +153,57 @@
 </section>
 <div class="w-layout-blockcontainer container-3 w-container">
     <a href="{% url 'transition1RB' %}" class="link-block w-inline-block">
-        <div class="new-fortunes">
-            <div id="new-wrap" class="div">
-                <div class="sun-center">
-                    <div class="ray3"></div>
-                    <div class="ray2"></div>
-                    <div class="ray1"></div>
-                    <div class="ray4"></div>
-                    <div class="ray5"></div>
-                    <div class="ray6"></div>
-                    <div class="ray7"></div>
-                    <div class="ray8"></div>
-                    <div class="ray9"></div>
-                    <div class="ray10"></div>
-                    <div class="ray11"></div>
-                    <div class="ray12"></div>
-                </div>
-            </div>
-            <div class="div-block-6"></div>
-            <div class="div-block-7">{% trans "New Wrap" %}</div>
+    <div class="new-fortunes">
+        <div id="new-wrap" class="div">
+          <div class="sun-center">
+            <div class="ray3"></div>
+            <div class="ray2"></div>
+            <div class="ray1"></div>
+            <div class="ray4"></div>
+            <div class="ray5"></div>
+            <div class="ray6"></div>
+            <div class="ray7"></div>
+            <div class="ray8"></div>
+            <div class="ray9"></div>
+            <div class="ray10"></div>
+            <div class="ray11"></div>
+            <div class="ray12"></div>
+          </div>
         </div>
+        <div class="div-block-6"></div>
+
+        <div class="div-block-7">{% trans "New Wrap" %}</div>
+    </div>
     </a>
     <a href="{% url 'past_wraps' %}" class="link-block-2 w-inline-block">
-        <div class="past-fortunes">
-            <div class="div">
-                <div class="moon">
-                    <div class="moon2"></div>
-                </div>
-                <div class="div-block-17"></div>
-                <div class="star2"></div>
-                <div class="star"></div>
-            </div>
-            <div id="past-wrap" class="div-block-6"></div>
-            <div class="div-block-7">{% trans "Past Wraps" %}</div>
+      <div class="past-fortunes">
+        <div class="div">
+          <div class="moon">
+            <div class="moon2"></div>
+          </div>
+          <div class="div-block-17"></div>
+          <div class="star2"></div>
+          <div class="star"></div>
         </div>
+        <div id="past-wrap" class="div-block-6"></div>
+        <div class="div-block-7">{% trans "Past Wraps" %}</div>
+    </div>
     </a>
     <a href="{% url 'account' %}" class="link-block-3 w-inline-block">
-        <div class="account">
-            <div class="div">
-                <div class="eyeray"></div>
-                <div class="eyeray2"></div>
-                <div class="eye">
-                    <div class="pupil"></div>
-                    <div class="pupil2"></div>
-                </div>
-                <div class="eyeray3"></div>
-                <div class="eyeray4"></div>
-            </div>
-            <div id="account" class="div-block-6"></div>
-            <div class="div-block-7">{% trans "Account" %}</div>
+      <div class="account">
+        <div class="div">
+          <div class="eyeray"></div>
+          <div class="eyeray2"></div>
+          <div class="eye">
+            <div class="pupil"></div>
+            <div class="pupil2"></div>
+          </div>
+          <div class="eyeray3"></div>
+          <div class="eyeray4"></div>
         </div>
+        <div id="account" class="div-block-6"></div>
+        <div class="div-block-7">{% trans "Account" %}</div>
+    </div>
     </a>
 </div>
 
@@ -250,6 +279,8 @@
             localStorage.setItem('theme', 'rainbow');
         });
     });
+    // Save the new theme in LocalStorage
+    localStorage.setItem('theme', newTheme);
 </script>
 </body>
 </html>

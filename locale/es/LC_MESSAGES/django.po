@@ -44,10 +44,14 @@ msgid "Profile"
 msgstr "Perfil"
 
 #: .\templates\home\home.html:106
+#.\templates\about.html\home.html:43
+#: .\templates\contact.html\home.html:43
+#: .\templates\account.html\home.html:43
 msgid "Logout"
 msgstr "Cerrar sesión"
 
 #: .\templates\home\home.html:107
+#: .\templates\accounts.html:72
 msgid "Delete Account"
 msgstr "Eliminar cuenta"
 
@@ -176,18 +180,24 @@ msgstr "Nuevo Envase"
 msgid "Past Wraps"
 msgstr "Envoltorios Pasados"
 
-#: .\templates\home\home.html:241
+
+#.\templates\home\home.html:241
 msgid "Account"
 msgstr "Cuenta"
 
 #: .\templates\home\home.html:162
+#: .\templates\about.html\home.html:41
+#: .\templates\contact.html\home.html:41
+#: .\templates\account.html\home.html:41
 msgid "About"
 msgstr "Acerca de"
 
 #:.\templates\home\home.html:163
+#.\templates\about.html\home.html:42
+#: .\templates\contact.html\home.html:42
+#: .\templates\account.html\home.html:42
 msgid "Contact Us"
 msgstr "Contáctenos"
-
 
 
 #: .\templates\home\contact.html:66
@@ -213,3 +223,57 @@ msgstr "Ingresa tu mensaje "
 #: .\templates\home\contact.html:61
 msgid "We appreciate your feedback!"
 msgstr "¡Agradecemos tus comentarios!"
+
+msgid "Successfully connected to Spotify!"
+msgstr "¡Conexión a Spotify exitosa!"
+
+
+#: .\templates\about.html:68
+msgid "About the team"
+msgstr "Acerca del equipo"
+
+#: .\templates\about.html:73
+msgid "Christy is a 2nd year Computational Media student. She functioned as a fullstack developer and scrum master for this project."
+msgstr "Christy es una estudiante de segundo año de Medios Computacionales. Actuó como desarrolladora fullstack y scrum master para este proyecto."
+
+#: .\templates\about.html:84
+msgid "Evan is a 3rd year Computer Science student."
+msgstr "Evan es un estudiante de tercer año de Ciencias de la Computación."
+
+#: .\templates\about.html:85
+msgid "He functioned as a backend developer for this project."
+msgstr "Actuó como desarrollador backend para este proyecto."
+
+#: .\templates\about.html:92
+msgid "Norah is a 2nd year Computational Media student. She functioned as a fullstack developer for this project."
+msgstr "Norah es una estudiante de segundo año de Medios Computacionales. Actuó como desarrolladora fullstack para este proyecto."
+
+#: .\templates\about.html:108
+msgid "Akané is a 2nd year Computational Media student. She functioned as a frontend developer and product owner for this project."
+msgstr "Akané es una estudiante de segundo año de Medios Computacionales. Actuó como desarrolladora frontend y propietaria del producto para este proyecto."
+
+#: templates/delete_account.html:4
+msgid "Are you sure you want to delete your account?"
+msgstr "¿Estás seguro de que quieres eliminar tu cuenta?"
+
+#: templates/delete_account.html:5
+msgid "This action is irreversible and will permanently delete your account and all its data."
+msgstr "Esta acción es irreversible y eliminará permanentemente tu cuenta y todos sus datos."
+
+#: templates/delete_account.html:9
+msgid "Yes, delete my account"
+msgstr "Sí, eliminar mi cuenta"
+
+#: templates/delete_account.html:11
+msgid "Cancel"
+msgstr "Cancelar"
+
+
+
+
+
+
+
+
+
+

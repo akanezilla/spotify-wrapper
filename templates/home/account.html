@@ -38,9 +38,9 @@
             <nav role="navigation" class="nav-links-container w-nav-menu">
                 <div class="nav-sub-container">
                     <div class="nav-links-wrapper"></div>
-                    <a href="{% url 'about' %}" class="nav-link nav_link--logout">About</a>
-                    <a href="{% url 'contact' %}" class="nav-link nav_link--logout">Contact Us</a>
-                    <a href="{% url 'login' %}" class="nav-link nav_link--logout">Log out</a>
+                    <a href="{% url 'about' %}" class="nav-link nav_link--logout">{% trans 'About' %}</a>
+                    <a href="{% url 'contact' %}" class="nav-link nav_link--logout">{% trans 'Contact Us' %}</a>
+                    <a href="{% url 'login' %}" class="nav-link nav_link--logout">{% trans 'Logout' %}</a>
                     <div class="toggle-btn">
                         <div class="div-block-10 toggle-track">
                             <div data-w-id="ceb3e6d8-f4fe-cee6-30d7-75b5b3132a60"
@@ -67,9 +67,9 @@
 <section class="section-8">
     <img src="{% static 'images/Frame-1.png' %}" loading="lazy" alt="spotify-person" class="image-7">
     <div class="div-block-14">
-        <div class="text-block-17"><strong>@sophiezilla</strong></div>
+        <div class="text-block-17"><strong>@{{ user.username }}</strong></div>
         <div class="div-block-15">
-            <div class="div-block-16"><a href="{% url 'delete_account' %}">Delete Account</a></div>
+            <div class="div-block-16"><a href="{% url 'delete_account' %}">{%trans 'Delete Account' %}</a></div>
         </div>
     </div>
 </section>

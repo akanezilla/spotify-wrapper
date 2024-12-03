@@ -4,9 +4,9 @@
 <html data-wf-page="67365558dc5c062bfa14abf2" data-wf-site="67232149875170c31d5eb871" lang="en">
 <head>
     <meta charset="utf-8">
-    <title>About</title>
-    <meta content="About" property="og:title">
-    <meta content="About" property="twitter:title">
+    <title>{% trans 'About' %}</title>
+    <meta content="{% trans 'About' %}" property="og:title">
+    <meta content="{% trans 'About' %}" property="twitter:title">
     <meta content="width=device-width, initial-scale=1" name="viewport">
     <meta content="Webflow" name="generator">
     <link href="{% static 'css/normalize.css' %}" rel="stylesheet" type="text/css">
@@ -38,9 +38,9 @@
             <nav role="navigation" class="nav-links-container w-nav-menu">
                 <div class="nav-sub-container">
                     <div class="nav-links-wrapper"></div>
-                    <a href="{% url 'about' %}" class="nav-link nav_link--logout">About</a>
-                    <a href="{% url 'contact' %}" class="nav-link nav_link--logout">Contact Us</a>
-                    <a href="{% url 'login' %}" class="nav-link nav_link--logout">Log out</a>
+                    <a href="{% url 'about' %}" class="nav-link nav_link--logout">{% trans 'About' %}</a>
+                    <a href="{% url 'contact' %}" class="nav-link nav_link--logout">{% trans 'Contact Us' %}</a>
+                    <a href="{% url 'login' %}" class="nav-link nav_link--logout">{% trans 'Logout' %}</a>
                     <div class="toggle-btn">
                         <div class="div-block-10 toggle-track">
                             <div data-w-id="ceb3e6d8-f4fe-cee6-30d7-75b5b3132a60"
@@ -70,8 +70,7 @@
 <section class="section-6">
     <div>
         <div class="text-block-8"><strong>Christy Long</strong></div>
-        <div class="text-block-11">Christy is a 2nd year Computational Media student. <br>She functioned as a fullstack
-            developer and scrum master for this project.<br></div>
+        <div class="text-block-11">{% trans "Christy is a 2nd year Computational Media student. She functioned as a fullstack developer and scrum master for this project." %} <br></div>
     </div>
     <img src="{% static 'images/christy.jpg' %}" loading="lazy" width="254" height="auto" alt="christy"
          srcset="{% static 'images/christy-p-500.jpg' %} 500w, {% static 'images/christy-p-800.jpg' %} 800w,
@@ -90,8 +89,8 @@
 <section class="section-7">
     <div>
         <div class="text-block-7"><strong>Norah Li</strong></div>
-        <div class="text-block-14">Norah is a 2nd year Computational Media student.<br>She functioned as a fullstack
-            developer for this project.
+        <div class="text-block-14">{% trans "Norah is a 2nd year Computational Media student. She functioned as a fullstack developer for this project." %}
+
         </div>
     </div>
     <img src="{% static 'images/norah.jpg' %}" loading="lazy" width="250" sizes="(max-width: 479px) 99vw, 250px"
@@ -107,8 +106,7 @@
          class="image-5">
     <div>
         <div class="text-block-10"><strong class="bold-text">Akané Heim</strong></div>
-        <div class="text-block-13">Akané is 2nd year Computational Media student.<br>She functioned as frontend and
-            product owner for this project.
+        <div class="text-block-13">  {% trans "Akané is a 2nd year Computational Media student. She functioned as a frontend developer and product owner for this project." %}
         </div>
     </div>
 </section>

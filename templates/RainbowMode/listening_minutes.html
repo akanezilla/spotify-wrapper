@@ -389,6 +389,22 @@
             'X-CSRFToken': getCSRFToken()
         }
     });
-
+</script>
+<script>
+    function getWrapData() {
+        async function getWrapData() {
+    try {
+        const response = await fetch('/spotify/total-listening-time/');
+        if (!response.ok) {
+            throw new Error('Failed to fetch total listening time');
+        }
+        const data = await response.json();
+        return JSON.stringify(data.totalMinutes);
+    } catch (error) {
+        console.error('Error fetching total listening time:', error);
+        return JSON.stringify(0); // Return 0 or some default value in case of error
+    }
+}
+    }
 </script>
 </html>

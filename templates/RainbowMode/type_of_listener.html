@@ -369,5 +369,20 @@
         });
     });
 </script>
+<script>
+ async function getWrapData() {
+    try {
+        const response = await fetch('/spotify/RainbowMode/type_of_listener/');
+        if (!response.ok) {
+            throw new Error('Failed to fetch listener type');
+        }
+        const data = await response.json();
+        return JSON.stringify(data.listener_type); // Correct key based on your view's response
+    } catch (error) {
+        console.error('Error fetching listener type:', error);
+        return JSON.stringify({ error: 'Failed to fetch listener type' });
+    }
+}
+</script>
 </body>
 </html>
